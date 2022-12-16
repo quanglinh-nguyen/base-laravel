@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
 Route::resource('post', \App\Http\Controllers\PostController::class);
 Route::resource('home', \App\Http\Controllers\HomeController::class);
+Route::get('partner', 'App\Http\Controllers\HomeController@partner')->name('partner');
+Route::get('bank', 'App\Http\Controllers\HomeController@bank')->name('bank');
+Route::get('home2', 'App\Http\Controllers\HomeController@home2')->name('home2');

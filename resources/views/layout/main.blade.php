@@ -18,7 +18,7 @@
 
 @include('layout.header')
 
-@include('layout.sidebar')
+@yield('sidebar')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
