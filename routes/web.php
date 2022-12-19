@@ -19,6 +19,6 @@ Route::get('/', function () {
 Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
 Route::resource('post', \App\Http\Controllers\PostController::class);
 Route::resource('home', \App\Http\Controllers\HomeController::class);
-Route::get('partner', 'App\Http\Controllers\HomeController@partner')->name('partner');
-Route::get('bank', 'App\Http\Controllers\HomeController@bank')->name('bank');
-Route::get('home2', 'App\Http\Controllers\HomeController@home2')->name('home2');
+Route::resource('customer', \App\Http\Controllers\CustomerController::class);
+Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadController::class);
+Route::resource('acronyms-banking', \App\Http\Controllers\AcronymsBankingController::class);

@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +22,5 @@ use Illuminate\Support\Facades\Route;
 //    return response()->json([]);
 //});
 
-Route::resource('users', \App\Http\Controllers\UserController::class);
-Route::resource('post', \App\Http\Controllers\PostController::class);
+Route::resource('users', \App\Http\Controllers\Api\UserController::class);
 
