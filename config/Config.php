@@ -18,6 +18,11 @@ return [
        
         [
             'icon' => '<i class="fas fa-circle nav-icon"></i>',
+            'title' => 'User',
+            'route_name' => 'user.index',
+        ],
+        [
+            'icon' => '<i class="fas fa-circle nav-icon"></i>',
             'title' => 'Partner',
             'route_name' => 'partner',
         ],
