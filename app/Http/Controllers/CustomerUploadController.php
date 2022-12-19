@@ -13,9 +13,9 @@ class CustomerUploadController extends Controller
      */
     public function index()
     {
-        $this->showSuccessNotification('Group successfully created');
-        $this->showWarningNotification('Group successfully created');
-        $this->showErrorNotification('Group successfully created');
+//        $this->showSuccessNotification('Group successfully created');
+//        $this->showWarningNotification('Group successfully created');
+//        $this->showErrorNotification('Group successfully created');
         return view('customer-upload.index');
     }
 
