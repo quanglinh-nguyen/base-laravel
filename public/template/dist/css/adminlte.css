@@ -53010,3 +53010,82 @@ a.text-muted:hover {
   border-color: #4b545c !important;
 }
 /*# sourceMappingURL=adminlte.css.map */
+
+/*Custom Cart customer*/
+.card-action {
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75rem 1.25rem;
+    position: relative;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    margin-bottom: 0;
+}
+.card-action > .card-tools {
+    float: right;
+    margin-right: -0.625rem;
+}
+.card-body-project {
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #a9a9a9 transparent;
+}
+
+.card-body-project::-webkit-scrollbar {
+    width: .5rem;
+    height: .5rem;
+}
+
+.card-body-project::-webkit-scrollbar-thumb {
+    background-color: #a9a9a9;
+}
+
+.card-body-project::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.card-body-project::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+.table-customer {
+    min-width: 3000px;
+    position: relative;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: auto;
+    width: 100%;
+    border: none;
+    white-space: nowrap;
+}
+
+table thead tr th {
+    background: #fff;
+}
+table tbody tr:nth-child(odd) td {
+    background: #edf2f7;
+}
+table tbody tr:nth-child(even) td {
+    background: #fff;
+}
+
+.sticky-col {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+.first-col {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+    left: 0px;
+}
+
+.second-col {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+    left: 100px;
+}
+/*End Custom Cart customer*/
+

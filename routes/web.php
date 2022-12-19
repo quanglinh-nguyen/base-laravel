@@ -17,5 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('post', \App\Http\Controllers\PostController::class);
 Route::resource('home', \App\Http\Controllers\HomeController::class);
+Route::resource('customer', \App\Http\Controllers\CustomerController::class);
+Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadController::class);
