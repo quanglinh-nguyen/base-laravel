@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::resource('home', \App\Http\Controllers\HomeController::class);
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
 Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadController::class);
+Route::resource('acronyms-banking', \App\Http\Controllers\AcronymsBankingController::class);
