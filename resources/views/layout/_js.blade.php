@@ -18,4 +18,23 @@
 <!-- AdminLTE App -->
 <script src="{{asset('template/dist/js/adminlte.js')}}"></script>
 
+<script>
+    /** add active class and stay opened when selected */
+    var url = window.location.href;
 
+    const array_url = url.split('/');
+ console.log(array_url);
+ var array = [array_url[0],array_url[1],array_url[2],array_url[3]];
+ var a = array.join('/');
+
+ // for sidebar menu entirely but not cover treeview
+ $('ul.nav-sidebar a').filter(function() {
+    // console.log(this.href);
+     return this.href == a;
+ }).addClass('active');
+ 
+ // for treeview
+ $('ul.nav-treeview a').filter(function() {
+     return this.href == a;
+ }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
+  </script>
