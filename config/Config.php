@@ -7,29 +7,41 @@ return [
             'title' => 'Home',
             'route_name' => 'home.index',
             'icon_left' => '<i class="right fas fa-angle-left"></i>',
-            'child' => [
-                [
-                    'icon' => '<i class="far fa-circle nav-icon"></i>',
-                    'title' => 'Home 2',
-                    'route_name' => 'home2',
-                ],
-            ]
+//            'child' => [
+//                [
+//                    'icon' => '<i class="far fa-circle nav-icon"></i>',
+//                    'title' => 'Home 2',
+//                    'route_name' => 'home2',
+//                ],
+//            ]
         ],
-       
         [
             'icon' => '<i class="fas fa-circle nav-icon"></i>',
-            'title' => 'User',
+            'title' => 'User Management',
             'route_name' => 'user.index',
         ],
         [
             'icon' => '<i class="fas fa-circle nav-icon"></i>',
-            'title' => 'Partner',
-            'route_name' => 'partner',
+            'title' => 'Customer',
+            'route_name' => 'customer.index',
+            'icon_left' => '<i class="right fas fa-angle-left"></i>',
+            'child' => [
+                [
+                    'icon' => '<i class="far fa-circle nav-icon"></i>',
+                    'title' => 'Customer management',
+                    'route_name' => 'customer.index',
+                ],
+                [
+                    'icon' => '<i class="far fa-circle nav-icon"></i>',
+                    'title' => 'Customer Outdate',
+                    'route_name' => 'customer.outdate',
+                ]
+            ]
         ],
         [
             'icon' => '<i class="fas fa-circle nav-icon"></i>',
-            'title' => 'Bank',
-            'route_name' => 'bank',
+            'title' => 'Acronyms Banking',
+            'route_name' => 'acronyms-banking.index',
         ],
     ]
 ];

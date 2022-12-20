@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,16 +13,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function customerOutdate(){
-
+        //
     }
 
     /**
@@ -32,7 +23,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        //
     }
 
     /**
@@ -54,7 +45,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return view('customer.view');
+        //
     }
 
     /**
@@ -63,10 +54,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($customer)
+    public function edit($id)
     {
-
-        return view('customer.edit');
+        //
     }
 
     /**
