@@ -3,43 +3,48 @@
 return [
     'route' => [
         [
-            'icon' => '<i class="nav-icon fas fa-tachometer-alt"></i>',
+            'icon' => 'nav-icon fa-solid fa-gauge-high',
             'title' => 'Home',
             'route_name' => 'home.index',
-            'icon_left' => '<i class="right fas fa-angle-left"></i>',
+            // 'icon_left' => 'right fas fa-angle-left',
 //            'child' => [
 //                [
-//                    'icon' => '<i class="far fa-circle nav-icon"></i>',
+//                    'icon' => 'far fa-circle nav-icon',
 //                    'title' => 'Home 2',
 //                    'route_name' => 'home2',
 //                ],
 //            ]
         ],
         [
-            'icon' => '<i class="fas fa-circle nav-icon"></i>',
+            'icon' => 'nav-icon fa-solid fa-user',
             'title' => 'User Management',
             'route_name' => 'user.index',
         ],
         [
-            'icon' => '<i class="fas fa-circle nav-icon"></i>',
+            'icon' => 'nav-icon fa-solid fa-users-between-lines',
             'title' => 'Customer',
-            'route_name' => 'customer.index',
-            'icon_left' => '<i class="right fas fa-angle-left"></i>',
+            'route_name' => '',
+            'icon_left' => 'right fas fa-angle-left',
             'child' => [
                 [
-                    'icon' => '<i class="far fa-circle nav-icon"></i>',
+                    'icon' => 'nav-icon far fa-circle nav-icon',
                     'title' => 'Customer management',
                     'route_name' => 'customer.index',
                 ],
                 [
-                    'icon' => '<i class="far fa-circle nav-icon"></i>',
+                    'icon' => 'nav-icon far fa-circle nav-icon',
                     'title' => 'Customer Outdate',
                     'route_name' => 'customer.outdate',
-                ]
+                ],
+                [
+                    'icon' => 'nav-icon far fa-circle nav-icon',
+                    'title' => 'Upload Customer',
+                    'route_name' => 'customer-upload.index',
+                ],
             ]
         ],
         [
-            'icon' => '<i class="fas fa-circle nav-icon"></i>',
+            'icon' => 'nav-icon fa-solid fa-building-columns',
             'title' => 'Acronyms Banking',
             'route_name' => 'acronyms-banking.index',
         ],

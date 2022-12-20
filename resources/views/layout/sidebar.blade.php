@@ -24,23 +24,23 @@
 
           @foreach (Config::get('Config.route') as $key => $value)
               <li class="nav-item">
-                <a href="{{route($value['route_name'])}}" class="nav-link">
-                  {!!$value['icon']!!}
+                <a href="{{$value['route_name'] == null ? "#" : route($value['route_name'])}}" class="nav-link">
+                  <i class="{!!$value['icon']!!}"></i>
                   <p>
                     {{$value['title']}}
                     @if (isset($value['icon_left']))
-                        {!!$value['icon_left']!!}
+                    <i class="{!!$value['icon_left']!!}"></i>
                     @endif
                   </p>
                 </a>
               
               @if (isset($value['child']))
                 <ul class="nav nav-treeview">
-
+                  
                   @foreach ($value['child'] as $key => $value)
                     <li class="nav-item">
                       <a href="{{ route($value['route_name']) }}" class="nav-link">
-                        {!!$value['icon']!!}
+                    <i class="{!!$value['icon']!!}"></i>
                         {{$value['title']}}
                       </a>
                     </li>
