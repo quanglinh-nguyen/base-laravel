@@ -30,7 +30,7 @@
     </div>
     <div class="row pb-5">
         <div class="col-12">
-            <input type="submit" value="Edit Acronyms Backing" class="btn btn-success float-right">
+            <input type="submit" value="Update Acronyms Backing" class="btn btn-success float-right">
         </div>
     </div>
 @endsection

@@ -28,4 +28,6 @@ Route::get('customer-outdate', [\App\Http\Controllers\CustomerController::class,
 
 Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadController::class);
 
+Route::resource('history-update-customer', \App\Http\Controllers\HistoryUpdateCustomerController::class);
+
 Route::resource('acronyms-banking', \App\Http\Controllers\AcronymsBankingController::class);

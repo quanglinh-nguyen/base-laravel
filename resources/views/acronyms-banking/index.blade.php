@@ -1,6 +1,6 @@
 @extends('layout.main')
 
-@section('title_page','List Customer')
+@section('title_page','Acronyms Banking')
 
 @section('sidebar')
     @include('layout.sidebar')
@@ -10,7 +10,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Customer Management</h3>
+            <h3 class="card-title">List Acronyms Banking</h3>
 
             <div class="card-tools">
                 <div
@@ -35,6 +35,15 @@
                 </div>
             </div>
         </div>
+        <div class="card-action">
+            <div class="card-tools d-flex">
+                <a
+                    class="btn btn-block btn-primary btn-sm"
+                    href="{{route('acronyms-banking.create')}}"
+                >Add Acronyms Banking</a
+                >
+            </div>
+        </div>
         <div class="card-body p-0">
             <table
                 class="table table-striped projects"
@@ -43,7 +52,7 @@
                 <tr>
                     <th>Stt</th>
                     <th>
-                        Acronyms Backing
+                        Acronyms Banking
                     </th>
                     <th>
                         Full Name
@@ -67,7 +76,7 @@
                         <td class="project-actions text-right">
                             <a
                                 class="btn btn-info btn-sm"
-                                href={{route('customer.edit', ['customer' => 10])}}
+                                href={{route('acronyms-banking.edit', ['acronyms_banking' => 10])}}
                             >
                                 <i class="fas fa-pencil-alt">
                                 </i>
@@ -92,7 +101,7 @@
                         <td class="project-actions text-right">
                             <a
                                 class="btn btn-info btn-sm"
-                                href={{route('customer.edit', ['customer' => 10])}}
+                                href={{route('acronyms-banking.edit', ['acronyms_banking' => 10])}}
                             >
                                 <i class="fas fa-pencil-alt">
                                 </i>
@@ -135,42 +144,4 @@
     </div>
     <!-- /.card -->
 
-    <!-- The Modal -->
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title">Modal Heading</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <strong>Industry</strong>
-                    <p class="text-muted">
-                        B.S. in Computer Science from the University of Tennessee at Knoxville
-                    </p>
-                    <hr>
-                    <strong>Industry</strong>
-                    <p class="text-muted">
-                        B.S. in Computer Science from the University of Tennessee at Knoxville
-                    </p>
-                    <hr>
-                    <strong>Industry</strong>
-                    <p class="text-muted">
-                        B.S. in Computer Science from the University of Tennessee at Knoxville
-                    </p>
-                    <hr>
-                </div>
-
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
 @endsection

@@ -40,6 +40,12 @@ return [
                     'title' => 'Upload Customer',
                     'route_name' => 'customer-upload.index',
                 ],
+                [
+                    'icon' => 'nav-icon far fa-circle nav-icon',
+                    'title' => 'History Update Customer',
+                    'route_name' => 'history-update-customer.index',
+                ],
+
             ]
         ],
         [
