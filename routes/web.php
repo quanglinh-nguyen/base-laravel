@@ -24,7 +24,7 @@ Route::resource('home', \App\Http\Controllers\HomeController::class);
 Route::resource('user', \App\Http\Controllers\UserController::class);
 
 Route::resource('customer', \App\Http\Controllers\CustomerController::class);
-Route::get('customer/outdate', 'App\Http\Controllers\CustomerController@customerOutdate')->name('customer.outdate');
+Route::get('customer-outdate', [\App\Http\Controllers\CustomerController::class, 'outdate'])->name('customer.outdate');
 
 Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadController::class);
 

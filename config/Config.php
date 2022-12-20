@@ -35,7 +35,7 @@ return [
                     'icon' => '<i class="far fa-circle nav-icon"></i>',
                     'title' => 'Customer Outdate',
                     'route_name' => 'customer.outdate',
-                ]
+                ],
             ]
         ],
         [

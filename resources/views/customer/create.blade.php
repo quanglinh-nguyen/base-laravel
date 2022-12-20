@@ -2,6 +2,10 @@
 
 @section('title_page','Add Customer')
 
+@section('sidebar')
+    @include('layout.sidebar')
+@endsection
+
 @section('content')
     <!-- Default box -->
 

@@ -21,8 +21,8 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function customerOutdate(){
-
+    public function outdate(){
+        return view('customer.outdate');
     }
 
     /**
