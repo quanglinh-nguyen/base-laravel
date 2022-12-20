@@ -17,10 +17,5 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-//Route::get('users', [\App\Http\Controllers\UserController::class, 'index']);
-//Route::get('users', function () {
-//    return response()->json([]);
-//});
-
 Route::resource('users', \App\Http\Controllers\Api\UserController::class);
 

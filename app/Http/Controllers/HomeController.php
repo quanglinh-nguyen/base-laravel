@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 
 class HomeController extends Controller
 {
@@ -24,7 +23,7 @@ class HomeController extends Controller
      */
     public function create()
     {
-        return view('home.createHome');
+
     }
 
     /**
@@ -81,17 +80,5 @@ class HomeController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function bank()
-    {
-        return view('home.bank');
-    }
-    public function partner()
-    {
-        return view('home.partner');
-    }
-    public function home2()
-    {
-        return view('home.home2');
     }
 }
