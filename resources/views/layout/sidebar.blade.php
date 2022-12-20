@@ -24,7 +24,7 @@
 
           @foreach (Config::get('Config.route') as $key => $value)
               <li class="nav-item">
-                <a href="{{$value['route_name'] == null ? "#" : route($value['route_name'])}}" class="nav-link">
+                <a href="{{empty($value['route_name']) ? "#" : route($value['route_name'])}}" class="nav-link">
                   <i class="{!!$value['icon']!!}"></i>
                   <p>
                     {{$value['title']}}

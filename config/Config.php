@@ -23,7 +23,6 @@ return [
         [
             'icon' => 'nav-icon fa-solid fa-users-between-lines',
             'title' => 'Customer',
-            'route_name' => '',
             'icon_left' => 'right fas fa-angle-left',
             'child' => [
                 [
