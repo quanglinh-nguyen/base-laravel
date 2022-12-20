@@ -17,8 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', 'App\Http\Controllers\LoginController@login')->name('login');
+Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
 
+
+Route::get('home/profile', [\App\Http\Controllers\HomeController::class, 'getProfile'])->name('home.profile');
 Route::resource('home', \App\Http\Controllers\HomeController::class);
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
