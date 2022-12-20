@@ -2,6 +2,10 @@
 
 @section('title_page','Edit Acronyms Backing')
 
+@section('sidebar')
+    @include('layout.sidebar')
+@endsection
+
 @section('content')
     <!-- Default box -->
 

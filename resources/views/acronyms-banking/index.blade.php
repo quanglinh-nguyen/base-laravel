@@ -2,6 +2,10 @@
 
 @section('title_page','List Customer')
 
+@section('sidebar')
+    @include('layout.sidebar')
+@endsection
+
 @section('content')
     <!-- Default box -->
     <div class="card">
