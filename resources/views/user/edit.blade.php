@@ -10,55 +10,8 @@
 
 <section class="content">
     <div class="container-fluid">
-      <div class="row">
-        {{-- <div class="col-md-3">
-
-          <!-- Profile Image -->
-          <div class="card card-primary card-outline">
-            <div class="card-header p-1">
-              <h5 class="nav-link">View Profile</h5>
-              
-            </div><!-- /.card-header -->
-            <div class="card-body box-profile">
-              <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle"
-                     src="https://cdn.vox-cdn.com/thumbor/mGsDgU2JoyHyRJFaeVh9K5eKdTc=/0x0:1800x1013/1200x800/filters:focal(756x363:1044x651)/cdn.vox-cdn.com/uploads/chorus_image/image/60154183/Webp.net_resizeimage__5_.0.jpg"
-                     alt="User profile picture" style="width:150px; height:150px; object-fit:cover">
-              </div>
-
-              <h3 class="profile-username text-center">Nguyễn Quyết Tiến</h3>
-
-              <p class="text-muted text-center text-bold">Partner - EIC</p>
-
-              <ul class="list-group list-group-unbordered mb-3">
-                <li class="list-group-item">
-                  <b>User ID</b> <a class="float-right">tiennq</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Full Name</b> <a class="float-right">Nguyễn Quyết Tiến</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Phone</b> <a class="float-right">0123456789</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Role</b> <a class="float-right">Partner</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Email</b> <a class="float-right">nguyenquyettien0102@gmail.com</a>
-                </li>
-                <li class="list-group-item">
-                  <b>Date of Birth</b> <a class="float-right">13/01/2002</a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.card-body -->
-          </div>
-
-        
-          <!-- /.card -->
-        </div> --}}
-        <!-- /.col -->
-        <div class="col-md-12">
+    
+       <div class="col-md-12">
           <div class="card">
            <div class="card-body">
               <div class="tab-content">
@@ -122,9 +75,7 @@
           <!-- /.card -->
         </div>
         <!-- /.col -->
-      </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
+    </div>
   </section>
 
 @endsection 
