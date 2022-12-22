@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class HistoryUpdateCustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,26 +13,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function outdate(){
-        return view('customer.outdate');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('customer.create');
+        return view('history-update-customer.index');
     }
 
     /**
@@ -43,7 +24,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-
+        //
     }
 
     /**
@@ -54,7 +35,7 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return view('customer.view');
+        //
     }
 
     /**
@@ -63,10 +44,9 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($customer)
+    public function edit($id)
     {
-
-        return view('customer.edit');
+        return view('history-update-customer.edit');
     }
 
     /**

@@ -53089,3 +53089,22 @@ table tbody tr:nth-child(even) td {
 }
 /*End Custom Cart customer*/
 
+/* Validation */
+label.error {
+    color: #cc5965;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.form-control.error {
+    border: 1px dotted #cc5965;
+}
+
+
+/* project-actions */
+
+.project-actions form{
+    display: inline-block;
+}
+
+

@@ -17,7 +17,7 @@ class BaseRepository implements EloquentRepositoryInterface
      *
      * @param Model $model
      */
-    public function __construct(Model $model)
+    public function __construct($model)
     {
         $this->model = $model;
     }
@@ -30,6 +30,19 @@ class BaseRepository implements EloquentRepositoryInterface
     public function all(array $columns = ['*'], array $relations = []): Collection
     {
         return $this->model->with($relations)->get($columns);
+    }
+
+    /**
+     * @param int $limit
+     * @param array $columns
+     * @param string $method
+     * @return mixed
+     */
+    public function paginate($limit = 15, $columns = ['*'], $method = "paginate")
+    {
+        $limit = is_null($limit) ? config('repository.pagination.limit') : $limit;
+        $results = $this->model->{$method}($limit, $columns);
+        return $results->appends(app('request')->query());
     }
 
     /**
@@ -93,6 +106,15 @@ class BaseRepository implements EloquentRepositoryInterface
         $model = $this->model->create($payload);
 
         return $model->fresh();
+    }
+
+    /**
+     * @param array $attributes
+     * @return mixed
+     */
+    public function insertGetId(array $attributes)
+    {
+        return $this->_model->insertGetId($attributes);
     }
 
     /**

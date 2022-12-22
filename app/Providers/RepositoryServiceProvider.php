@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
+
 use App\Repository\BaseRepository;
 use App\Repository\EloquentRepositoryInterface;
-use App\Repository\post\PostRepository;
-use App\Repository\post\PostRepositoryInterface;
+use App\Repository\bank\BankRepository;
+use App\Repository\bank\BankRepositoryInterface;
 use App\Repository\user\UserRepository;
 use App\Repository\user\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +21,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'user'=>[
             UserRepositoryInterface::class,
             UserRepository::class
+        ],
+        'bank'=>[
+            BankRepositoryInterface::class,
+            BankRepository::class
         ],
     ];
     /**

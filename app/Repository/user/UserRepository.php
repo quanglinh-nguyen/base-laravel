@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class UserRepository extends BaseRepository implements UserRepositoryInterface{
+class UserRepository extends BaseRepository implements UserRepositoryInterface {
     /**
      * @var Model
      */

@@ -17,6 +17,14 @@ interface EloquentRepositoryInterface
     public function all(array $columns = ['*'], array $relations = []): Collection;
 
     /**
+     * @param null $limit
+     * @param array $columns
+     * @param string $method
+     * @return mixed
+     */
+    public function paginate($limit = null, $columns = ['*'], $method = "paginate");
+
+    /**
      * Get all trashed models.
      *
      * @return Collection
@@ -62,6 +70,12 @@ interface EloquentRepositoryInterface
      * @return Model
      */
     public function create(array $payload): ?Model;
+
+    /**
+     * @param array $attributes
+     * @return void
+     */
+    public function insertGetId(array $attributes);
 
     /**
      * Update existing model.

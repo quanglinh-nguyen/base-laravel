@@ -6,7 +6,7 @@
   <title>IEC Group</title>
 
   @include('layout._css')
- 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -51,5 +51,6 @@
 
 @include('layout._js')
 
+@yield('script')
 </body>
 </html>

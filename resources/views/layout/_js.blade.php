@@ -13,6 +13,9 @@
 </script>
 <!-- Toastr -->
 <script src="{{asset('template/plugins/toastr/js/toastr.min.js')}}"></script>
+<!-- jquery-validation -->
+<script src="{{asset('template/plugins/jquery-validation/jquery.validate.js')}}"></script>
+<script src="{{asset('template/plugins/jquery-validation/additional-methods.js')}}"></script>
 <!-- Notifications -->
 @include('common.notifications')
 <!-- AdminLTE App -->
@@ -23,7 +26,6 @@
     var url = window.location.href;
 
     const array_url = url.split('/');
- console.log(array_url);
  var array = [array_url[0],array_url[1],array_url[2],array_url[3]];
  var a = array.join('/');
 
@@ -32,7 +34,7 @@
     // console.log(this.href);
      return this.href == a;
  }).addClass('active');
- 
+
  // for treeview
  $('ul.nav-treeview a').filter(function() {
      return this.href == a;
