@@ -2,7 +2,15 @@
 
 namespace App\Repository\bank;
 
-interface BankRepositoryInterface
-{
+use App\Repository\EloquentRepositoryInterface;
 
+interface BankRepositoryInterface extends EloquentRepositoryInterface
+{
+    /**
+     * @param array $data
+     * @param int $limit
+     * @param array $columns
+     * @return mixed
+     */
+    public function getData($keyword, $limit, $columns);
 }

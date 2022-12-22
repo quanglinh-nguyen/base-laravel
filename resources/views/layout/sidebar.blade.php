@@ -22,7 +22,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-          @foreach (Config::get('Config.route') as $key => $value)
+          @foreach (Config::get('config.route') as $key => $value)
               <li class="nav-item">
                 <a href="{{empty($value['route_name']) ? "#" : route($value['route_name'])}}" class="nav-link">
                   <i class="{!!$value['icon']!!}"></i>
@@ -33,10 +33,10 @@
                     @endif
                   </p>
                 </a>
-              
+
               @if (isset($value['child']))
                 <ul class="nav nav-treeview">
-                  
+
                   @foreach ($value['child'] as $key => $value)
                     <li class="nav-item">
                       <a href="{{ route($value['route_name']) }}" class="nav-link">
@@ -52,7 +52,7 @@
             @endforeach
         </ul>
       </nav>
-    
+
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

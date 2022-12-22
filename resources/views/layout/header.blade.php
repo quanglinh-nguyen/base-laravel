@@ -43,7 +43,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      
+
       <li class="nav-item dropdown d-flex flex-row">
           <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle shadow-sm">Nguyễn Quyết Tiến</a>
           <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0">

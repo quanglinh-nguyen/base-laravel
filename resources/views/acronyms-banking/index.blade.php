@@ -13,26 +13,29 @@
             <h3 class="card-title">List Acronyms Banking</h3>
 
             <div class="card-tools">
-                <div
-                    class="input-group input-group-sm"
-                    style="width: 150px"
-                >
-                    <input
-                        type="text"
-                        name="table_search"
-                        class="form-control float-right"
-                        placeholder="Search"
-                    />
+                <form method="get" action="{{route('acronyms-banking.index')}}">
+                    <div
+                        class="input-group input-group-sm"
+                        style="width: 150px"
+                    >
+                        <input
+                            type="text"
+                            name="keyword"
+                            class="form-control float-right"
+                            placeholder="Search"
+                            value="{{request()->get('keyword') ?? ""}}"
+                        />
 
-                    <div class="input-group-append">
-                        <button
-                            type="submit"
-                            class="btn btn-default"
-                        >
-                            <i class="fas fa-search"></i>
-                        </button>
+                        <div class="input-group-append">
+                            <button
+                                type="submit"
+                                class="btn btn-default"
+                            >
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="card-action">
@@ -66,80 +69,53 @@
                 </tr>
                 </thead>
                 <tbody>
+                @php
+                    $stt = 0;
+                @endphp
+                @foreach($banks as $bank)
+                    @php
+                        $stt++;
+                    @endphp
                     <tr>
-                        <td>1</td>
+                        <td>{{$stt}}</td>
                         <td>
-                            MSB
+                            {{$bank->acronym}}
                         </td>
-                        <td>Ngan hang hang hai</td>
+                        <td>{{$bank->full_name}}</td>
 
                         <td class="project-actions text-right">
                             <a
                                 class="btn btn-info btn-sm"
-                                href={{route('acronyms-banking.edit', ['acronyms_banking' => 10])}}
+                                href={{route('acronyms-banking.edit', ['acronyms_banking' => $bank->id])}}
                             >
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
                             </a>
-                            <a
+                            <form action="{{route('acronyms-banking.destroy', ['acronyms_banking' => $bank->id])}}" method="POST">
+                                @method('DELETE')
+                                @csrf
+                            <button
                                 class="btn btn-danger btn-sm"
-                                href="#"
+                                onclick="return confirm('Are you sure you want to delete cronyms Banking');"
+                                type="submit"
+                                data-method="delete"
                             >
                                 <i class="fas fa-trash"> </i>
                                 Delete
-                            </a>
+                            </button>
+                            </form>
                         </td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>
-                            MSB
-                        </td>
-                        <td>Ngan hang hang hai</td>
-
-                        <td class="project-actions text-right">
-                            <a
-                                class="btn btn-info btn-sm"
-                                href={{route('acronyms-banking.edit', ['acronyms_banking' => 10])}}
-                            >
-                                <i class="fas fa-pencil-alt">
-                                </i>
-                                Edit
-                            </a>
-                            <a
-                                class="btn btn-danger btn-sm"
-                                href="#"
-                            >
-                                <i class="fas fa-trash"> </i>
-                                Delete
-                            </a>
-                        </td>
-                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            <ul
-                class="pagination pagination-sm m-0 float-right"
-            >
-                <li class="page-item">
-                    <a class="page-link" href="#">&laquo;</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
-                </li>
-            </ul>
+            <div class="d-flex justify-content-end">
+                {{ $banks->links('common.pagination')}}
+            </div>
         </div>
     </div>
     <!-- /.card -->
