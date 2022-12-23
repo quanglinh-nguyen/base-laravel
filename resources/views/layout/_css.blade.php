@@ -6,3 +6,8 @@
  <link rel="stylesheet" href="{{asset('template/plugins/toastr/css/toastr.min.css')}}">
  <!-- Theme style -->
  <link rel="stylesheet" href="{{asset('template/dist/css/adminlte.css')}}">
+<style>
+  .sidebar-dark-primary{
+    background-image: linear-gradient(to left, rgba(17, 100, 102, 1) 0%, rgba(4, 29, 30, 1) 100%);
+  }
+</style>

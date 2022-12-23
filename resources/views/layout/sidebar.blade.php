@@ -1,20 +1,18 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="{{asset('template/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <a href="#" class="d-flex flex-row  brand-link" style="border-bottom: 1px solid #8e99a3;">
+      <img src="{{asset('template/dist/img/Logo-IEC-2020_white_250.png')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8" width="40%">
+      <span class="">IEC Group</span>
     </a>
-
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex" style="border-bottom: 1px solid #8e99a3">
         <div class="image">
           <img src="{{asset('template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">Nguyễn Quyết Tiến</a>
         </div>
       </div>
 
