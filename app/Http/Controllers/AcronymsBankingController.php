@@ -77,17 +77,6 @@ class AcronymsBankingController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -95,7 +84,14 @@ class AcronymsBankingController extends Controller
      */
     public function edit($id)
     {
-        return view('acronyms-banking.edit');
+        try {
+            $bank = $this->bankService->getById($id);
+        } catch (Exception $e) {
+            return redirect()->route('acronyms-banking.index');
+        }
+        return view('acronyms-banking.edit', [
+            'bank' => $bank
+        ]);
     }
 
     /**
@@ -113,9 +109,9 @@ class AcronymsBankingController extends Controller
         ]);
         try {
             $this->bankService->updateBank($data, $id);
-            $this->showSuccessNotification('Acronyms Banking successfully created');
+            $this->showSuccessNotification('Acronyms Banking successfully updated');
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms Banking failed created');
+            $this->showErrorNotification('Acronyms Banking failed updated');
         }
         return redirect()->route('acronyms-banking.index');
     }

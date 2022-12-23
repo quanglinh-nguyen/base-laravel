@@ -22,14 +22,15 @@ class BankRepository extends BaseRepository implements BankRepositoryInterface{
     }
 
     /**
-     * @param array $data
+     * @param  \Illuminate\Http\Request $request
      * @param int $limit
      * @param array $columns
      * @return mixed
      */
-    public function getData($data, $limit = null, $columns = ['*'])
+    public function getData($request, $limit = null, $columns = ['*'])
     {
-        $keyword = $data['keyword'] ?? null;
+        // request->has
+        $keyword = $request->input('keyword') ?? null;
         $limit = is_null($limit) ? config('repository.pagination.limit', 15) : $limit;
         $banks = $this->model
         ->when($keyword, function ($query, $keyword) {

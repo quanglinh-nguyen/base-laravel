@@ -16,7 +16,7 @@
                 <h3 class="card-title">Edit Acronyms Backing</h3>
             </div>
             <div class="card-body">
-                @include('acronyms-banking.parts.form', [])
+                @include('acronyms-banking.parts.form', ['model' => $bank])
             </div>
         </div>
         <div class="row pb-5">
