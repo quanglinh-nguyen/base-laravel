@@ -9,31 +9,16 @@
 @section('content')
     <!-- Default box -->
     <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">History Update Customer</h3>
-
-            <div class="card-tools">
-                <div
-                    class="input-group input-group-sm"
-                    style="width: 150px"
-                >
-                    <input
-                        type="text"
-                        name="table_search"
-                        class="form-control float-right"
-                        placeholder="Search"
-                    />
-
-                    <div class="input-group-append">
-                        <button
-                            type="submit"
-                            class="btn btn-default"
-                        >
-                            <i class="fas fa-search"></i>
-                        </button>
+        <div class="card-header d-flex justify-content-start">
+            <form action="">
+                <div class="card-tools d-flex flex-row">
+                    <input type="text" name="table_search" class="form-control" placeholder="Keyword"/>
+                    <div class="d-flex flex-row mx-2">
+                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-outline-secondary">Clear</button>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         <div class="card-body p-0">
             <table
