@@ -11,21 +11,23 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">User Management</h3>
-
-        <div class="card-tools">
-            <div class="input-group input-group-sm" style="width: 150px">
-                <input type="text" name="table_search" class="form-control float-right" placeholder="Search" />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-default">
-                        <i class="fas fa-search"></i>
-                    </button>
+    </div>
+    <div class="card-action d-flex flex-row justify-content-between">
+        <form action="" class="col-5">
+            <div class="card-tools d-flex flex-row justify-content-between">
+               <input type="text" name="table_search" class="form-control mr-2" placeholder="Keyword"/>
+               <select name="" class="form-control">
+                    <option value="">Super Admin</option>
+                    <option value="">Admin</option>
+                </select>
+                <div class="d-flex flex-row mx-2">
+                    <button class="btn btn-primary mr-2">Search</button>
+                    <button class="btn btn-outline-secondary">Clear</button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="card-action">
-        <div class="card-tools d-flex">
-            <a class="btn btn-block btn-primary btn-sm" href="{{route('user.create')}}">
+        </form>
+        <div class="card-tools">
+            <a class="btn btn-block btn-primary btn-" href="{{route('user.create')}}">
                 Add User
             </a>
         </div>
@@ -152,7 +154,7 @@
         <div class="modal-body">
             <form class="form-horizontal">
                 <div class="form-group row">
-                  <label for="newPass" class="col-sm-3 col-form-label">New Password<span class="text-danger">*</span></label>
+                  <label for="newPass" class="col-sm-3 col-form-label">New Password <span class="text-danger">*</span></label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="newPass" placeholder="Enter your new password">
                   </div>

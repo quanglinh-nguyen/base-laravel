@@ -10,38 +10,27 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">List Acronyms Banking</h3>
-
-            <div class="card-tools">
-                <form method="get" action="{{route('acronyms-banking.index')}}">
-                    <div
-                        class="input-group input-group-sm"
-                        style="width: 150px"
-                    >
-                        <input
-                            type="text"
-                            name="keyword"
-                            class="form-control float-right"
-                            placeholder="Search"
-                            value="{{request()->get('keyword') ?? ""}}"
-                        />
-
-                        <div class="input-group-append">
-                            <button
-                                type="submit"
-                                class="btn btn-default"
-                            >
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            <h3 class="card-title">List Acronyms Banking</h3>      
         </div>
-        <div class="card-action">
+        <div class="card-action d-flex flex-row justify-content-between">
+            <form method="get" action="{{route('acronyms-banking.index')}}">
+            <div class="card-tools d-flex flex-row">
+                    <input
+                        type="text"
+                        name="keyword"
+                        class="form-control"
+                        placeholder="Keyword"
+                        value="{{request()->get('keyword') ?? ""}}"
+                    />
+                    <div class="d-flex flex-row mx-2">
+                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-outline-secondary">Clear</button>
+                    </div>
+                </div>
+            </form>
             <div class="card-tools d-flex">
                 <a
-                    class="btn btn-block btn-primary btn-sm"
+                    class="btn btn-block btn-primary"
                     href="{{route('acronyms-banking.create')}}"
                 >Add Acronyms Banking</a
                 >

@@ -11,38 +11,26 @@
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Customer Management</h3>
-
-            <div class="card-tools">
-                <div
-                    class="input-group input-group-sm"
-                    style="width: 150px"
-                >
-                    <input
-                        type="text"
-                        name="table_search"
-                        class="form-control float-right"
-                        placeholder="Search"
-                    />
-
-                    <div class="input-group-append">
-                        <button
-                            type="submit"
-                            class="btn btn-default"
-                        >
-                            <i class="fas fa-search"></i>
-                        </button>
+        </div>
+        <div class="card-action d-flex flex-row justify-content-between">
+            <form action="">
+                <div class="card-tools d-flex flex-row">
+                    <div class="input-group">
+                        <input type="text" name="table_search" class="form-control" placeholder="Keyword"/>
+                    </div>
+                    <div class="d-flex flex-row mx-2">
+                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-outline-secondary">Clear</button>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="card-action">
+            </form>
             <div class="card-tools d-flex">
-                <a
-                    class="btn btn-block btn-primary btn-sm"
+                <a class="btn btn-block btn-primary"
                     href="{{route('customer.create')}}"
                 >Add Customer</a
                 >
             </div>
+        
         </div>
         <div class="card-body p-0 card-body-project">
             <table
