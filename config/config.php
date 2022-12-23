@@ -32,11 +32,6 @@ return [
                 ],
                 [
                     'icon' => 'nav-icon far fa-circle nav-icon',
-                    'title' => 'Customer Outdate',
-                    'route_name' => 'customer.outdate',
-                ],
-                [
-                    'icon' => 'nav-icon far fa-circle nav-icon',
                     'title' => 'Upload Customer',
                     'route_name' => 'customer-upload.index',
                 ],
@@ -45,7 +40,11 @@ return [
                     'title' => 'History Update Customer',
                     'route_name' => 'history-update-customer.index',
                 ],
-
+                [
+                    'icon' => 'nav-icon far fa-circle nav-icon',
+                    'title' => 'Customer Outdate',
+                    'route_name' => 'customer.outdate',
+                ],
             ]
         ],
         [

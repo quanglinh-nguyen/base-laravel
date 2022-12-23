@@ -26,15 +26,13 @@ class BankService
     }
     /**
      * Get all bank.
+     * @param  \Illuminate\Http\Request $request
      *
      * @return String
      */
     public function getAllData($request)
     {
-        $data = $request->only([
-            'keyword',
-        ]);
-        $banks = $this->bankRepository->getData($data);
+        $banks = $this->bankRepository->getData($request);
         return $banks;
     }
 
