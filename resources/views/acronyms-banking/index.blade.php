@@ -10,7 +10,7 @@
     <!-- Default box -->
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">List Acronyms Banking</h3>      
+            <h3 class="card-title">List Acronyms Banking</h3>
         </div>
         <div class="card-action d-flex flex-row justify-content-between">
             <form method="get" action="{{route('acronyms-banking.index')}}">
@@ -32,7 +32,7 @@
                 <a
                     class="btn btn-block btn-primary"
                     href="{{route('acronyms-banking.create')}}"
-                >Add Acronyms Banking</a
+                >Add</a
                 >
             </div>
         </div>

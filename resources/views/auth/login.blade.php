@@ -40,13 +40,12 @@
             </div>
             <div class="col-md-6 col-lg-7 d-flex align-items-center">
               <div class="card-body px-lg-5 pb-lg-5 text-black">
-                <form method="POST" action="{{ route('login') }}">
+                  <form method="POST" action="{{ route('login') }}">
+                      @csrf
                   <div class="d-flex align-items-center mb-2">
                     <img src="{{asset('template/dist/img/Logo-IEC-2020_white_250.png')}}" alt="" width="19%">
                   </div>
                   <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Sign into your account</h5>
-
-                    @csrf
                   <div class="form-outline mb-3">
                     <label class="form-label" for="email">Email address</label>
                     <input type="email" name="email" id="email" class="form-control form-control-lg @error('email') error @enderror"
