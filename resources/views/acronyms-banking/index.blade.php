@@ -42,7 +42,7 @@
             >
                 <thead>
                 <tr>
-                    <th>Stt</th>
+                    <th>#</th>
                     <th>
                         Acronyms Banking
                     </th>
