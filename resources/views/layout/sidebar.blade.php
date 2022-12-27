@@ -1,7 +1,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="#" class="d-flex flex-row  brand-link" style="border-bottom: 1px solid #8e99a3;">
-      <img src="{{asset('template/dist/img/Logo-IEC-2020_white_250.png')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8" width="40%">
+      <img src="{{asset('template/dist/img/Logo-IEC-2020_white_250.png')}}" alt="AdminLTE Logo" class="brand-image elevation-3" style="opacity: .8">
       <span class="">IEC Group</span>
     </a>
     <!-- Sidebar -->

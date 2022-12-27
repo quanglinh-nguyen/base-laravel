@@ -49,8 +49,8 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <div class="offset-sm-2 col-sm-10">
-                      <button type="submit" class="btn btn-primary">
+                    <div class="offset-sm-2 col-sm-10 d-flex flex-row">
+                      <button type="submit" class="btn btn-primary mr-2">
                         <i class="fa-solid fa-circle-plus"></i>
                         Create
                       </button>
