@@ -4306,7 +4306,7 @@ input[type="button"].btn-block {
 
 .nav-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.5rem;
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -12508,7 +12508,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 .brand-link .brand-image {
   float: left;
   line-height: .8;
-  margin-left: .8rem;
+  /* margin-left: .2rem; */
   margin-right: .5rem;
   margin-top: -3px;
   max-height: 33px;
@@ -12625,7 +12625,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 
 .user-panel .image {
   display: inline-block;
-  padding-left: 0.8rem;
+  padding-left: 1.4rem;
 }
 
 .user-panel img {
@@ -14207,7 +14207,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   .sidebar-mini.sidebar-collapse .content-wrapper,
   .sidebar-mini.sidebar-collapse .main-footer,
   .sidebar-mini.sidebar-collapse .main-header {
-    margin-left: 4.6rem !important;
+    margin-left: 5.6rem !important;
   }
   .sidebar-mini.sidebar-collapse .nav-sidebar .nav-header {
     display: none;
@@ -14252,7 +14252,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
   }
   .sidebar-mini.sidebar-collapse .main-sidebar, .sidebar-mini.sidebar-collapse .main-sidebar::before {
     margin-left: 0;
-    width: 4.6rem;
+    width: 5.6rem;
   }
   .sidebar-mini.sidebar-collapse .main-sidebar .user-panel .image {
     float: none;
@@ -14315,7 +14315,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
     width: 250px;
   }
   .sidebar-mini.sidebar-collapse.layout-fixed .brand-link {
-    width: 4.6rem;
+    width: 5.6rem;
   }
 }
 
@@ -14787,7 +14787,7 @@ body:not(.layout-fixed) .main-sidebar .sidebar {
 }
 
 .sidebar-collapse.sidebar-mini .main-sidebar .nav-sidebar .nav-link, .sidebar-collapse.sidebar-mini-md .main-sidebar .nav-sidebar .nav-link, .sidebar-collapse.sidebar-mini-xs .main-sidebar .nav-sidebar .nav-link {
-  width: 3.6rem;
+  width: 4.6rem;
 }
 
 .sidebar-collapse.sidebar-mini .main-sidebar .nav-sidebar.nav-flat .nav-link, .sidebar-collapse.sidebar-mini .main-sidebar .nav-sidebar.nav-legacy .nav-link, .sidebar-collapse.sidebar-mini-md .main-sidebar .nav-sidebar.nav-flat .nav-link, .sidebar-collapse.sidebar-mini-md .main-sidebar .nav-sidebar.nav-legacy .nav-link, .sidebar-collapse.sidebar-mini-xs .main-sidebar .nav-sidebar.nav-flat .nav-link, .sidebar-collapse.sidebar-mini-xs .main-sidebar .nav-sidebar.nav-legacy .nav-link {
@@ -53117,5 +53117,12 @@ label.error {
 .project-actions form{
     display: inline-block;
 }
-
+button.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button.btn i{
+  margin-right: 3px;
+}
 

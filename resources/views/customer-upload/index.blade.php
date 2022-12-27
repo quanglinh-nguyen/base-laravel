@@ -21,14 +21,17 @@
                     >Template file download</label
                     >
                     <div class="col-sm-10">
-                        <a class="btn btn-block btn-info d-inline" download href="{{asset('storage/template/download_template.xlsx')}}">Download Template</a>
+                        <a class="btn btn-block btn-info d-inline" download href="{{asset('storage/template/download_template.xlsx')}}">
+                            <i class="fa-solid fa-download"></i>
+                            Download Template
+                        </a>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label
                         for="fileUpload"
                         class="col-sm-2 col-form-label"
-                    >File Lpload</label
+                    >File Upload</label
                     >
                     <div class="col-sm-10">
                         <div class="custom-file">
@@ -45,7 +48,8 @@
                             type="submit"
                             class="btn btn-success"
                         >
-                            Submit
+                            <i class="fa-solid fa-upload"></i>
+                           Upload
                         </button>
                     </div>
                 </div>

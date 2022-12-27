@@ -19,16 +19,19 @@
                         <input type="text" name="table_search" class="form-control" placeholder="Keyword"/>
                     </div>
                     <div class="d-flex flex-row mx-2">
-                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-primary mr-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Search
+                        </button>
                         <button class="btn btn-outline-secondary">Clear</button>
                     </div>
                 </div>
             </form>
             <div class="card-tools d-flex">
-                <a class="btn btn-block btn-primary"
-                    href="{{route('customer.create')}}"
-                >Add</a
-                >
+                <a class="btn btn-block btn-primary" href="{{route('customer.create')}}">
+                    <i class="fa-solid fa-plus"></i>
+                    Add
+                </a>
             </div>
 
         </div>
@@ -119,7 +122,7 @@
                             class="btn btn-primary btn-sm"
                             data-toggle="modal" data-target="#myModal"
                         >
-                            <i class="fas fa-folder"> </i>
+                            <i class="fa-solid fa-eye"></i>
                             View
                         </a>
                         <a
@@ -182,7 +185,7 @@
                             class="btn btn-primary btn-sm"
                             href="#"
                         >
-                            <i class="fas fa-folder"> </i>
+                            <i class="fa-solid fa-eye"></i>
                             View
                         </a>
                         <a

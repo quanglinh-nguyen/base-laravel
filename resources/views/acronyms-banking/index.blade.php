@@ -23,17 +23,19 @@
                         value="{{request()->get('keyword') ?? ""}}"
                     />
                     <div class="d-flex flex-row mx-2">
-                        <button class="btn btn-primary mr-2">Search</button>
+                        <button class="btn btn-primary mr-2">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            Search
+                        </button>
                         <button class="btn btn-outline-secondary">Clear</button>
                     </div>
                 </div>
             </form>
             <div class="card-tools d-flex">
-                <a
-                    class="btn btn-block btn-primary"
-                    href="{{route('acronyms-banking.create')}}"
-                >Add</a
-                >
+                <a class="btn btn-block btn-primary" href="{{route('acronyms-banking.create')}}">
+                    <i class="fa-solid fa-plus"></i>
+                    Add
+                </a>
             </div>
         </div>
         <div class="card-body p-0">

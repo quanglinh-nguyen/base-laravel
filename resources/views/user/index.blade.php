@@ -21,13 +21,17 @@
                     <option value="">Admin</option>
                 </select>
                 <div class="d-flex flex-row mx-2">
-                    <button class="btn btn-primary mr-2">Search</button>
+                    <button class="btn btn-primary mr-2">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Search
+                    </button>
                     <button class="btn btn-outline-secondary">Clear</button>
                 </div>
             </div>
         </form>
         <div class="card-tools">
             <a class="btn btn-block btn-primary btn-" href="{{route('user.create')}}">
+                <i class="fa-solid fa-plus"></i>
                 Add
             </a>
         </div>
@@ -56,17 +60,13 @@
                 <td>Super admin</td>
                 <td>giangtt13@gmail.com</td>
                 <td class="project-actions text-center">
-                    <a class="btn btn-primary btn-sm" href="{{route('user.edit',['user' => 1])}}">
+                    <a class="btn btn-info btn-sm" href="{{route('user.edit',['user' => 1])}}">
                         <i class="fas fa-pencil-alt"></i>
                         Edit
                     </a>
                     <a class="btn btn-danger btn-sm" href="#">
                         <i class="fas fa-trash"></i>
                         Delete
-                    </a>
-                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#modal-default">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                        Reset Password
                     </a>
                 </td>
             </tr>
@@ -80,17 +80,13 @@
                 <td>Admin</td>
                 <td>lingnhq@gmail.com</td>
                 <td class="project-actions text-center">
-                    <a class="btn btn-primary btn-sm" href="{{route('user.edit', ['user'=>1])}}">
+                    <a class="btn btn-info btn-sm" href="{{route('user.edit', ['user'=>1])}}">
                         <i class="fas fa-pencil-alt"></i>
                         Edit
                     </a>
                     <a class="btn btn-danger btn-sm" href="#">
                         <i class="fas fa-trash"> </i>
                         Delete
-                    </a>
-                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                        Reset Password
                     </a>
                 </td>
             </tr>
@@ -104,17 +100,13 @@
                 <td>Admin</td>
                 <td>nguyenquyettien0102@gmail.com</td>
                 <td class="project-actions text-center">
-                    <a class="btn btn-primary btn-sm" href="{{route('user.edit',['user' => 1])}}">
+                    <a class="btn btn-info btn-sm" href="{{route('user.edit',['user' => 1])}}">
                         <i class="fas fa-pencil-alt"></i>
                         Edit
                     </a>
                     <a class="btn btn-danger btn-sm" href="#">
                         <i class="fas fa-trash"> </i>
                         Delete
-                    </a>
-                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal">
-                        <i class="fa-solid fa-arrows-rotate"></i>
-                        Reset Password
                     </a>
                 </td>
             </tr>
@@ -142,40 +134,4 @@
         </ul>
     </div>
 </div>
-<div class="modal fade" id="modal-default">
-    <div class="modal-dialog" style="max-width:30%">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Reset Password</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <form class="form-horizontal">
-                <div class="form-group row">
-                  <label for="newPass" class="col-sm-3 col-form-label">New Password <span class="text-danger">*</span></label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="newPass" placeholder="Enter your new password">
-                  </div>
-                </div>
-                <div class="form-group row">
-                  <label for="confirmPass" class="col-sm-3 col-form-label">Full name <span class="text-danger">*</span></label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="confirmPass" placeholder="Enter your confirm password">
-                  </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-        </div>
-
-      </div>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
-
 @endsection
