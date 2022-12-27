@@ -28,7 +28,7 @@
         </form>
         <div class="card-tools">
             <a class="btn btn-block btn-primary btn-" href="{{route('user.create')}}">
-                Add User
+                Add
             </a>
         </div>
     </div>
@@ -171,11 +171,11 @@
                 </div>
             </form>
         </div>
-        
+
       </div>
       <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
   </div>
 
-@endsection 
+@endsection

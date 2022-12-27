@@ -5,7 +5,7 @@ return [
         [
             'icon' => 'nav-icon fa-solid fa-gauge-high',
             'title' => 'Home',
-            'route_name' => 'home.index',
+            'route_name' => 'home',
             // 'icon_left' => 'right fas fa-angle-left',
 //            'child' => [
 //                [

@@ -64,6 +64,7 @@
             >
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Upload Date And Time</th>
                         <th>File Name</th>
                         <th>User Upload</th>
@@ -73,6 +74,7 @@
                 </thead>
                 <tbody>
                     <tr>
+                        <td>1</td>
                         <td>2022/12/18 10:20:30</td>
                         <td>abc.xlsx</td>
                         <td>admin</td>
@@ -80,6 +82,7 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td>2022/12/18 10:20:30</td>
                         <td>abc.xlsx</td>
                         <td>admin</td>
@@ -87,6 +90,7 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td>2022/12/18 10:20:30</td>
                         <td>abc.xlsx</td>
                         <td>admin</td>
@@ -94,6 +98,7 @@
                         <td></td>
                     </tr>
                     <tr>
+                        <td>1</td>
                         <td>2022/12/18 10:20:30</td>
                         <td>abc.xlsx</td>
                         <td>admin</td>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bank;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -11,8 +12,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Bank $bank)
     {
+        $this->authorize('view', $bank);
         return view('home.index');
     }
 

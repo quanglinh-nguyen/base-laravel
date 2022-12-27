@@ -27,15 +27,15 @@ class AcronymsBankingRequest extends FormRequest
         $rules = [];
         if ($this->method() == "POST") {
             $rules = [
-                'acronym' => ['required', Rule::unique('banks')],
-                'full_name' => ['required', Rule::unique('banks')],
+                'acronym' => ['required', Rule::unique('banks'), 'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'],
+                'full_name' => ['required', Rule::unique('banks'), 'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'],
             ];
         }
 
         if ($this->method() == "PUT") {
             $rules = [
-                'acronym' => ['required', Rule::unique('banks')->ignore($this->acronyms_banking)],
-                'full_name' => ['required', Rule::unique('banks')->ignore($this->acronyms_banking)],
+                'acronym' => ['required', Rule::unique('banks')->ignore($this->acronyms_banking), 'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'],
+                'full_name' => ['required', Rule::unique('banks')->ignore($this->acronyms_banking), 'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'],
             ];
         }
 

@@ -27,10 +27,10 @@
             <div class="card-tools d-flex">
                 <a class="btn btn-block btn-primary"
                     href="{{route('customer.create')}}"
-                >Add Customer</a
+                >Add</a
                 >
             </div>
-        
+
         </div>
         <div class="card-body p-0 card-body-project">
             <table

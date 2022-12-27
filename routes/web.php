@@ -16,12 +16,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//
+//Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
+//Auth::routes();
+Route::get('/login', [\App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('login.form');
+Route::post('/login',[\App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
+//Route::get('forgot-password', 'Auth\ForgotPasswordController@showRequestForm')->name('forgot.password');
+//Route::post('forgot-password', 'Auth\ForgotPasswordController@handleForgotPassword')->name('post.forgot.password');
+//Route::get('/reset-password/{email}/{token}', 'Auth\ResetPasswordController@showSetResetForm')->name('reset.password');
+//Route::post('/reset-password', 'Auth\ResetPasswordController@handleSetResetPassword');
+//Route::get('/set-password/{email}/{token}', 'Auth\ResetPasswordController@showSetResetForm')->name('set.password');
+//Route::post('/set-password', 'Auth\ResetPasswordController@handleSetResetPassword');
+Route::get('/logout' ,[\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
-
-
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('home/profile', [\App\Http\Controllers\HomeController::class, 'getProfile'])->name('home.profile');
-Route::resource('home', \App\Http\Controllers\HomeController::class);
+//Route::resource('home', \App\Http\Controllers\HomeController::class);
 
 Route::resource('user', \App\Http\Controllers\UserController::class);
 
@@ -33,3 +43,5 @@ Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadControlle
 Route::resource('history-update-customer', \App\Http\Controllers\HistoryUpdateCustomerController::class);
 
 Route::resource('acronyms-banking', \App\Http\Controllers\AcronymsBankingController::class);
+
+
