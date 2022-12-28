@@ -79,6 +79,12 @@
                       </div>
                     </div>
                     <div class="form-group row">
+                      <label for="inputPass" class="col-sm-2 col-form-label">Password <span class="text-danger">*</span></label>
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPass" placeholder="Password" value="123456">
+                      </div>
+                    </div>
+                    <div class="form-group row">
                       <label for="inputPhone" class="col-sm-2 col-form-label">Phone <span class="text-danger">*</span></label>
                       <div class="col-sm-10">
                         <input type="text" class="form-control" id="inputPhone" placeholder="Phone" value="0132456789">
@@ -115,10 +121,6 @@
                           <i class="fas fa-pencil-alt"></i>
                           Update
                         </button>
-                        <a href="{{ route('user.index')}}" class="btn btn-secondary">
-                          <i class="fa-regular fa-rectangle-xmark"></i>
-                          Cancel
-                        </a>
                       </div>
                     </div>
                   </form>
