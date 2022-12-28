@@ -27,7 +27,7 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                             Search
                         </button>
-                        <button class="btn btn-outline-secondary">Clear</button>
+                        <a class="btn btn-outline-secondary" href="{{route('acronyms-banking.index')}}">Clear</a>
                     </div>
                 </div>
             </form>

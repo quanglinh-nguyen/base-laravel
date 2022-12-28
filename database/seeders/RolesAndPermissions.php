@@ -18,8 +18,8 @@ class RolesAndPermissions extends Seeder
         $superAdminId = DB::table('users')->insertGetId(
             [
                 'name' => 'admin',
-                'email' => 'admin@gmail.com',
-                'password' => bcrypt('123456'),
+                'email' => 'admin@admin.com',
+                'password' => bcrypt('Superadmin123@'),
                 'created_at' => now(),
                 'updated_at' => now(),
                 'email_verified_at' => now(),
@@ -29,8 +29,8 @@ class RolesAndPermissions extends Seeder
         $adminId = DB::table('users')->insertGetId(
             [
                 'name' => 'user',
-                'email' => 'user@gmail.com',
-                'password' => bcrypt('123456'),
+                'email' => 'user@user.com',
+                'password' => bcrypt('Superadmin123@'),
                 'created_at' => now(),
                 'updated_at' => now(),
                 'email_verified_at' => now(),
