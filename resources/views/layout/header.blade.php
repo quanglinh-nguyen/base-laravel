@@ -14,12 +14,6 @@
     </ul>
 
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item dropdown d-flex flex-row justify-content-end align-items-center">
-        <div class="text-center" style="width:50px">
-          <img src="{{asset('template/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image" width="40px">
-        </div>
-      </li>
-
       <li class="nav-item dropdown d-flex flex-row">
           <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle shadow-sm">Nguyễn Quyết Tiến</a>
           <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0">
