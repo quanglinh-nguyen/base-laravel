@@ -18,34 +18,47 @@
             <div class="tab-content">
 
               <div>
-                <form class="form-horizontal">
+                <form action="{{ route('user.store') }}" method="POST" class="form-horizontal" id="createUser">
+                  @csrf
                   <div class="form-group row">
-                    <label for="inputFullName" class="col-sm-2 col-form-label">Full name <span class="text-danger">*</span></label>
+                    <label for="inputFullName" class="col-sm-2 col-form-label">Name <span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputFullName" placeholder="Full name">
+                      <input type="text" class="form-control" name="name" id="inputname" placeholder="Name">
+                      @error('name')
+                        <label id="name-error" class="error" for="name">{{ $message }}</label>
+                      @enderror
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputEmail" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                      <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                      <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Email">
+                      @error('email')
+                        <label id="email-error" class="error" for="email">{{ $message }}</label>
+                      @enderror
                     </div>
                   </div>
                   <div class="form-group row">
                     <label for="inputPhone" class="col-sm-2 col-form-label">Phone <span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" id="inputPhone" placeholder="Phone">
+                      <input type="number" class="form-control" name="phone_number" id="inputPhone" placeholder="Phone">
+                      @error('phone_number')
+                        <label id="phone_number-error" class="error" for="phone_number">{{ $message }}</label>
+                      @enderror
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Role <span class="text-danger">*</span></label>
+                    <label class="col-sm-2 col-form-label">Role<span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                      <select class="form-control" >
+                      <select class="form-control" name="role_id">
                         <option disabled selected hidden>Select role </option>
                         <option value="1">Super admin</option>
                         <option value="2">Admin</option>
                         <option value="3">Partner</option>
                       </select>
+                      @error('role_id')
+                        <label id="role_id-error" class="error" for="role_id">{{ $message }}</label>
+                      @enderror
                     </div>
                   </div>
                   <div class="form-group row">
@@ -73,5 +86,9 @@
     </div>
   </div>
 </section>
-
+  <!-- Form Validate -->
 @endsection 
+@section('script')
+    <!-- Form Validate -->
+    <script src="{{asset('view/user/form-validation.js')}}"></script>
+@endsection

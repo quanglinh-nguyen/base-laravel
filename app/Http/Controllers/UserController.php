@@ -2,18 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+    private $userService;
+    private $data;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+        $this->data = [];
+    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.index');
+        $users = $this->userService->getAll($request);
+        $this->data['users'] = $users;
+        return view('user.index',$this->data);
     }
 
     /**
@@ -32,9 +45,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        dd($request);
     }
 
     /**

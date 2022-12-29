@@ -53050,18 +53050,17 @@ a.text-muted:hover {
     background-color: transparent;
 }
 .table-customer {
-    min-width: 3000px;
+    min-width: 2150px;
     position: relative;
     border-collapse: collapse;
     border-spacing: 0;
     table-layout: auto;
     width: 100%;
     border: none;
-    white-space: nowrap;
-}
-
+  }
 table thead tr th {
     background: #fff;
+    white-space: nowrap;
 }
 table tbody tr:nth-child(odd) td {
     background: #edf2f7;

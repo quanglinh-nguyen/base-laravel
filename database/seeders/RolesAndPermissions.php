@@ -19,6 +19,7 @@ class RolesAndPermissions extends Seeder
             [
                 'name' => 'admin',
                 'email' => 'admin@admin.com',
+                'phone' => '0123456789',
                 'password' => bcrypt('Superadmin123@'),
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -30,6 +31,7 @@ class RolesAndPermissions extends Seeder
             [
                 'name' => 'user',
                 'email' => 'user@user.com',
+                'phone' => '0123456789',
                 'password' => bcrypt('Superadmin123@'),
                 'created_at' => now(),
                 'updated_at' => now(),

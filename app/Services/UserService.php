@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Role;
 use App\Repository\user\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -20,9 +21,10 @@ class UserService
      *
      * @param $UserRepository $userRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository)
+    public function __construct(UserRepositoryInterface $userRepository, Role $roles)
     {
         $this->userRepository = $userRepository;
+        $this->role = $roles;
     }
 
     /**
@@ -129,5 +131,9 @@ class UserService
 
         return $user;
 
+    }
+    public function getAllRoles(){
+        $roles = $this->role->getAll();
+        return $roles;
     }
 }

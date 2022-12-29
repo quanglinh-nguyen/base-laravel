@@ -11,6 +11,10 @@
         bsCustomFileInput.init();
     });
 </script>
+<!-- Moment -->
+<script src="{{asset('template/plugins/moment/moment.min.js')}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset('template/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Toastr -->
 <script src="{{asset('template/plugins/toastr/js/toastr.min.js')}}"></script>
 <!-- jquery-validation -->
@@ -20,6 +24,10 @@
 @include('common.notifications')
 <!-- AdminLTE App -->
 <script src="{{asset('template/dist/js/adminlte.js')}}"></script>
+{{-- <!-- Daterangepicker -->
+<script src="{{asset('template/plugins/daterangepicker/jquery-latest.min.js')}}"></script>
+<script src="{{asset('template/plugins/daterangepicker/momentjs-latest.min.js')}}"></script>
+<script src="{{asset('template/plugins/daterangepicker/daterangepicker.min.js')}}"></script> --}}
 
 <script>
     /** add active class and stay opened when selected */
@@ -40,3 +48,22 @@
      return this.href == a;
  }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
   </script>
+<script>
+    $(function() {
+      $('input[name="daterange"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+      });
+    });
+</script>
+
+<script>
+  
+   
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    
+</script>
