@@ -7,6 +7,8 @@ use App\Repository\BaseRepository;
 use App\Repository\EloquentRepositoryInterface;
 use App\Repository\bank\BankRepository;
 use App\Repository\bank\BankRepositoryInterface;
+use App\Repository\role\RoleRepository;
+use App\Repository\role\RoleRepositoryInterface;
 use App\Repository\user\UserRepository;
 use App\Repository\user\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -25,6 +27,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'bank'=>[
             BankRepositoryInterface::class,
             BankRepository::class
+        ],
+        'role'=>[
+            RoleRepositoryInterface::class,
+            RoleRepository::class
         ],
     ];
     /**

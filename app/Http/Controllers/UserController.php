@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Services\RoleService;
 use App\Services\UserService;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private $userService;
+    private $roleService;
     private $data;
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, RoleService $roleService)
     {
         $this->userService = $userService;
+        $this->roleService = $roleService;
         $this->data = [];
     }
 
@@ -25,7 +29,10 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $users = $this->userService->getAll($request);
+        $roles = $this->roleService->getAll();
+        // dd($users);
         $this->data['users'] = $users;
+        $this->data['roles'] = $roles;
         return view('user.index',$this->data);
     }
 
@@ -69,7 +76,18 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit');
+        // dd($this->userService->getRoles());
+        try {
+            $roles = $this->userService->getRoles();
+            $user = $this->userService->getById($id);
+            
+        } catch (Exception $e) {
+            return redirect()->route('user.index');
+        }
+        return view('user.edit', [
+            'user' => $user,
+            'roles' => $roles
+        ]);
     }
 
     /**

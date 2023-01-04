@@ -16,27 +16,28 @@
             <div class="form-group row">
               <label for="inputName" class="col-sm-2 col-form-label">Name <span class="text-danger">*</span></label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputName" placeholder="name" value="Nguyễn Quyết Tiến">
+                <input type="text" class="form-control" id="inputName" placeholder="name" value="{{$user->name}}">
               </div>
             </div>
             <div class="form-group row">
               <label for="inputEmail" class="col-sm-2 col-form-label">Email <span class="text-danger">*</span></label>
               <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="nguyenquyettien0102@gmail.com" disabled>
+                <input type="email" class="form-control" id="inputEmail" placeholder="Email" value="{{$user->email}}" disabled>
               </div>
             </div>
             <div class="form-group row">
               <label for="inputPhone" class="col-sm-2 col-form-label">Phone <span class="text-danger">*</span></label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" id="inputPhone" placeholder="Phone" value="0132456789">
+                <input type="text" class="form-control" id="inputPhone" placeholder="Phone" value="{{$user->phone}}">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-sm-2 col-form-label">Role <span class="text-danger">*</span></label>
               <div class="col-sm-10">
                 <select class="form-control" >
-                  <option disabled selected hidden>Select role</option>
-                  <option value="1">Super admin</option>
+                  @foreach ($roles as $role)
+                    <option value="1">Super admin</option>
+                  @endforeach                  
                   <option value="2">Admin</option>
                   <option value="3">Partner</option>
                 </select>

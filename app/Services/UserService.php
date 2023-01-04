@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Role;
+use App\Repository\role\RoleRepository;
+use App\Repository\role\RoleRepositoryInterface;
 use App\Repository\user\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -16,15 +18,16 @@ class UserService
      * @var $userRepository
      */
     protected $userRepository;
+    protected $roleRepository;
     /**
      * userService constructor.
      *
      * @param $UserRepository $userRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository, Role $roles)
+    public function __construct(UserRepositoryInterface $userRepository, RoleRepositoryInterface $roleRepository)
     {
         $this->userRepository = $userRepository;
-        $this->role = $roles;
+        $this->roleRepository = $roleRepository;
     }
 
     /**
@@ -32,9 +35,9 @@ class UserService
      *
      * @return String
      */
-    public function getAll()
+    public function getAll($request)
     {
-        return $this->userRepository->all();
+        return $this->userRepository->getData($request);
     }
 
     /**
@@ -132,8 +135,7 @@ class UserService
         return $user;
 
     }
-    public function getAllRoles(){
-        $roles = $this->role->getAll();
-        return $roles;
+    public function getRoles(){
+        return $this->roleRepository->all();
     }
 }

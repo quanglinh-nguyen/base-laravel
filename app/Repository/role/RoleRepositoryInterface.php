@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Repository\user;
+namespace App\Repository\role;
 
 use App\Repository\EloquentRepositoryInterface;
 
-interface UserRepositoryInterface extends EloquentRepositoryInterface {
-   /**
+interface RoleRepositoryInterface extends EloquentRepositoryInterface 
+{
+    /**
      * @param array $data
      * @param int $limit
      * @param array $columns
