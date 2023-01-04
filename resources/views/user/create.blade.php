@@ -7,17 +7,12 @@
 @endsection
 
 @section('content')
-
-<section class="content">
-  <div class="container-fluid">
     <div class="row">
-  
       <div class="col-md-12">
         <div class="card">
           <div class="card-body">
             <div class="tab-content">
-
-              <div>
+              <div class="mt-3">
                 <form action="{{ route('user.store') }}" method="POST" class="form-horizontal" id="createUser">
                   @csrf
                   <div class="form-group row">
@@ -48,7 +43,7 @@
                     </div>
                   </div>
                   <div class="form-group row">
-                    <label class="col-sm-2 col-form-label">Role<span class="text-danger">*</span></label>
+                    <label class="col-sm-2 col-form-label">Role <span class="text-danger">*</span></label>
                     <div class="col-sm-10">
                       <select class="form-control" name="role_id">
                         <option disabled selected hidden>Select role </option>
@@ -82,11 +77,7 @@
         </div>
         <!-- /.card -->
       </div>
-    
     </div>
-  </div>
-</section>
-  <!-- Form Validate -->
 @endsection 
 @section('script')
     <!-- Form Validate -->

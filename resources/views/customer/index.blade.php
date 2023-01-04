@@ -9,7 +9,7 @@
 @section('content')
     <!-- Default box -->
     <div class="card">
-        <div class="card-header d-flex flex-row justify-content-between align-items-center bg-secondary">
+        <div class="card-header d-flex flex-row justify-content-between align-items-center">
             <h3 class="card-title">Customer Management</h3>
             <div class="card-tools d-flex mr-1">
                 <button class="btn btn-success mr-2"><i class="fa-solid fa-file-export"></i>Export</button>

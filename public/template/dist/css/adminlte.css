@@ -28750,7 +28750,7 @@ html.maximized-card {
 .card-footer::after {
   display: block;
   clear: both;
-  content: "";
+  /* content: ""; */
 }
 
 .card-header {
