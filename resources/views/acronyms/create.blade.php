@@ -8,14 +8,14 @@
 
 @section('content')
     <!-- Default box -->
-    <form method="post" id="create-update-acronyme-banking" action="{{route('acronyms-banking.store')}}">
+    <form method="post" id="create-update-acronyme-banking" action="{{route('acronyms-fields.store')}}">
 
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Add Acronyms Backing</h3>
             </div>
             <div class="card-body">
-                @include('acronyms-banking.parts.form', [])
+                @include('acronyms.parts.form', ['array_acronym' => $array_acronym])
             </div>
         </div>
         <div class="row pb-5">

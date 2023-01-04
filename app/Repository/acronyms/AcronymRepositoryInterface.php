@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Repository\bank;
+namespace App\Repository\acronyms;
 
 use App\Repository\EloquentRepositoryInterface;
 
-interface BankRepositoryInterface extends EloquentRepositoryInterface
+interface AcronymRepositoryInterface extends EloquentRepositoryInterface
 {
     /**
      * @param array $data

@@ -42,6 +42,6 @@ Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadControlle
 
 Route::resource('history-update-customer', \App\Http\Controllers\HistoryUpdateCustomerController::class);
 
-Route::resource('acronyms-banking', \App\Http\Controllers\AcronymsBankingController::class);
+Route::resource('acronyms-fields', \App\Http\Controllers\AcronymsController::class);
 
 

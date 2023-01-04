@@ -49,8 +49,14 @@ return [
         ],
         [
             'icon' => 'nav-icon fa-solid fa-building-columns',
-            'title' => 'Acronyms Banking',
-            'route_name' => 'acronyms-banking.index',
+            'title' => 'Acronyms',
+            'route_name' => 'acronyms-fields.index',
         ],
+    ],
+    'acronym_column_list' => [
+        1 => 'Organization (Viet)',
+        2 => 'Organization (Eng)',
+        3 => 'Address',
+        4 => 'Banking',
     ]
 ];

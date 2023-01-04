@@ -17,7 +17,7 @@ class CreateRoleAndPermissionsTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('display_name')->nullable();
+            $table->string('display_name')->unique();
         });
 
         // Create table for associating roles to users (Many-to-Many)

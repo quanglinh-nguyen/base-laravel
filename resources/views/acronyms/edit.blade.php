@@ -9,14 +9,14 @@
 @section('content')
     <!-- Default box -->
     <!-- Default box -->
-    <form method="post" id="create-update-acronyme-banking" action="{{route('acronyms-banking.update', ['acronyms_banking'=> 1])}}">
+    <form method="post" id="create-update-acronyme-banking" action="{{route('acronyms-fields.update', ['acronyms_field'=> $acronym->id])}}">
         @method('PUT')
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Edit Acronyms Backing</h3>
             </div>
             <div class="card-body">
-                @include('acronyms-banking.parts.form', ['model' => $bank])
+                @include('acronyms.parts.form', ['model' => $acronym])
             </div>
         </div>
         <div class="row pb-5">
@@ -25,4 +25,9 @@
             </div>
         </div>
     </form>
+@endsection
+
+@section('script')
+    <!-- Form Validate -->
+    <script src="{{asset('view/acronyms-banking/form-validation.js')}}"></script>
 @endsection

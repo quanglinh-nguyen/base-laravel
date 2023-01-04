@@ -13,26 +13,38 @@
             <h3 class="card-title">List Acronyms Banking</h3>
         </div>
         <div class="card-action d-flex flex-row justify-content-between">
-            <form method="get" action="{{route('acronyms-banking.index')}}">
+            <form method="get" action="{{route('acronyms-fields.index')}}">
             <div class="card-tools d-flex flex-row">
                     <input
                         type="text"
                         name="keyword"
-                        class="form-control"
+                        class="form-control mr-2"
                         placeholder="Keyword"
                         value="{{request()->get('keyword') ?? ""}}"
                     />
+                    <select name="acronym_column" class="form-control" id="acronym_column">
+                        <option selected value="">Select choice</option>
+                        @foreach($array_acronym as $key => $value)
+                            <option   value="{{$key}}"
+                              @if(
+                                 request()->get('acronym_column') == $key
+                              )
+                                  selected
+                                @endif
+                            >{{$value}}</option>
+                        @endforeach
+                    </select>
                     <div class="d-flex flex-row mx-2">
                         <button class="btn btn-primary mr-2">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             Search
                         </button>
-                        <a class="btn btn-outline-secondary" href="{{route('acronyms-banking.index')}}">Clear</a>
+                        <a class="btn btn-outline-secondary" href="{{route('acronyms-fields.index')}}">Clear</a>
                     </div>
                 </div>
             </form>
             <div class="card-tools d-flex">
-                <a class="btn btn-block btn-primary" href="{{route('acronyms-banking.create')}}">
+                <a class="btn btn-block btn-primary" href="{{route('acronyms-fields.create')}}">
                     <i class="fa-solid fa-plus"></i>
                     Add
                 </a>
@@ -49,6 +61,9 @@
                         Acronyms Banking
                     </th>
                     <th>
+                        Type
+                    </th>
+                    <th>
                         Full Name
                     </th>
                     <th
@@ -60,30 +75,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                @php
-                    $stt = 0;
-                @endphp
-                @foreach($banks as $bank)
-                    @php
-                        $stt++;
-                    @endphp
+                @foreach($acronyms as $acronym)
                     <tr>
-                        <td>{{$stt}}</td>
+                        <td>{{$loop->iteration}}</td>
                         <td>
-                            {{$bank->acronym}}
+                            {{$acronym->acronym}}
                         </td>
-                        <td>{{$bank->full_name}}</td>
+                        <td>{{$acronym->getNameFieldColumn() ?? ''}}</td>
+                        <td>{{$acronym->full_name}}</td>
 
                         <td class="project-actions text-right">
                             <a
                                 class="btn btn-info btn-sm"
-                                href={{route('acronyms-banking.edit', ['acronyms_banking' => $bank->id])}}
+                                href={{route('acronyms-fields.edit', ['acronyms_field' => $acronym->id])}}
                             >
                                 <i class="fas fa-pencil-alt">
                                 </i>
                                 Edit
                             </a>
-                            <form action="{{route('acronyms-banking.destroy', ['acronyms_banking' => $bank->id])}}" method="POST">
+                            <form action="{{route('acronyms-fields.destroy', ['acronyms_field' => $acronym->id])}}" method="POST">
                                 @method('DELETE')
                                 @csrf
                             <button
@@ -105,7 +115,7 @@
         <!-- /.card-body -->
         <div class="card-footer clearfix">
             <div class="d-flex justify-content-end">
-                {{ $banks->links('common.pagination')}}
+                {{ $acronyms->links('common.pagination')}}
             </div>
         </div>
     </div>
