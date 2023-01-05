@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Exception;
 use App\Http\Controllers\id;
 use App\Models\User;
-use App\Services\UserService;
+use App\Services\AcronymsService;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     private $userService;
-    public function __construct(UserService $userService){
+    public function __construct(AcronymsService $userService){
         $this->userService = $userService;
     }
     /**

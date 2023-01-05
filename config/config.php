@@ -32,11 +32,11 @@ return [
                     'title' => 'History Update Customer',
                     'route_name' => 'history-update-customer.index',
                 ],
-//                [
-//                    'icon' => 'nav-icon far fa-circle nav-icon',
-//                    'title' => 'Customer Error',
-//                    'route_name' => 'customers-error.index',
-//                ],
+                [
+                    'icon' => 'nav-icon far fa-circle nav-icon',
+                    'title' => 'Customer Error',
+                    'route_name' => 'customers-error.index',
+                ],
                 [
                     'icon' => 'nav-icon far fa-circle nav-icon',
                     'title' => 'Customer Outdate',

@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('customer/email-outdate', [\App\Http\Controllers\CustomerController::class, 'outdate'])->name('customers.outdate');
     Route::resource('customers', \App\Http\Controllers\CustomerController::class);
 
-//    Route::resource('customers-error', \App\Http\Controllers\CustomerController::class);
+    Route::resource('customers-error', \App\Http\Controllers\CustomerErrorController::class);
 
     Route::resource('customers-upload', \App\Http\Controllers\CustomerUploadController::class);
 
