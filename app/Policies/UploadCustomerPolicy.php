@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\HistoryUpdateCustomer;
+use App\Models\UploadCustomer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class HistoryUpdateCustomerPolicy
+class UploadCustomerPolicy
 {
     use HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class HistoryUpdateCustomerPolicy
      */
     public function viewAny(User $user)
     {
-        return ($user && $user->hasPermission('viewany_historycustomer'));
+        return ($user && $user->hasPermission('viewany_customerupload'));
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HistoryUpdateCustomer  $historyUpdateCustomer
+     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function view(User $user, UploadCustomer $uploadCustomer)
     {
-        return ($user && $user->hasPermission('view_historycustomer'));
+        return ($user && $user->hasPermission('view_customerupload'));
     }
 
     /**
@@ -41,41 +41,41 @@ class HistoryUpdateCustomerPolicy
      */
     public function create(User $user)
     {
-        return ($user && $user->hasPermission('create_historycustomer'));
+        return ($user && $user->hasPermission('create_customerupload'));
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HistoryUpdateCustomer  $historyUpdateCustomer
+     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function update(User $user, UploadCustomer $uploadCustomer)
     {
-        return ($user && $user->hasPermission('update_historycustomer'));
+        return ($user && $user->hasPermission('update_customerupload'));
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HistoryUpdateCustomer  $historyUpdateCustomer
+     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function delete(User $user, UploadCustomer $uploadCustomer)
     {
-        return ($user && $user->hasPermission('delete_historycustomer'));
+        return ($user && $user->hasPermission('delete_customerupload'));
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HistoryUpdateCustomer  $historyUpdateCustomer
+     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function restore(User $user, UploadCustomer $uploadCustomer)
     {
         //
     }
@@ -84,10 +84,10 @@ class HistoryUpdateCustomerPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\HistoryUpdateCustomer  $historyUpdateCustomer
+     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function forceDelete(User $user, UploadCustomer $uploadCustomer)
     {
         //
     }

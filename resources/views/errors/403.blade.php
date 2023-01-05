@@ -11,7 +11,7 @@
         <h3><i class="fas fa-exclamation-triangle text-warning"></i> Forbidden! Access Denied.</h3>
         <p>
           You don't have permission to access this page.<br>
-          <a href="{{ route('customer.index') }}">Return to Customers Management</a>.
+          <a href="{{ route('home') }}">Return to Home Page</a>
         </p>
       </div>
     </div>

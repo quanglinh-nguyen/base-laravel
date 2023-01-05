@@ -120,7 +120,7 @@
                         </a>
                         <a
                             class="btn btn-info btn-sm"
-                            href={{route('customer.edit', ['customer' => 10])}}
+                            href={{route('customers.edit', ['customer' => 10])}}
                         >
                             <i class="fas fa-pencil-alt">
                             </i>

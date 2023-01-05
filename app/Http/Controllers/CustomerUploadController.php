@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UploadCustomer;
 use Illuminate\Http\Request;
 
 class CustomerUploadController extends Controller
@@ -11,11 +12,9 @@ class CustomerUploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(UploadCustomer $uploadCustomer)
     {
-//        $this->showSuccessNotification('Group successfully created');
-//        $this->showWarningNotification('Group successfully created');
-//        $this->showErrorNotification('Group successfully created');
+        $this->authorize('viewAny', $uploadCustomer);
         return view('customer-upload.index');
     }
 
@@ -24,8 +23,9 @@ class CustomerUploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(UploadCustomer $uploadCustomer)
     {
+        $this->authorize('create', $uploadCustomer);
         return view('customer-upload.create');
     }
 
@@ -35,9 +35,9 @@ class CustomerUploadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, UploadCustomer $uploadCustomer)
     {
-        //
+        $this->authorize('create', $uploadCustomer);
     }
 
     /**
@@ -46,9 +46,9 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, UploadCustomer $uploadCustomer)
     {
-        //
+        $this->authorize('view', $uploadCustomer);
     }
 
     /**
@@ -57,9 +57,9 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, UploadCustomer $uploadCustomer)
     {
-        //
+        $this->authorize('update', $uploadCustomer);
     }
 
     /**
@@ -69,9 +69,9 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, UploadCustomer $uploadCustomer)
     {
-        //
+        $this->authorize('create', $uploadCustomer);
     }
 
     /**
@@ -80,8 +80,8 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, UploadCustomer $uploadCustomer)
     {
-        //
+        $this->authorize('delete', $uploadCustomer);
     }
 }

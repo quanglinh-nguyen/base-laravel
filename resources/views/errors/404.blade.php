@@ -11,7 +11,7 @@
         <h3><i class="fas fa-exclamation-triangle text-warning"></i> Page not found.</h3>
         <p>
           We could not find the page you were looking for.<br>
-          <a href="{{ route('customer.index') }}">Return to Customers Management</a>.
+            <a href="{{ route('home') }}">Return to Home Page</a>
         </p>
       </div>
     </div>

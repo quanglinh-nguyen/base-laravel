@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index(Acronym $acronym)
     {
-        $this->authorize('view', $acronym);
+//        $this->authorize('view', $acronym);
         return view('home.index');
     }
 

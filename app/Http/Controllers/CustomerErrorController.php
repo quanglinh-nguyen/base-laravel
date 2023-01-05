@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomersError;
 use Illuminate\Http\Request;
 
 class CustomerErrorController extends Controller
@@ -11,8 +12,9 @@ class CustomerErrorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(CustomersError $customersError)
     {
+        $this->authorize('viewAny', $customersError);
         return view('customers-error.index');
     }
 
@@ -21,8 +23,9 @@ class CustomerErrorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(CustomersError $customersError)
     {
+        $this->authorize('create', $customersError);
         return view('customers-error.create');
     }
 
@@ -32,9 +35,9 @@ class CustomerErrorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, CustomersError $customersError)
     {
-
+        $this->authorize('create', $customersError);
     }
 
     /**
@@ -43,9 +46,9 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, CustomersError $customersError)
     {
-        //
+        $this->authorize('view', $customersError);
     }
 
     /**
@@ -54,8 +57,9 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, CustomersError $customersError)
     {
+        $this->authorize('update', $customersError);
         return view('customers-error.edit');
     }
 
@@ -66,9 +70,9 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, CustomersError $customersError)
     {
-        //
+        $this->authorize('update', $customersError);
     }
 
     /**
@@ -77,8 +81,8 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, CustomersError $customersError)
     {
-        //
+        $this->authorize('delete', $customersError);
     }
 }

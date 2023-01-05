@@ -18,7 +18,7 @@ class CustomersErrorPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return ($user && $user->hasPermission('viewany_customererror'));
     }
 
     /**
@@ -30,7 +30,7 @@ class CustomersErrorPolicy
      */
     public function view(User $user, CustomersError $customersError)
     {
-        //
+        return ($user && $user->hasPermission('view_customererror'));
     }
 
     /**
@@ -41,7 +41,7 @@ class CustomersErrorPolicy
      */
     public function create(User $user)
     {
-        //
+        return ($user && $user->hasPermission('create_customererror'));
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomersErrorPolicy
      */
     public function update(User $user, CustomersError $customersError)
     {
-        //
+        return ($user && $user->hasPermission('update_customererror'));
     }
 
     /**
@@ -65,7 +65,7 @@ class CustomersErrorPolicy
      */
     public function delete(User $user, CustomersError $customersError)
     {
-        //
+        return ($user && $user->hasPermission('delete_customererror'));
     }
 
     /**

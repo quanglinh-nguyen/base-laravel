@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoryUpdateCustomer;
 use Illuminate\Http\Request;
 
 class HistoryUpdateCustomerController extends Controller
@@ -11,8 +12,9 @@ class HistoryUpdateCustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(HistoryUpdateCustomer $historyUpdateCustomer)
     {
+        $this->authorize('viewAny', $historyUpdateCustomer);
         return view('history-update-customer.index');
     }
 
@@ -22,9 +24,9 @@ class HistoryUpdateCustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, HistoryUpdateCustomer $historyUpdateCustomer)
     {
-        //
+        $this->authorize('create', $historyUpdateCustomer);
     }
 
     /**
@@ -33,9 +35,9 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, HistoryUpdateCustomer $historyUpdateCustomer)
     {
-        //
+        $this->authorize('view', $historyUpdateCustomer);
     }
 
     /**
@@ -44,8 +46,9 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, HistoryUpdateCustomer $historyUpdateCustomer)
     {
+        $this->authorize('update', $historyUpdateCustomer);
         return view('history-update-customer.edit');
     }
 
@@ -56,9 +59,9 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, HistoryUpdateCustomer $historyUpdateCustomer)
     {
-        //
+        $this->authorize('update', $historyUpdateCustomer);
     }
 
     /**
@@ -67,8 +70,8 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, HistoryUpdateCustomer $historyUpdateCustomer)
     {
-        //
+        $this->authorize('delete', $historyUpdateCustomer);
     }
 }
