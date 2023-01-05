@@ -19,8 +19,15 @@
             </div>
         </div>
         <div class="row pb-5">
-            <div class="col-12">
-                <input type="submit" value="Create" class="btn btn-success float-right">
+            <div class="col-12 d-flex flex-row justify-content-end">
+                <button type="submit" class="btn btn-primary mr-2">
+                    <i class="fa-solid fa-circle-plus"></i>
+                    Create
+                </button>
+                <a href="{{ route('acronyms-fields.index')}}" class="btn btn-secondary">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                    Cancel
+                </a>
             </div>
         </div>
     </form>

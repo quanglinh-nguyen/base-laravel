@@ -67,7 +67,7 @@
                         Full Name
                     </th>
                     <th
-                        style="width: 20%"
+                        style="width:200px"
                         class="text-center"
                     >
                         Action
@@ -84,7 +84,7 @@
                         <td>{{$acronym->getNameFieldColumn() ?? ''}}</td>
                         <td>{{$acronym->full_name}}</td>
 
-                        <td class="project-actions text-right">
+                        <td class="project-actions text-center">
                             <a
                                 class="btn btn-info btn-sm"
                                 href={{route('acronyms-fields.edit', ['acronyms_field' => $acronym->id])}}
