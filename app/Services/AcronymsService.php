@@ -36,7 +36,14 @@ class AcronymsService
         $data = [];
         $data['keyword'] = $request->input('keyword') ?? null;
         $data['acronym_column'] = $request->input('acronym_column') ?? null;
-        return $this->acronymRepository->getData($data);
+        $limit = config('repository.pagination.limit') ?? 50;
+        $columns = [
+            'id',
+            'acronym',
+            'acronym_column',
+            'full_name'
+        ];
+        return $this->acronymRepository->getData($data, $limit, $columns);
     }
 
     /**

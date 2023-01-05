@@ -29,7 +29,6 @@ class AcronymRepository extends BaseRepository implements AcronymRepositoryInter
      */
     public function getData($data, $limit = 50, $columns = ['*'])
     {
-        $limit = is_null($limit) ? config('repository.pagination.limit', 50) : $limit;
         return $this->model
         ->when($data['acronym_column'], function ($query, $acronym_column) {
             return $query->where('acronym_column','=',  $acronym_column);
