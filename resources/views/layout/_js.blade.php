@@ -11,6 +11,10 @@
         bsCustomFileInput.init();
     });
 </script>
+<!-- Moment -->
+<script src="{{asset('template/plugins/moment/moment.min.js')}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset('template/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Toastr -->
 <script src="{{asset('template/plugins/toastr/js/toastr.min.js')}}"></script>
 <!-- jquery-validation -->
@@ -20,7 +24,6 @@
 @include('common.notifications')
 <!-- AdminLTE App -->
 <script src="{{asset('template/dist/js/adminlte.js')}}"></script>
-
 <script>
     /** add active class and stay opened when selected */
     var url = window.location.href;
@@ -39,4 +42,4 @@
  $('ul.nav-treeview a').filter(function() {
      return this.href == a;
  }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
-  </script>
+</script>
