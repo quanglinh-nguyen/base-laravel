@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bank;
+use App\Models\Acronym;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,9 +12,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Bank $bank)
+    public function index(Acronym $acronym)
     {
-        $this->authorize('view', $bank);
+        $this->authorize('view', $acronym);
         return view('home.index');
     }
 

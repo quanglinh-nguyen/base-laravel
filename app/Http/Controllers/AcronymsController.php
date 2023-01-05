@@ -6,6 +6,7 @@ use App\Http\Requests\AcronymsRequest;
 use App\Http\Controllers\Exception;
 use Illuminate\Http\Request;
 use App\Services\AcronymsService;
+use Illuminate\Support\Facades\Log;
 
 class AcronymsController extends Controller
 {
@@ -28,17 +29,16 @@ class AcronymsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-//    public function index()
-//    {
-//        $acronyms = $this->acronymsService->getAll();
-//        return view('acronyms-fields.index', [
-//            'acronyms' => $acronyms,
-//        ]);
-//    }
     public function index(Request $request)
     {
-        $acronyms = $this->acronymsService->getAllData($request);
-        $array_acronym = config('config.acronym_column_list');
+
+        try {
+            $acronyms = $this->acronymsService->getAllData($request);
+            $array_acronym = config('config.acronym_column_list');
+        } catch (Exception $e) {
+            Log::error($e);
+            return redirect()->route('home.index');
+        }
         return view('acronyms.index', [
             'acronyms' => $acronyms,
             'array_acronym' => $array_acronym

@@ -19,35 +19,42 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        @php
+            $config_sibar = Config::get('config.route');
+        @endphp
+        @cannot('viewAny', \App\Models\User::class);
+            @php
+                unset($config_sibar['users']);
+            @endphp
+        @endcannot
+        @foreach ($config_sibar as $key => $value)
+          <li class="nav-item">
+            <a href="{{empty($value['route_name']) ? "#" : route($value['route_name'])}}" class="nav-link">
+              <i class="{!!$value['icon']!!}"></i>
+              <p>
+                {{$value['title']}}
+                @if (isset($value['icon_left']))
+                <i class="{!!$value['icon_left']!!}"></i>
+                @endif
+              </p>
+            </a>
 
-          @foreach (Config::get('config.route') as $key => $value)
-              <li class="nav-item">
-                <a href="{{empty($value['route_name']) ? "#" : route($value['route_name'])}}" class="nav-link">
-                  <i class="{!!$value['icon']!!}"></i>
-                  <p>
+          @if (isset($value['child']))
+            <ul class="nav nav-treeview">
+
+              @foreach ($value['child'] as $key => $value)
+                <li class="nav-item">
+                  <a href="{{ route($value['route_name']) }}" class="nav-link">
+                <i class="{!!$value['icon']!!}"></i>
                     {{$value['title']}}
-                    @if (isset($value['icon_left']))
-                    <i class="{!!$value['icon_left']!!}"></i>
-                    @endif
-                  </p>
-                </a>
+                  </a>
+                </li>
+              @endforeach
+            </ul>
+          @endif
 
-              @if (isset($value['child']))
-                <ul class="nav nav-treeview">
-
-                  @foreach ($value['child'] as $key => $value)
-                    <li class="nav-item">
-                      <a href="{{ route($value['route_name']) }}" class="nav-link">
-                    <i class="{!!$value['icon']!!}"></i>
-                        {{$value['title']}}
-                      </a>
-                    </li>
-                  @endforeach
-                </ul>
-              @endif
-
-            </li>
-            @endforeach
+        </li>
+        @endforeach
         </ul>
       </nav>
 
