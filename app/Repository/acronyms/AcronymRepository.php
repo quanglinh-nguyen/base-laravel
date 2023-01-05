@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repository\bank;
+namespace App\Repository\acronyms;
 
-use App\Models\Bank;
+use App\Models\Acronym;
 use App\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class BankRepository extends BaseRepository implements BankRepositoryInterface{
+class AcronymRepository extends BaseRepository implements AcronymRepositoryInterface{
     /**
      * @var Model
      */
@@ -15,7 +15,7 @@ class BankRepository extends BaseRepository implements BankRepositoryInterface{
     /**
      * @param Model $model
      */
-    public function __construct(Bank $model)
+    public function __construct(Acronym $model)
     {
         parent::__construct($model);
         $this->model = $model;
@@ -29,12 +29,18 @@ class BankRepository extends BaseRepository implements BankRepositoryInterface{
      */
     public function getData($request, $limit = null, $columns = ['*'])
     {
-        // request->has
+
         $keyword = $request->input('keyword') ?? null;
+        $acronym_column = $request->input('acronym_column') ?? null;
         $limit = is_null($limit) ? config('repository.pagination.limit', 15) : $limit;
         $banks = $this->model
+        ->when($acronym_column, function ($query, $acronym_column) {
+            return $query->where('acronym_column','=',  $acronym_column);
+        })
         ->when($keyword, function ($query, $keyword) {
-            return $query->orWhere('acronym','LIKE',  "%$keyword%")->orWhere('full_name','LIKE', "%$keyword%");
+            return  $query->where(function($query) use ($keyword) {
+                $query->orWhere('acronym','LIKE',  "%$keyword%")->orWhere('full_name','LIKE', "%$keyword%");
+            });
         })->paginate($limit, $columns)->appends(request()->query());
         return $banks;
     }

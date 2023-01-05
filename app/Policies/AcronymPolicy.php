@@ -6,7 +6,7 @@ use App\Models\Bank;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class BankPolicy
+class AcronymPolicy
 {
     use HandlesAuthorization;
 

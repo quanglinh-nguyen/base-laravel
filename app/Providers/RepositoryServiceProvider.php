@@ -5,10 +5,10 @@ namespace App\Providers;
 
 use App\Repository\BaseRepository;
 use App\Repository\EloquentRepositoryInterface;
-use App\Repository\bank\BankRepository;
-use App\Repository\bank\BankRepositoryInterface;
-use App\Repository\user\UserRepository;
-use App\Repository\user\UserRepositoryInterface;
+use App\Repository\acronyms\AcronymRepository;
+use App\Repository\acronyms\AcronymRepositoryInterface;
+use App\Repository\users\UserRepository;
+use App\Repository\users\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -22,9 +22,9 @@ class RepositoryServiceProvider extends ServiceProvider
             UserRepositoryInterface::class,
             UserRepository::class
         ],
-        'bank'=>[
-            BankRepositoryInterface::class,
-            BankRepository::class
+        'acronym'=>[
+            AcronymRepositoryInterface::class,
+            AcronymRepository::class
         ],
     ];
     /**

@@ -17,6 +17,9 @@ $("#create-update-acronyme-banking").validate({
             required: true,
             checkForSpecialChar: true
         },
+        acronym_column: {
+            required: true,
+        },
         full_name: {
             required: true,
             checkForSpecialChar: true
