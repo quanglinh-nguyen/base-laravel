@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repository\user\UserRepositoryInterface;
+use App\Repository\users\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

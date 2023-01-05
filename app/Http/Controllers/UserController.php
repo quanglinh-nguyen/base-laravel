@@ -28,9 +28,10 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        
         $users = $this->userService->getAll($request);
         $roles = $this->roleService->getAll();
-        // dd($users);
+        dd($users);
         $this->data['users'] = $users;
         $this->data['roles'] = $roles;
         return view('user.index',$this->data);
