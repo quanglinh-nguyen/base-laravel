@@ -57,7 +57,8 @@ class AcronymsService
     {
         $array_acronym_val = array_keys(config('config.acronym_column_list'));
         if(!in_array($data['acronym_column'], $array_acronym_val)){
-            throw new InvalidArgumentException('Data is invalid');
+            $message = config('error_message_list_conf.system.data_error');
+            throw new InvalidArgumentException($message);
         }
         return $this->acronymRepository->create($data);
     }
@@ -86,7 +87,8 @@ class AcronymsService
     {
         $array_acronym_val = array_keys(config('config.acronym_column_list'));
         if(!in_array($data['acronym_column'], $array_acronym_val)){
-            throw new InvalidArgumentException('Data is invalid');
+            $message = config('error_message_list_conf.system.data_error');
+            throw new InvalidArgumentException($message);
         }
         return $this->acronymRepository->update($id, $data);
     }

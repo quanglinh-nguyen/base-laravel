@@ -4,6 +4,7 @@ return [
     'system' => [
         // Error common
         'error_system' => 'Error Occured In Application',
+        'data_error' => 'Data is invalid',
 
         'acronyms' => [
             'create_success' => 'Acronyms successfully created',

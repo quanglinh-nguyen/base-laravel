@@ -78,10 +78,10 @@ class AcronymsController extends Controller
         ]);
         try {
            $this->acronymsService->saveAcronymData($data);
-           $message = config('error_message_list_conf.system.create_success') ?? null;
+           $message = config('error_message_list_conf.system.acronyms.create_success') ?? null;
            $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $message = config('error_message_list_conf.system.create_error') ?? null;
+            $message = config('error_message_list_conf.system.acronyms.create_error') ?? null;
             $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
@@ -122,10 +122,10 @@ class AcronymsController extends Controller
         ]);
         try {
             $this->acronymsService->updateAcronym($data, $id);
-            $message = config('error_message_list_conf.system.update_success') ?? null;
+            $message = config('error_message_list_conf.system.acronyms.update_success') ?? null;
             $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $message = config('error_message_list_conf.system.update_error') ?? null;
+            $message = config('error_message_list_conf.system.acronyms.update_error') ?? null;
             $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
@@ -141,10 +141,10 @@ class AcronymsController extends Controller
     {
         try {
             $this->acronymsService->deleteById($id);
-            $message = config('error_message_list_conf.system.delete_success') ?? null;
+            $message = config('error_message_list_conf.system.acronyms.delete_success') ?? null;
             $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $message = config('error_message_list_conf.system.delete_error') ?? null;
+            $message = config('error_message_list_conf.system.acronyms.delete_error') ?? null;
             $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
