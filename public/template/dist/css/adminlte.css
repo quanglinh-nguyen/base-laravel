@@ -28752,9 +28752,7 @@ html.maximized-card {
   clear: both;
   content: "";
 }
-.card-header-customer::after{
-  display: block;
-  clear: both;
+.card-header.card-header-custom::after{
   content: none;
 }
 
