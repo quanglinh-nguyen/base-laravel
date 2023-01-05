@@ -36,12 +36,13 @@ class AcronymsRequest extends FormRequest
                 );
             }
         );
+        $regex_not_special = '/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/';
         if ($this->method() == "POST") {
             $rules = [
                 'acronym' => [
                     'required',
                     $rule_unique,
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    'not_regex:'.$regex_not_special
                 ],
                 'acronym_column' => [
                     'required',
@@ -49,7 +50,7 @@ class AcronymsRequest extends FormRequest
                 ],
                 'full_name' => [
                     'required',
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    'not_regex:'.$regex_not_special
                 ],
             ];
         }
@@ -59,7 +60,7 @@ class AcronymsRequest extends FormRequest
                 'acronym' => [
                     'required',
                     $rule_unique->ignore($this->acronyms_field),
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    'not_regex:'.$regex_not_special
                 ],
                 'acronym_column' => [
                     'required',
@@ -67,7 +68,7 @@ class AcronymsRequest extends FormRequest
                 ],
                 'full_name' => [
                     'required',
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    'not_regex:'.$regex_not_special
                 ],
             ];
         }
