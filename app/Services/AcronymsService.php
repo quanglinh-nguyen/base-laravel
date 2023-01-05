@@ -50,8 +50,8 @@ class AcronymsService
      * Validate acronym data.
      * Store to DB if there are no errors.
      *
-     * @param array $data
-     * @return String
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function saveAcronymData($data)
     {
@@ -66,7 +66,7 @@ class AcronymsService
      * Get acronym by id.
      *
      * @param $id
-     * @return String
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function getById($id)
     {
@@ -78,8 +78,9 @@ class AcronymsService
      * Update acronym data
      * Store to DB if there are no errors.
      *
-     * @param array $data
-     * @return String
+     * @param $data
+     * @param $id
+     * @return bool
      */
     public function updateAcronym($data, $id)
     {
@@ -95,7 +96,7 @@ class AcronymsService
      * Delete acronym by id.
      *
      * @param $id
-     * @return String
+     * @return bool
      */
     public function deleteById($id)
     {

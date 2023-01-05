@@ -22,6 +22,8 @@ class AcronymRepository extends BaseRepository implements AcronymRepositoryInter
     }
 
     /**
+     * Get all acronym and filter
+     *
      * @param  array $data
      * @param int $limit
      * @param array $columns
