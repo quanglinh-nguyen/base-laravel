@@ -39,7 +39,7 @@ class AcronymRepository extends BaseRepository implements AcronymRepositoryInter
             return  $query->where(function($query) use ($keyword) {
                 $query->orWhere('acronym','LIKE',  "%$keyword%")->orWhere('full_name','LIKE', "%$keyword%");
             });
-        })->paginate($limit, $columns)->appends(request()->query());
+        })->orderBy('id', 'DESC')->paginate($limit, $columns)->appends(request()->query());
     }
 
 }
