@@ -18,22 +18,25 @@ class AcronymsService
     /**
      * acronymService constructor.
      *
-     * @param $AcronymRepository $acronymRepository
+     * @param AcronymRepositoryInterface $acronymRepository
      */
     public function __construct(AcronymRepositoryInterface $acronymRepository)
     {
         $this->acronymRepository = $acronymRepository;
     }
+
     /**
      * Get all acronym.
-     * @param  \Illuminate\Http\Request $request
      *
-     * @return String
+     * @param $request
+     * @return mixed
      */
     public function getAllData($request)
     {
-        $acronyms = $this->acronymRepository->getData($request);
-        return $acronyms;
+        $data = [];
+        $data['keyword'] = $request->input('keyword') ?? null;
+        $data['acronym_column'] = $request->input('acronym_column') ?? null;
+        return $this->acronymRepository->getData($data);
     }
 
     /**
@@ -49,16 +52,7 @@ class AcronymsService
         if(!in_array($data['acronym_column'], $array_acronym_val)){
             throw new InvalidArgumentException('Data is invalid');
         }
-        DB::beginTransaction();
-        try {
-            $result = $this->acronymRepository->create($data);
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create acronym data');
-        }
-        DB::commit();
-        return $result;
+        return $this->acronymRepository->create($data);
     }
 
     /**
@@ -86,21 +80,7 @@ class AcronymsService
         if(!in_array($data['acronym_column'], $array_acronym_val)){
             throw new InvalidArgumentException('Data is invalid');
         }
-        DB::beginTransaction();
-
-        try {
-            $acronym = $this->acronymRepository->update($id, $data);
-
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to update acronym data');
-        }
-
-        DB::commit();
-
-        return $acronym;
-
+        return $this->acronymRepository->update($id, $data);
     }
 
 
@@ -112,20 +92,6 @@ class AcronymsService
      */
     public function deleteById($id)
     {
-        DB::beginTransaction();
-
-        try {
-            $acronym = $this->acronymRepository->deleteById($id);
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-
-            throw new InvalidArgumentException('Unable to delete acronym data');
-        }
-
-        DB::commit();
-
-        return $acronym;
-
+        return $this->acronymRepository->deleteById($id);
     }
 }
