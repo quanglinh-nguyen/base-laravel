@@ -33,7 +33,7 @@ class AcronymRepository extends BaseRepository implements AcronymRepositoryInter
     {
         return $this->model
         ->when($data['acronym_column'], function ($query, $acronym_column) {
-            return $query->where('acronym_column','=',  $acronym_column);
+            return $query->where('acronym_column', $acronym_column);
         })
         ->when($data['keyword'], function ($query, $keyword) {
             return  $query->where(function($query) use ($keyword) {

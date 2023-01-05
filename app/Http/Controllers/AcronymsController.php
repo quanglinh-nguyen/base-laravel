@@ -23,7 +23,6 @@ class AcronymsController extends Controller
         $this->acronymsService = $acronymsService;
     }
 
-
     /**
      * Display a listing of the resource.
      *
@@ -32,18 +31,17 @@ class AcronymsController extends Controller
      */
     public function index(Request $request)
     {
-
         try {
-            $acronyms = $this->acronymsService->getAllData($request);
-            $array_acronym = config('config.acronym_column_list');
+            return view('acronyms.index', [
+                'acronyms' => $this->acronymsService->getAllData($request),
+                'array_acronym' => config('config.acronym_column_list')
+            ]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
             return redirect()->route('home.index');
         }
-        return view('acronyms.index', [
-            'acronyms' => $acronyms,
-            'array_acronym' => $array_acronym
-        ]);
     }
 
     /**
@@ -54,13 +52,14 @@ class AcronymsController extends Controller
     public function create()
     {
         try {
-            $array_acronym = config('config.acronym_column_list');
+            return view('acronyms.create', [
+                'array_acronym' => config('config.acronym_column_list')
+            ]);
         } catch (Exception $e) {
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
             return redirect()->route('acronyms-fields.index');
         }
-        return view('acronyms.create', [
-            'array_acronym' => $array_acronym
-        ]);
     }
 
 
@@ -79,9 +78,11 @@ class AcronymsController extends Controller
         ]);
         try {
            $this->acronymsService->saveAcronymData($data);
-           $this->showSuccessNotification('Acronyms successfully created');
+           $message = config('error_message_list_conf.system.create_success') ?? null;
+           $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms failed created');
+            $message = config('error_message_list_conf.system.create_error') ?? null;
+            $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
     }
@@ -95,15 +96,14 @@ class AcronymsController extends Controller
     public function edit($id)
     {
         try {
-            $acronym = $this->acronymsService->getById($id);
-            $array_acronym = config('config.acronym_column_list');
+            return view('acronyms.edit', [
+                'acronym' => $this->acronymsService->getById($id),
+                'array_acronym' => config('config.acronym_column_list')
+            ]);
         } catch (Exception $e) {
+            $this->showWarningNotification(config('error_message_list_conf.system.error_system'));
             return redirect()->route('acronyms-fields.index');
         }
-        return view('acronyms.edit', [
-            'acronym' => $acronym,
-            'array_acronym' => $array_acronym
-        ]);
     }
 
     /**
@@ -122,9 +122,11 @@ class AcronymsController extends Controller
         ]);
         try {
             $this->acronymsService->updateAcronym($data, $id);
-            $this->showSuccessNotification('Acronyms successfully updated');
+            $message = config('error_message_list_conf.system.update_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms failed updated');
+            $message = config('error_message_list_conf.system.update_error') ?? null;
+            $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
     }
@@ -139,9 +141,11 @@ class AcronymsController extends Controller
     {
         try {
             $this->acronymsService->deleteById($id);
-            $this->showSuccessNotification('Acronyms successfully deleted');
+            $message = config('error_message_list_conf.system.delete_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms failed deleted');
+            $message = config('error_message_list_conf.system.delete_error') ?? null;
+            $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
     }
