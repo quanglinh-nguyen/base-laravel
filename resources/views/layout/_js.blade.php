@@ -24,11 +24,6 @@
 @include('common.notifications')
 <!-- AdminLTE App -->
 <script src="{{asset('template/dist/js/adminlte.js')}}"></script>
-{{-- <!-- Daterangepicker -->
-<script src="{{asset('template/plugins/daterangepicker/jquery-latest.min.js')}}"></script>
-<script src="{{asset('template/plugins/daterangepicker/momentjs-latest.min.js')}}"></script>
-<script src="{{asset('template/plugins/daterangepicker/daterangepicker.min.js')}}"></script> --}}
-
 <script>
     /** add active class and stay opened when selected */
     var url = window.location.href;
@@ -56,14 +51,4 @@
         console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
       });
     });
-</script>
-
-<script>
-  
-   
-
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    
 </script>
