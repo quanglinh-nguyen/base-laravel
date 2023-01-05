@@ -36,9 +36,9 @@
                   <div class="form-group row">
                     <label for="inputPhone" class="col-sm-2 col-form-label">Phone <span class="text-danger">*</span></label>
                     <div class="col-sm-10">
-                      <input type="number" class="form-control" name="phone_number" id="inputPhone" placeholder="Phone">
-                      @error('phone_number')
-                        <label id="phone_number-error" class="error" for="phone_number">{{ $message }}</label>
+                      <input type="number" class="form-control" name="phone" id="inputPhone" placeholder="Phone">
+                      @error('phone')
+                        <label id="phone-error" class="error" for="phone">{{ $message }}</label>
                       @enderror
                     </div>
                   </div>

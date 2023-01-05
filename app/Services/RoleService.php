@@ -32,4 +32,28 @@ class RoleService
     {
         return $this->roleRepository->all();
     }
+
+    /**
+     * Update role data
+     * Store to DB if there are no errors.
+     *
+     * @param array $data
+     * @return String
+     */
+    public function updateRole($data, $id)
+    {
+       return $this->roleRepository->update($id, $data);
+    }
+
+     /**
+     * Validate user data.
+     * Store to DB if there are no errors.
+     *
+     * @param array $data
+     * @return String
+     */
+    public function saveRoleData($data)
+    { 
+        return $this->roleRepository->create($data);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Role;
 use App\Repository\users\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -44,20 +45,20 @@ class UserService
      * @return String
      */
     public function saveUserData($data)
-    {
-        $validator = Validator::make($data, [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
+    { 
+        DB::beginTransaction();
 
-        if ($validator->fails()) {
-            throw new InvalidArgumentException($validator->errors()->first());
+        try {
+            $user = $this->userRepository->create($data);
+            $user->roles()->sync($data['role_id']);
+            
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            throw new InvalidArgumentException('Unable to create user data');
         }
-
-        $result = $this->userRepository->create($data);
-
-        return $result;
+        return $user;
     }
 
     /**
@@ -81,29 +82,8 @@ class UserService
      */
     public function updateUser($data, $id)
     {
-        $validator = Validator::make($data, [
-            'name' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            throw new InvalidArgumentException($validator->errors()->first());
-        }
-
-        DB::beginTransaction();
-
-        try {
-            $user = $this->userRepository->update($id, $data);
-
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to update user data');
-        }
-
-        DB::commit();
-
-        return $user;
-
+        // dd($this->userRepository->update($id, $data));
+        return $this->userRepository->update($id, $data);
     }
 
 
@@ -131,7 +111,7 @@ class UserService
         return $user;
 
     }
-    public function getRoles(){
-        return $this->roleRepository->all();
+    public function getRoles(Role $role){
+        return $role->all();
     }
 }

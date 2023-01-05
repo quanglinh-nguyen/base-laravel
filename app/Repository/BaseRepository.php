@@ -114,7 +114,7 @@ class BaseRepository implements EloquentRepositoryInterface
      */
     public function insertGetId(array $attributes)
     {
-        return $this->_model->insertGetId($attributes);
+        return $this->model->insertGetId($attributes);
     }
 
     /**
