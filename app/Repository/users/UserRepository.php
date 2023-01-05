@@ -21,4 +21,14 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface {
     {
         $this->model = $model;
     }
+
+    public function getData($request, $limit = null, $columns = ['*']){
+        $keyword = $request->input('keyword') ?? null;
+        $limit = is_null($limit) ? config('repository.pagination.limit', 15) : $limit;
+        $users = $this->model
+        ->when($keyword, function ($query, $keyword) {
+            return $query->orWhere('name','LIKE',  "%$keyword%")->orWhere('email','LIKE', "%$keyword%");
+        })->paginate($limit, $columns)->appends(request()->query());
+        return $users;
+      }
 }
