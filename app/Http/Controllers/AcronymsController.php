@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AcronymsRequest;
 use App\Http\Controllers\Exception;
-use App\Models\Acronym;
 use Illuminate\Http\Request;
 use App\Services\AcronymsService;
 use Illuminate\Support\Facades\Log;
@@ -24,44 +23,43 @@ class AcronymsController extends Controller
         $this->acronymsService = $acronymsService;
     }
 
-
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\View
      */
-    public function index(Request $request, Acronym $acronym)
+    public function index(Request $request)
     {
-        $this->authorize('viewAny', $acronym);
         try {
-            $acronyms = $this->acronymsService->getAllData($request);
-            $array_acronym = config('config.acronym_column_list');
+            return view('acronyms.index', [
+                'acronyms' => $this->acronymsService->getAllData($request),
+                'array_acronym' => config('config.acronym_column_list')
+            ]);
         } catch (Exception $e) {
-            Log::error($e);
+            Log::error($e->getMessage());
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
             return redirect()->route('home.index');
         }
-        return view('acronyms.index', [
-            'acronyms' => $acronyms,
-            'array_acronym' => $array_acronym
-        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function create(Acronym $acronym)
+    public function create()
     {
-        $this->authorize('create', $acronym);
         try {
-            $array_acronym = config('config.acronym_column_list');
+            return view('acronyms.create', [
+                'array_acronym' => config('config.acronym_column_list')
+            ]);
         } catch (Exception $e) {
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
             return redirect()->route('acronyms-fields.index');
         }
-        return view('acronyms.create', [
-            'array_acronym' => $array_acronym
-        ]);
     }
 
 
@@ -69,11 +67,10 @@ class AcronymsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param AcronymsRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Contracts\View\View
      */
-    public function store(AcronymsRequest $request, Acronym $acronym)
+    public function store(AcronymsRequest $request)
     {
-        $this->authorize('create', $acronym);
         $data = $request->only([
             'acronym',
             'acronym_column',
@@ -81,9 +78,11 @@ class AcronymsController extends Controller
         ]);
         try {
            $this->acronymsService->saveAcronymData($data);
-           $this->showSuccessNotification('Acronyms successfully created');
+           $message = config('error_message_list_conf.system.acronyms.create_success') ?? null;
+           $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms failed created');
+            $message = config('error_message_list_conf.system.acronyms.create_error') ?? null;
+            $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
     }
@@ -92,21 +91,19 @@ class AcronymsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function edit($id, Acronym $acronym)
+    public function edit($id)
     {
-        $this->authorize('update', $acronym);
         try {
-            $acronym = $this->acronymsService->getById($id);
-            $array_acronym = config('config.acronym_column_list');
+            return view('acronyms.edit', [
+                'acronym' => $this->acronymsService->getById($id),
+                'array_acronym' => config('config.acronym_column_list')
+            ]);
         } catch (Exception $e) {
+            $this->showWarningNotification(config('error_message_list_conf.system.error_system'));
             return redirect()->route('acronyms-fields.index');
         }
-        return view('acronyms.edit', [
-            'acronym' => $acronym,
-            'array_acronym' => $array_acronym
-        ]);
     }
 
     /**
@@ -114,11 +111,10 @@ class AcronymsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function update(AcronymsRequest $request, $id, Acronym $acronym)
+    public function update(AcronymsRequest $request, $id)
     {
-        $this->authorize('update', $acronym);
         $data = $request->only([
             'acronym',
             'acronym_column',
@@ -126,9 +122,11 @@ class AcronymsController extends Controller
         ]);
         try {
             $this->acronymsService->updateAcronym($data, $id);
-            $this->showSuccessNotification('Acronyms successfully updated');
+            $message = config('error_message_list_conf.system.acronyms.update_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms failed updated');
+            $message = config('error_message_list_conf.system.acronyms.update_error') ?? null;
+            $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
     }
@@ -137,16 +135,17 @@ class AcronymsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function destroy($id, Acronym $acronym)
+    public function destroy($id)
     {
-        $this->authorize('delete', $acronym);
         try {
             $this->acronymsService->deleteById($id);
-            $this->showSuccessNotification('Acronyms successfully deleted');
+            $message = config('error_message_list_conf.system.acronyms.delete_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('Acronyms failed deleted');
+            $message = config('error_message_list_conf.system.acronyms.delete_error') ?? null;
+            $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
     }

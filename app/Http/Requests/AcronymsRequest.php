@@ -26,38 +26,31 @@ class AcronymsRequest extends FormRequest
     {
         $request = $this;
         $rules = [];
+        $rule_unique = Rule::unique('acronyms')->where(
+            function ($query) use ($request){
+                return $query->where(
+                    [
+                        ['acronym','=', $request->acronym],
+                        ['acronym_column','=', $request->acronym_column],
+                    ]
+                );
+            }
+        );
+        $regex_not_special = '/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/';
         if ($this->method() == "POST") {
             $rules = [
                 'acronym' => [
                     'required',
-                    Rule::unique('acronyms')->where(
-                        function ($query) use ($request){
-                            return $query->where(
-                                [
-                                    ['acronym','=', $request->acronym],
-                                    ['acronym_column','=', $request->acronym_column],
-                                ]
-                            );
-                        }
-                    ),
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    $rule_unique,
+                    'not_regex:'.$regex_not_special
                 ],
                 'acronym_column' => [
                     'required',
-                    Rule::unique('acronyms')->where(
-                        function ($query) use ($request){
-                            return $query->where(
-                                [
-                                    ['acronym','=', $request->acronym],
-                                    ['acronym_column','=', $request->acronym_column],
-                                ]
-                            );
-                        }
-                    )
+                    $rule_unique
                 ],
                 'full_name' => [
                     'required',
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    'not_regex:'.$regex_not_special
                 ],
             ];
         }
@@ -66,34 +59,16 @@ class AcronymsRequest extends FormRequest
             $rules = [
                 'acronym' => [
                     'required',
-                    Rule::unique('acronyms')->where(
-                        function ($query) use ($request){
-                            return $query->where(
-                                [
-                                    ['acronym','=', $request->acronym],
-                                    ['acronym_column','=', $request->acronym_column],
-                                ]
-                            );
-                        }
-                    )->ignore($this->acronyms_field),
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    $rule_unique->ignore($this->acronyms_field),
+                    'not_regex:'.$regex_not_special
                 ],
                 'acronym_column' => [
                     'required',
-                    Rule::unique('acronyms')->where(
-                        function ($query) use ($request){
-                            return $query->where(
-                                [
-                                    ['acronym','=', $request->acronym],
-                                    ['acronym_column','=', $request->acronym_column],
-                                ]
-                            );
-                        }
-                    )->ignore($this->acronyms_field)
+                    $rule_unique->ignore($this->acronyms_field)
                 ],
                 'full_name' => [
                     'required',
-                    'not_regex:/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/'
+                    'not_regex:'.$regex_not_special
                 ],
             ];
         }
