@@ -32,7 +32,9 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function outdate(){
+    public function outdate()
+    {
+        return view('customer.outdate');
     }
 
     /**
@@ -40,7 +42,7 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Customer $customer)
+    public function create()
     {
         return view('customer.create');
     }
@@ -53,6 +55,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
     }
 
     /**
@@ -61,7 +64,7 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, Customer $customer)
+    public function show($id)
     {
         return view('customer.view');
     }
@@ -86,6 +89,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+
     }
 
     /**
@@ -96,5 +100,6 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
+        //
     }
 }
