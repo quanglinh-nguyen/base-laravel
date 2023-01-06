@@ -51,7 +51,7 @@
     <div class="offset-sm-2 col-sm-10 d-flex flex-row">
         <button type="submit" class="btn btn-primary mr-2">
             <i class="fa-solid fa-circle-plus"></i>
-            Create
+            @if(isset($model)) Update @else Create @endif
         </button>
         <a href="{{ route('acronyms-fields.index')}}" class="btn btn-secondary">
             <i class="fa-regular fa-rectangle-xmark"></i>
