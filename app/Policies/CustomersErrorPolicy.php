@@ -25,10 +25,9 @@ class CustomersErrorPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\CustomersError  $customersError
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, CustomersError $customersError)
+    public function view(User $user)
     {
         return ($user && $user->hasPermission('view_customererror'));
     }
@@ -48,10 +47,9 @@ class CustomersErrorPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\CustomersError  $customersError
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, CustomersError $customersError)
+    public function update(User $user)
     {
         return ($user && $user->hasPermission('update_customererror'));
     }
@@ -60,35 +58,10 @@ class CustomersErrorPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\CustomersError  $customersError
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, CustomersError $customersError)
+    public function delete(User $user)
     {
         return ($user && $user->hasPermission('delete_customererror'));
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CustomersError  $customersError
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, CustomersError $customersError)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\CustomersError  $customersError
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, CustomersError $customersError)
-    {
-        //
     }
 }

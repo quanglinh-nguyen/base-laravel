@@ -89,4 +89,14 @@ class CustomerErrorController extends Controller
     public function destroy($id)
     {
     }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
+    }
 }

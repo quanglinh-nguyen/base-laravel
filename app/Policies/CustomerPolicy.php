@@ -25,10 +25,9 @@ class CustomerPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Customer $customer)
+    public function view(User $user)
     {
         return ($user && $user->hasPermission('view_customer'));
     }
@@ -48,10 +47,9 @@ class CustomerPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Customer $customer)
+    public function update(User $user)
     {
         return ($user && $user->hasPermission('update_customer'));
     }
@@ -60,35 +58,10 @@ class CustomerPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Customer $customer)
+    public function delete(User $user)
     {
         return ($user && $user->hasPermission('delete_customer'));
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Customer  $customer
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Customer $customer)
-    {
-        //
     }
 }

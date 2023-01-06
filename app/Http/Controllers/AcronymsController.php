@@ -66,7 +66,6 @@ class AcronymsController extends Controller
         }
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -152,5 +151,15 @@ class AcronymsController extends Controller
             $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
+    }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
     }
 }

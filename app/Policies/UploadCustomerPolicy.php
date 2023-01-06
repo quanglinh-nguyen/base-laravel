@@ -25,10 +25,9 @@ class UploadCustomerPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, UploadCustomer $uploadCustomer)
+    public function view(User $user)
     {
         return ($user && $user->hasPermission('view_customerupload'));
     }
@@ -48,10 +47,9 @@ class UploadCustomerPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, UploadCustomer $uploadCustomer)
+    public function update(User $user)
     {
         return ($user && $user->hasPermission('update_customerupload'));
     }
@@ -60,35 +58,10 @@ class UploadCustomerPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\UploadCustomer  $uploadCustomer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, UploadCustomer $uploadCustomer)
+    public function delete(User $user)
     {
         return ($user && $user->hasPermission('delete_customerupload'));
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\UploadCustomer  $uploadCustomer
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, UploadCustomer $uploadCustomer)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\UploadCustomer  $uploadCustomer
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, UploadCustomer $uploadCustomer)
-    {
-        //
     }
 }
