@@ -9,17 +9,26 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">
+    <div class="card-header d-flex flex-row justify-content-between align-items-center card-header-custom">
         <h3 class="card-title">User Management</h3>
+        <div class="card-tools">
+            <a class="btn btn-block btn-primary btn-" href="{{route('user.create')}}">
+                <i class="fa-solid fa-plus"></i>
+                Add
+            </a>
+        </div>
     </div>
-    <div class="card-action d-flex flex-row justify-content-between">
+    <div class="card-action">
         <form action="" class="col-5">
             <div class="card-tools d-flex flex-row justify-content-between">
-               <input type="text" name="keyword" class="form-control mr-2" placeholder="Keyword"/>
+               <input type="text" name="keyword" class="form-control mr-2" placeholder="Keyword" value="{{request()->get('keyword') ?? ""}}"/>
                <select name="role" class="form-control">
                     <option selected hidden value="">Select role</option>
                     @foreach ($roles as $role)
-                        <option value="{{$role->id}}">{{$role->display_name}}</option>
+                        <option value="{{$role->id}}" 
+                            @if(request()->get('role') == $role->id)selected @endif
+                            >{{$role->display_name}}
+                        </option>
                     @endforeach
                 </select>
                 <div class="d-flex flex-row mx-2">
@@ -31,12 +40,6 @@
                 </div>
             </div>
         </form>
-        <div class="card-tools">
-            <a class="btn btn-block btn-primary btn-" href="{{route('user.create')}}">
-                <i class="fa-solid fa-plus"></i>
-                Add
-            </a>
-        </div>
     </div>
     <div class="card-body p-0 card-body-project">
         <table class="table table-striped projects">
@@ -73,7 +76,7 @@
                             </a>
                             <form action="{{route('user.destroy',['user' => $user->id])}}" method="POST">
                                 @csrf @method('DELETE')
-                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm(`Are you sure you want to delete user ${$user->name}`)">
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm('Are you sure you want to delete this user')">
                                     <i class="fas fa-trash"></i>
                                     Delete
                                 </button>
@@ -86,23 +89,9 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer clearfix">
-        <ul class="pagination pagination-sm m-0 float-right">
-            <li class="page-item">
-                <a class="page-link" href="#">&laquo;</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">1</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">3</a>
-            </li>
-            <li class="page-item">
-                <a class="page-link" href="#">&raquo;</a>
-            </li>
-        </ul>
+        <div class="d-flex justify-content-end">
+            {{ $users->links('common.pagination')}}
+        </div>
     </div>
 </div>
 @endsection
