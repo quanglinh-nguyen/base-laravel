@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(Customer::class, 'customer');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Customer $customer)
+    public function index()
     {
-        $this->authorize('viewAny', $customer);
         return view('customer.index');
     }
 
@@ -24,7 +33,6 @@ class CustomerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function outdate(){
-        return view('customer.outdate');
     }
 
     /**
@@ -34,7 +42,6 @@ class CustomerController extends Controller
      */
     public function create(Customer $customer)
     {
-        $this->authorize('create', $customer);
         return view('customer.create');
     }
 
@@ -44,9 +51,8 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Customer $customer)
+    public function store(Request $request)
     {
-        $this->authorize('create', $customer);
     }
 
     /**
@@ -57,7 +63,6 @@ class CustomerController extends Controller
      */
     public function show($id, Customer $customer)
     {
-        $this->authorize('view', $customer);
         return view('customer.view');
     }
 
@@ -67,9 +72,8 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, Customer $customer)
+    public function edit($id)
     {
-        $this->authorize('update', $customer);
         return view('customer.edit');
     }
 
@@ -80,9 +84,8 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, Customer $customer)
+    public function update(Request $request, $id)
     {
-        $this->authorize('update', $customer);
     }
 
     /**
@@ -91,8 +94,7 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, Customer $customer)
+    public function destroy($id)
     {
-        $this->authorize('update', $customer);
     }
 }

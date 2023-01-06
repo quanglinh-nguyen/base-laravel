@@ -17,10 +17,13 @@ class AcronymsController extends Controller
     private $acronymsService;
 
     /**
+     * Create the controller instance.
+     *
      * @param $acronymsService
      */
     public function __construct(AcronymsService $acronymsService)
     {
+        $this->authorizeResource(Acronym::class, 'acronym');
         $this->acronymsService = $acronymsService;
     }
 
@@ -32,7 +35,6 @@ class AcronymsController extends Controller
      */
     public function index(Request $request, Acronym $acronym)
     {
-        $this->authorize('viewAny', $acronym);
         try {
             return view('acronyms.index', [
                 'acronyms' => $this->acronymsService->getAllData($request),
@@ -53,7 +55,6 @@ class AcronymsController extends Controller
      */
     public function create(Acronym $acronym)
     {
-        $this->authorize('create', $acronym);
         try {
             return view('acronyms.create', [
                 'array_acronym' => config('config.acronym_column_list')
@@ -74,7 +75,6 @@ class AcronymsController extends Controller
      */
     public function store(AcronymsRequest $request, Acronym $acronym)
     {
-        $this->authorize('create', $acronym);
         $data = $request->only([
             'acronym',
             'acronym_column',
@@ -99,7 +99,6 @@ class AcronymsController extends Controller
      */
     public function edit($id, Acronym $acronym)
     {
-        $this->authorize('update', $acronym);
         try {
             return view('acronyms.edit', [
                 'acronym' => $this->acronymsService->getById($id),
@@ -120,7 +119,6 @@ class AcronymsController extends Controller
      */
     public function update(AcronymsRequest $request, $id, Acronym $acronym)
     {
-        $this->authorize('update', $acronym);
         $data = $request->only([
             'acronym',
             'acronym_column',
@@ -145,7 +143,6 @@ class AcronymsController extends Controller
      */
     public function destroy($id, Acronym $acronym)
     {
-        $this->authorize('delete', $acronym);
         try {
             $this->acronymsService->deleteById($id);
             $message = config('error_message_list_conf.system.acronyms.delete_success') ?? null;

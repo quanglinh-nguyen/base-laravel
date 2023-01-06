@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 class CustomerErrorController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(CustomersError::class, 'customerserror');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CustomersError $customersError)
+    public function index()
     {
-        $this->authorize('viewAny', $customersError);
         return view('customers-error.index');
     }
 
@@ -23,9 +32,8 @@ class CustomerErrorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CustomersError $customersError)
+    public function create()
     {
-        $this->authorize('create', $customersError);
         return view('customers-error.create');
     }
 
@@ -35,9 +43,9 @@ class CustomerErrorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, CustomersError $customersError)
+    public function store(Request $request)
     {
-        $this->authorize('create', $customersError);
+
     }
 
     /**
@@ -46,9 +54,8 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, CustomersError $customersError)
+    public function show($id)
     {
-        $this->authorize('view', $customersError);
     }
 
     /**
@@ -57,9 +64,8 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, CustomersError $customersError)
+    public function edit($id)
     {
-        $this->authorize('update', $customersError);
         return view('customers-error.edit');
     }
 
@@ -70,9 +76,8 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, CustomersError $customersError)
+    public function update(Request $request, $id)
     {
-        $this->authorize('update', $customersError);
     }
 
     /**
@@ -81,8 +86,7 @@ class CustomerErrorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, CustomersError $customersError)
+    public function destroy($id)
     {
-        $this->authorize('delete', $customersError);
     }
 }

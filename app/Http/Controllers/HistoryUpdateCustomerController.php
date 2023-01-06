@@ -8,13 +8,21 @@ use Illuminate\Http\Request;
 class HistoryUpdateCustomerController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(HistoryUpdateCustomer::class, 'historyupdatecustomer');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(HistoryUpdateCustomer $historyUpdateCustomer)
+    public function index()
     {
-        $this->authorize('viewAny', $historyUpdateCustomer);
         return view('history-update-customer.index');
     }
 
@@ -24,9 +32,8 @@ class HistoryUpdateCustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function store(Request $request)
     {
-        $this->authorize('create', $historyUpdateCustomer);
     }
 
     /**
@@ -35,9 +42,8 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function show($id)
     {
-        $this->authorize('view', $historyUpdateCustomer);
     }
 
     /**
@@ -46,9 +52,8 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function edit($id)
     {
-        $this->authorize('update', $historyUpdateCustomer);
         return view('history-update-customer.edit');
     }
 
@@ -59,9 +64,8 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function update(Request $request, $id)
     {
-        $this->authorize('update', $historyUpdateCustomer);
     }
 
     /**
@@ -70,8 +74,7 @@ class HistoryUpdateCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, HistoryUpdateCustomer $historyUpdateCustomer)
+    public function destroy($id)
     {
-        $this->authorize('delete', $historyUpdateCustomer);
     }
 }

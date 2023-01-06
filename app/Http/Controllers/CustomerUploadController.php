@@ -8,13 +8,21 @@ use Illuminate\Http\Request;
 class CustomerUploadController extends Controller
 {
     /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(UploadCustomer::class, 'uploadcustomer');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(UploadCustomer $uploadCustomer)
+    public function index()
     {
-        $this->authorize('viewAny', $uploadCustomer);
         return view('customer-upload.index');
     }
 
@@ -23,9 +31,8 @@ class CustomerUploadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(UploadCustomer $uploadCustomer)
+    public function create()
     {
-        $this->authorize('create', $uploadCustomer);
         return view('customer-upload.create');
     }
 
@@ -35,9 +42,8 @@ class CustomerUploadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, UploadCustomer $uploadCustomer)
+    public function store(Request $request)
     {
-        $this->authorize('create', $uploadCustomer);
     }
 
     /**
@@ -46,9 +52,8 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, UploadCustomer $uploadCustomer)
+    public function show($id)
     {
-        $this->authorize('view', $uploadCustomer);
     }
 
     /**
@@ -57,9 +62,8 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id, UploadCustomer $uploadCustomer)
+    public function edit($id)
     {
-        $this->authorize('update', $uploadCustomer);
     }
 
     /**
@@ -69,9 +73,8 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, UploadCustomer $uploadCustomer)
+    public function update(Request $request, $id)
     {
-        $this->authorize('create', $uploadCustomer);
     }
 
     /**
@@ -80,8 +83,7 @@ class CustomerUploadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, UploadCustomer $uploadCustomer)
+    public function destroy($id)
     {
-        $this->authorize('delete', $uploadCustomer);
     }
 }
