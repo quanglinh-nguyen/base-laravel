@@ -34,6 +34,7 @@ class CustomerController extends Controller
      */
     public function outdate()
     {
+        $this->authorize('viewAny', Customer::class);
         return view('customer.outdate');
     }
 
