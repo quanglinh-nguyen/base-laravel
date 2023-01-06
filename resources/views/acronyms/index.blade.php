@@ -23,7 +23,7 @@
                         value="{{request()->get('keyword') ?? ""}}"
                     />
                     <select name="acronym_column" class="form-control" id="acronym_column">
-                        <option selected value="">Select choice</option>
+                        <option selected value="">Select Acronym Field</option>
                         @foreach($array_acronym as $key => $value)
                             <option   value="{{$key}}"
                               @if(
