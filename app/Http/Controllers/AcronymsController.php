@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AcronymsRequest;
 use App\Http\Controllers\Exception;
+use App\Models\Acronym;
 use Illuminate\Http\Request;
 use App\Services\AcronymsService;
 use Illuminate\Support\Facades\Log;
@@ -29,8 +30,9 @@ class AcronymsController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(Request $request)
+    public function index(Request $request, Acronym $acronym)
     {
+        $this->authorize('viewAny', $acronym);
         try {
             return view('acronyms.index', [
                 'acronyms' => $this->acronymsService->getAllData($request),
@@ -49,8 +51,9 @@ class AcronymsController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function create()
+    public function create(Acronym $acronym)
     {
+        $this->authorize('create', $acronym);
         try {
             return view('acronyms.create', [
                 'array_acronym' => config('config.acronym_column_list')
@@ -69,8 +72,9 @@ class AcronymsController extends Controller
      * @param AcronymsRequest $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function store(AcronymsRequest $request)
+    public function store(AcronymsRequest $request, Acronym $acronym)
     {
+        $this->authorize('create', $acronym);
         $data = $request->only([
             'acronym',
             'acronym_column',
@@ -93,8 +97,9 @@ class AcronymsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit($id, Acronym $acronym)
     {
+        $this->authorize('update', $acronym);
         try {
             return view('acronyms.edit', [
                 'acronym' => $this->acronymsService->getById($id),
@@ -113,8 +118,9 @@ class AcronymsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function update(AcronymsRequest $request, $id)
+    public function update(AcronymsRequest $request, $id, Acronym $acronym)
     {
+        $this->authorize('update', $acronym);
         $data = $request->only([
             'acronym',
             'acronym_column',
@@ -137,8 +143,9 @@ class AcronymsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function destroy($id)
+    public function destroy($id, Acronym $acronym)
     {
+        $this->authorize('delete', $acronym);
         try {
             $this->acronymsService->deleteById($id);
             $message = config('error_message_list_conf.system.acronyms.delete_success') ?? null;
