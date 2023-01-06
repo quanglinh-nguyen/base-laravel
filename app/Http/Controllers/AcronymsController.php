@@ -33,7 +33,7 @@ class AcronymsController extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(Request $request, Acronym $acronym)
+    public function index(Request $request)
     {
         try {
             return view('acronyms.index', [
@@ -53,7 +53,7 @@ class AcronymsController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
      */
-    public function create(Acronym $acronym)
+    public function create()
     {
         try {
             return view('acronyms.create', [
@@ -73,7 +73,7 @@ class AcronymsController extends Controller
      * @param AcronymsRequest $request
      * @return \Illuminate\Contracts\View\View
      */
-    public function store(AcronymsRequest $request, Acronym $acronym)
+    public function store(AcronymsRequest $request)
     {
         $data = $request->only([
             'acronym',
@@ -97,7 +97,7 @@ class AcronymsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function edit($id, Acronym $acronym)
+    public function edit($id)
     {
         try {
             return view('acronyms.edit', [
@@ -117,7 +117,7 @@ class AcronymsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function update(AcronymsRequest $request, $id, Acronym $acronym)
+    public function update(AcronymsRequest $request, $id)
     {
         $data = $request->only([
             'acronym',
@@ -141,7 +141,7 @@ class AcronymsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Contracts\View\View
      */
-    public function destroy($id, Acronym $acronym)
+    public function destroy($id)
     {
         try {
             $this->acronymsService->deleteById($id);
