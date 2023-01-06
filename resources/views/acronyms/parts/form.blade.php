@@ -46,3 +46,16 @@
         @endif
     </div>
 </div>
+
+<div class="form-group row">
+    <div class="offset-sm-2 col-sm-10 d-flex flex-row">
+        <button type="submit" class="btn btn-primary mr-2">
+            <i class="fa-solid fa-circle-plus"></i>
+            Create
+        </button>
+        <a href="{{ route('acronyms-fields.index')}}" class="btn btn-secondary">
+            <i class="fa-regular fa-rectangle-xmark"></i>
+            Cancel
+        </a>
+    </div>
+</div>
