@@ -18,54 +18,56 @@ class AcronymsService
     /**
      * acronymService constructor.
      *
-     * @param $AcronymRepository $acronymRepository
+     * @param AcronymRepositoryInterface $acronymRepository
      */
     public function __construct(AcronymRepositoryInterface $acronymRepository)
     {
         $this->acronymRepository = $acronymRepository;
     }
+
     /**
      * Get all acronym.
-     * @param  \Illuminate\Http\Request $request
      *
-     * @return String
+     * @param $request
+     * @return mixed
      */
     public function getAllData($request)
     {
-        $acronyms = $this->acronymRepository->getData($request);
-        return $acronyms;
+        $data = [];
+        $data['keyword'] = $request->input('keyword') ?? null;
+        $data['acronym_column'] = $request->input('acronym_column') ?? null;
+        $limit = config('repository.pagination.limit') ?? 50;
+        $columns = [
+            'id',
+            'acronym',
+            'acronym_column',
+            'full_name'
+        ];
+        return $this->acronymRepository->getData($data, $limit, $columns);
     }
 
     /**
      * Validate acronym data.
      * Store to DB if there are no errors.
      *
-     * @param array $data
-     * @return String
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function saveAcronymData($data)
     {
         $array_acronym_val = array_keys(config('config.acronym_column_list'));
         if(!in_array($data['acronym_column'], $array_acronym_val)){
-            throw new InvalidArgumentException('Data is invalid');
+            $message = config('error_message_list_conf.system.data_error');
+            throw new InvalidArgumentException($message);
         }
-        DB::beginTransaction();
-        try {
-            $result = $this->acronymRepository->create($data);
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create acronym data');
-        }
-        DB::commit();
-        return $result;
+        return $this->acronymRepository->create($data);
     }
 
     /**
      * Get acronym by id.
      *
      * @param $id
-     * @return String
+     * @return \Illuminate\Database\Eloquent\Model|null
      */
     public function getById($id)
     {
@@ -77,30 +79,18 @@ class AcronymsService
      * Update acronym data
      * Store to DB if there are no errors.
      *
-     * @param array $data
-     * @return String
+     * @param $data
+     * @param $id
+     * @return bool
      */
     public function updateAcronym($data, $id)
     {
         $array_acronym_val = array_keys(config('config.acronym_column_list'));
         if(!in_array($data['acronym_column'], $array_acronym_val)){
-            throw new InvalidArgumentException('Data is invalid');
+            $message = config('error_message_list_conf.system.data_error');
+            throw new InvalidArgumentException($message);
         }
-        DB::beginTransaction();
-
-        try {
-            $acronym = $this->acronymRepository->update($id, $data);
-
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to update acronym data');
-        }
-
-        DB::commit();
-
-        return $acronym;
-
+        return $this->acronymRepository->update($id, $data);
     }
 
 
@@ -108,24 +98,10 @@ class AcronymsService
      * Delete acronym by id.
      *
      * @param $id
-     * @return String
+     * @return bool
      */
     public function deleteById($id)
     {
-        DB::beginTransaction();
-
-        try {
-            $acronym = $this->acronymRepository->deleteById($id);
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-
-            throw new InvalidArgumentException('Unable to delete acronym data');
-        }
-
-        DB::commit();
-
-        return $acronym;
-
+        return $this->acronymRepository->deleteById($id);
     }
 }

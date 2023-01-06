@@ -62,7 +62,7 @@
                         <i class="fa-solid fa-circle-plus"></i>
                         Create
                       </button>
-                      <a href="{{ route('user.index')}}" class="btn btn-secondary">
+                      <a href="{{ route('acronyms-fields.index')}}" class="btn btn-secondary">
                         <i class="fa-regular fa-rectangle-xmark"></i>
                         Cancel
                       </a>
@@ -78,7 +78,7 @@
         <!-- /.card -->
       </div>
     </div>
-@endsection 
+@endsection
 @section('script')
     <!-- Form Validate -->
     <script src="{{asset('view/user/form-validation.js')}}"></script>
