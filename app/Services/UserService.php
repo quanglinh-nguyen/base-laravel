@@ -7,6 +7,7 @@ use App\Models\Role;
 use App\Repository\users\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -55,15 +56,20 @@ class UserService
             'phone',
             'role_id'
         ]);
-        $password = Str::random(10);
-        $data = array_merge($data,['password' => $password]);
-    
+        $string = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz#?!@$%^&*-';
+        do {
+            $passwordTemp = substr(str_shuffle($string), 0, 10);
+        } while (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/", $passwordTemp));
+
+        $passwordHash = Hash::make($passwordTemp);
+   
+        $data = array_merge($data,['password' => $passwordHash]);
         DB::beginTransaction();
         $user = $this->userRepository->create($data);
         $user->roles()->sync($data['role_id']);
         Mail::to($data['email'])->send(new SendEmailCreateAccount([
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => $passwordTemp,
         ]));
         DB::commit();
        
