@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\Models\User;
 use App\Services\RoleService;
 use App\Services\UserService;
 use Exception;
@@ -46,7 +45,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        $roles = $this->roleService->getAll();
+        $this->data['roles'] = $roles;
+        return view('user.create',[
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -57,18 +60,11 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $data = $request->only([
-            'name',
-            'email',
-            'phone',
-            'role_id'
-        ]);
-        $password = Str::random(10);
-        $data = array_merge($data,['password' => $password]);
         try {
-            $this->userService->saveUserData($data);
+            $this->userService->saveUserData($request);
             $this->showSuccessNotification('User successfully created');
         } catch (Exception $e) {
+            DB::rollBack();
             $this->showErrorNotification('User failed created');
         }
         return redirect()->route('user.index');
@@ -82,7 +78,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        dd(2);
     }
 
     /**
@@ -115,17 +111,9 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $dataUser = $request->only([
-            'name',
-            'phone',
-        ]);
-        $user = User::find($id);
-        DB::beginTransaction();
         try {
-            $this->userService->updateUser($dataUser, $id);
-            $user->roles()->sync($request->only('role_id'));
+            $this->userService->updateUser($request, $id);
             $this->showSuccessNotification('User successfully updated');
-            DB::commit();
         } catch (Exception $e) {
             DB::rollBack();
             $this->showErrorNotification('User failed updated');
@@ -141,6 +129,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->userService->deleteById($id);
+            $this->showSuccessNotification('User successfully deleted');
+        } catch (Exception $e) {
+            $this->showErrorNotification('User failed deleted');
+        }
+        return redirect()->route('user.index');
     }
 }

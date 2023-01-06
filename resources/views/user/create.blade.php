@@ -47,9 +47,9 @@
                     <div class="col-sm-10">
                       <select class="form-control" name="role_id">
                         <option disabled selected hidden>Select role </option>
-                        <option value="1">Super admin</option>
-                        <option value="2">Admin</option>
-                        <option value="3">Partner</option>
+                        @foreach ($roles as $role)
+                          <option value="{{$role->id}}">{{$role->display_name}}</option>
+                        @endforeach
                       </select>
                       @error('role_id')
                         <label id="role_id-error" class="error" for="role_id">{{ $message }}</label>

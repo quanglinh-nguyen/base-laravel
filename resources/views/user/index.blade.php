@@ -17,15 +17,17 @@
             <div class="card-tools d-flex flex-row justify-content-between">
                <input type="text" name="keyword" class="form-control mr-2" placeholder="Keyword"/>
                <select name="role" class="form-control">
-                    <option value="1">Super Admin</option>
-                    <option value="2">Admin</option>
+                    <option selected hidden value="">Select role</option>
+                    @foreach ($roles as $role)
+                        <option value="{{$role->id}}">{{$role->display_name}}</option>
+                    @endforeach
                 </select>
                 <div class="d-flex flex-row mx-2">
                     <button type="submit" class="btn btn-primary mr-2">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         Search
                     </button>
-                    <button class="btn btn-outline-secondary">Clear</button>
+                    <a href="{{ route('user.index') }}" class="btn btn-outline-secondary">Clear</a>
                 </div>
             </div>
         </form>
@@ -69,10 +71,13 @@
                                 <i class="fas fa-pencil-alt"></i>
                                 Edit
                             </a>
-                            <a class="btn btn-danger btn-sm" href="#">
-                                <i class="fas fa-trash"></i>
-                                Delete
-                            </a>
+                            <form action="{{route('user.destroy',['user' => $user->id])}}" method="POST">
+                                @csrf @method('DELETE')
+                                <button class="btn btn-danger btn-sm" type="submit" onclick="return confirm(`Are you sure you want to delete user ${$user->name}`)">
+                                    <i class="fas fa-trash"></i>
+                                    Delete
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach

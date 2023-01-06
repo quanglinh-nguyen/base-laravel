@@ -2,13 +2,16 @@
 
 namespace App\Services;
 
+use App\Mail\SendEmailCreateAccount;
 use App\Models\Role;
 use App\Repository\users\UserRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use InvalidArgumentException;
+use Illuminate\Support\Str;
 
 class UserService
 {
@@ -44,21 +47,27 @@ class UserService
      * @param array $data
      * @return String
      */
-    public function saveUserData($data)
+    public function saveUserData($request)
     { 
+        $data = $request->only([
+            'name',
+            'email',
+            'phone',
+            'role_id'
+        ]);
+        $password = Str::random(10);
+        $data = array_merge($data,['password' => $password]);
+    
         DB::beginTransaction();
-
-        try {
-            $user = $this->userRepository->create($data);
-            $user->roles()->sync($data['role_id']);
-            
-            DB::commit();
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-            throw new InvalidArgumentException('Unable to create user data');
-        }
-        return $user;
+        $user = $this->userRepository->create($data);
+        $user->roles()->sync($data['role_id']);
+        Mail::to($data['email'])->send(new SendEmailCreateAccount([
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]));
+        DB::commit();
+       
+        return true;
     }
 
     /**
@@ -80,10 +89,19 @@ class UserService
      * @param array $data
      * @return String
      */
-    public function updateUser($data, $id)
+    public function updateUser($request, $id)
     {
-        // dd($this->userRepository->update($id, $data));
-        return $this->userRepository->update($id, $data);
+        $dataUser = $request->only([
+            'name',
+            'phone',
+        ]);
+        DB::beginTransaction();
+        $this->userRepository->update($id, $dataUser);
+        $user = $this->userRepository->findById($id);
+        $user->roles()->sync($request->only('role_id'));
+        DB::commit();
+
+        return true;
     }
 
 
@@ -95,21 +113,7 @@ class UserService
      */
     public function deleteById($id)
     {
-        DB::beginTransaction();
-
-        try {
-            $user = $this->userRepository->deleteById($id);
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-
-            throw new InvalidArgumentException('Unable to delete user data');
-        }
-
-        DB::commit();
-
-        return $user;
-
+        return $this->userRepository->deleteById($id);
     }
     public function getRoles(Role $role){
         return $role->all();
