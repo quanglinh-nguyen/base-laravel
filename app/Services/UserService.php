@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Events\CreateAccount;
 use App\Mail\SendEmailCreateAccount;
 use App\Models\Role;
 use App\Repository\users\UserRepositoryInterface;
@@ -74,7 +75,7 @@ class UserService
         DB::beginTransaction();
         $user = $this->userRepository->create($data);
         $user->roles()->sync($data['role_id']);
-        Mail::to($data['email'])->send(new SendEmailCreateAccount([
+        event(new CreateAccount([
             'email' => $data['email'],
             'password' => $passwordTemp,
         ]));
@@ -127,8 +128,5 @@ class UserService
     public function deleteById($id)
     {
         return $this->userRepository->deleteById($id);
-    }
-    public function getRoles(Role $role){
-        return $role->all();
     }
 }

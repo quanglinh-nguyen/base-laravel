@@ -26,14 +26,13 @@ class UserRequest extends FormRequest
     {
         $validate = [
             'name' => 'required|string',
+            'email' => 'required|email',
             'phone' => 'required',
             'role_id' => 'required',
         ];
     
         if($request->method() == "POST"){
-            $validate = array_merge($validate, [
-                'email' => 'required|email|unique:users,email',
-            ]);
+            $validate['email'] = 'unique:users,email';
         }
 
         if($request->method() == "PUT"){

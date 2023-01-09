@@ -44,7 +44,7 @@ class UserController extends Controller
             Log::error($e->getMessage());
             $message = config('error_message_list_conf.system.error_system') ?? null;
             $this->showWarningNotification($message);
-            return redirect()->route('home.index');
+            return redirect()->route('home');
         }
         
     }
