@@ -9,7 +9,6 @@ class Acronym extends Model
 {
     use HasFactory;
 
-    protected $table = 'acronyms';
     /**
      * The attributes that are mass assignable.
      *

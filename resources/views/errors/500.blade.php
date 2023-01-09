@@ -11,7 +11,7 @@
         <h3><i class="fas fa-exclamation-triangle text-danger"></i> Server error.</h3>
         <p>
           We will work on fixing that right away.<br>
-          <a href="{{ route('customer.index') }}">Return to Customers Management</a>.
+            <a href="{{ route('home') }}">Return to Home Page</a>
         </p>
       </div>
     </div>
