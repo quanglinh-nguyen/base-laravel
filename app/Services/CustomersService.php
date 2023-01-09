@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Repository\acronyms\AcronymRepositoryInterface;
 use App\Repository\customers\CustomerRepositoryInterface;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -16,13 +17,18 @@ class CustomersService
      */
     protected $customerRepository;
     /**
+     * @var $acronymRepository
+     */
+    protected $acronymRepository;
+    /**
      * customerService constructor.
      *
      * @param CustomerRepositoryInterface $customerRepository
      */
-    public function __construct(CustomerRepositoryInterface $customerRepository)
+    public function __construct(CustomerRepositoryInterface $customerRepository, AcronymRepositoryInterface $acronymRepository)
     {
         $this->customerRepository = $customerRepository;
+        $this->acronymRepository = $acronymRepository;
     }
 
     /**
@@ -34,15 +40,8 @@ class CustomersService
     public function getAllData($request)
     {
         $data = [];
-        $data['keyword'] = $request->input('keyword') ?? null;
-        $data['customer_column'] = $request->input('customer_column') ?? null;
         $limit = config('repository.pagination.limit') ?? 50;
-        $columns = [
-            'id',
-            'customer',
-            'customer_column',
-            'full_name'
-        ];
+        $columns = config('config.customer_config.field_viewAny') ?? ['*'];
         return $this->customerRepository->getData($data, $limit, $columns);
     }
 
@@ -55,12 +54,36 @@ class CustomersService
      */
     public function saveCustomerData($data)
     {
-        $array_customer_val = array_keys(config('config.customer_column_list'));
-        if(!in_array($data['customer_column'], $array_customer_val)){
-            $message = config('error_message_list_conf.system.data_error');
-            throw new InvalidArgumentException($message);
+        $result = ['checkDuplicate' => false];
+
+        $acronymOrganizationViet = $this->acronymRepository->getAcronymsFullText($data['organization_viet'], 1);
+        if(!is_null($acronymOrganizationViet)){
+            $data['organization_viet'] = $acronymOrganizationViet;
         }
-        return $this->customerRepository->create($data);
+
+        $acronymOrganizationEng = $this->acronymRepository->getAcronymsFullText($data['organization_eng'], 2);
+        if(!is_null($acronymOrganizationEng)){
+            $data['organization_eng'] = $acronymOrganizationEng;
+        }
+
+        $acronymAdress = $this->acronymRepository->getAcronymsFullText($data['address'], 3);
+        if(!is_null($acronymAdress)){
+            $data['address'] = $acronymAdress;
+        }
+        $dataDuplicate = $this->customerRepository->checkDuplicateRecord($data);
+        if(!is_null($dataDuplicate)){
+            $historyUpdateCustomer = 'abc';
+            $result['checkDuplicate'] = true;
+            $result['checkDuplicate']= $historyUpdateCustomer;
+
+            return $result;
+        }
+
+        $customer = $this->customerRepository->create($data);
+        $result['data'] = $customer;
+        return $result;
+
+
     }
 
     /**

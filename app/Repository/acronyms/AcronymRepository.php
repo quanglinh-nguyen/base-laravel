@@ -42,5 +42,27 @@ class AcronymRepository extends BaseRepository implements AcronymRepositoryInter
         })->orderBy('id', 'DESC')->paginate($limit, $columns)->appends(request()->query());
     }
 
+    /**
+     * Get Info acronym
+     *
+     * @param string $acronyms
+     * @param int $acronym_column
+     * @return mixed
+     */
+    public function getAcronymsFullText($acronyms, $acronym_column)
+    {
+        $acronyms = $this->model
+            ->where('acronym_column', $acronym_column)
+            ->where('acronym',$acronyms)
+            ->orderBy('id', 'DESC')->first();
+        if(is_null($acronyms)){
+            return null;
+        }
+        return $acronyms->full_name;
+    }
+
+
+
+
 }
 

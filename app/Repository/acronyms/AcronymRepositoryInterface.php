@@ -15,4 +15,16 @@ interface AcronymRepositoryInterface extends EloquentRepositoryInterface
      * @return mixed
      */
     public function getData($keyword, $limit, $columns);
+
+    /**
+     * Get Info acronym
+     *
+     * @param $acronyms
+     * @param int $acronym_column
+     * @return mixed
+     */
+    public function getAcronymsFullText($acronyms, $acronym_column);
+
+
+
 }

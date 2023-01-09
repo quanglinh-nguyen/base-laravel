@@ -50,7 +50,6 @@ class AcronymsRequest extends FormRequest
                 ],
                 'full_name' => [
                     'required',
-                    'not_regex:'.$regex_not_special
                 ],
             ];
         }
@@ -68,7 +67,6 @@ class AcronymsRequest extends FormRequest
                 ],
                 'full_name' => [
                     'required',
-                    'not_regex:'.$regex_not_special
                 ],
             ];
         }

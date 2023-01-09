@@ -10,19 +10,27 @@ jQuery.validator.addMethod(
     },
 "This field is not contain special characters"
 );
-
-$("#create-update-acronyme-banking").validate({
+$("#create-update-customers").validate({
     rules: {
-        acronym: {
+        industry: {
             required: true,
             checkForSpecialChar: true
         },
-        acronym_column: {
-            required: true,
+        company_email: {
+            email: true,
         },
-        full_name: {
-            required: true,
+        business_email: {
+            email: true,
         },
+        personal_email: {
+            email: true,
+        },
+        outdate_business_email: {
+            email: true,
+        },
+        outdate_personal_email: {
+            email: true,
+        }
     },
 });
 

@@ -16,4 +16,6 @@ interface CustomerRepositoryInterface extends EloquentRepositoryInterface
      * @return mixed
      */
     public function getData($keyword, $limit, $columns);
+
+    public function checkDuplicateRecord($data);
 }

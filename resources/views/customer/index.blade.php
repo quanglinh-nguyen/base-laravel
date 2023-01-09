@@ -88,320 +88,54 @@
                 </tr>
                 </thead>
                 <tbody>
+                @foreach($customers as $key => $customer)
                 <tr>
-                    <td>1</td>
-                    <td>Banking</td>
-                    <td>HCMC</td>
-                    <td>Ngân hàng Bank of China (Hong Kong) Limited - Chi nhánh Thành phố Hồ Chí Minh</td>
-                    <td>Đào Cảnh Hoa</td>
-                    <td>Trưởng phòng Kinh doanh</td>
-                    <td>Business</td>
-                    <td>M - Level</td>
-                    <td>daocanhhoa@bankofchina.com</td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
+                    <td>{{$loop->iteration}}</td>
+                    <td>{{ $customer->industry }}</td>
+                    <td>{{ $customer->geo_code }}</td>
+                    <td>{{ $customer->organization_viet }}</td>
+                    <td>{{ $customer->name }}</td>
+                    <td>{{ $customer->title_department_viet }}</td>
+                    <td>{{ $customer->professional }}</td>
+                    <td>{{ $customer->title_level }}</td>
+                    <td>{{ $customer->business_email }}</td>
+                    <td>{{ $customer->attendance }}</td>
+                    <td>{{ $customer->last_updated_date }}</td>
                     <td class="project-actions text-right">
                         <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
+                            data-toggle="modal" data-target="#myModal" data-id = "{{ $customer->id }}">
                             <i class="fa-solid fa-eye"></i>
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers.edit', ['customer' => $customer->id])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
+                        <form action="{{route('customers.destroy', ['customer' => $customer->id])}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button
+                                class="btn btn-danger btn-sm"
+                                onclick="return confirm('Are you sure you want to delete customer');"
+                                type="submit"
+                                data-method="delete"
+                            >
+                                <i class="fas fa-trash"> </i>
+                                Delete
+                            </button>
+                        </form>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Banking</td>
-                    <td></td>
-                    <td>NGÂN HÀNG BPCE IOM</td>
-                    <td>Tran Trung</td>
-                    <td>Trade Finance</td>
-                    <td>Fiance</td>
-                    <td>E - Level</td>
-                    <td>trung.tran@bpce-vietnam.com</td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Banking</td>
-                    <td>Hanoi</td>
-                    <td>Ngân hàng Chính sách xã hội (VBSP)</td>
-                    <td>Đào Thị Lan Hương</td>
-                    <td>Nhân viên Phòng CNTT</td>
-                    <td>IT</td>
-                    <td>E - Level</td>
-                    <td></td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Banking</td>
-                    <td>N/a</td>
-                    <td>Ngân hàng HongLeong Bank</td>
-                    <td>Tạ Duy Cường</td>
-                    <td>Chuyên viên Khối KHDN lớn</td>
-                    <td>Corporate</td>
-                    <td>E - Level</td>
-                    <td><p>duycuong.ta@hlbvn.hongleong.com</p></td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Banking</td>
-                    <td>Hanoi</td>
-                    <td>Ngân hàng Hợp tác xã Việt Nam (Co-opBank)</td>
-                    <td>Trần Trung Hải</td>
-                    <td>Phụ trách phòng Marketing và triển khai sản phẩm - Trung tâm Thẻ và dịch vụ ngân hàng số</td>
-                    <td>Mar-com</td>
-                    <td>M - Level</td>
-                    <td>haitt@co-opbank.vn</td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>IT Vendor</td>
-                    <td></td>
-                    <td>Backbase</td>
-                    <td>Riddhi Dutta</td>
-                    <td>Phó Chủ tịch khu vực</td>
-                    <td>BoM</td>
-                    <td>C - Level</td>
-                    <td></td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>IT Vendor</td>
-                    <td></td>
-                    <td>FPT Information System</td>
-                    <td>Nguyễn Anh Vũ</td>
-                    <td>FIS BANK PB6</td>
-                    <td>Bank</td>
-                    <td>E - Level</td>
-                    <td>vuna19@fpt.com.vn</td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Multi-disciplinary</td>
-                    <td></td>
-                    <td>Công ty Cổ phần TBS Link (TBS)</td>
-                    <td>Bùi Thị Kim Thanh</td>
-                    <td>Tổng Giám đốc</td>
-                    <td>CEO</td>
-                    <td>C - Level</td>
-                    <td></td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Telecom</td>
-                    <td></td>
-                    <td>Công ty Cổ phần Lina Network</td>
-                    <td>Nguyễn Đăng Triều Thiên</td>
-                    <td>CEO</td>
-                    <td>CEO</td>
-                    <td>C - Level</td>
-                    <td></td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Transportation & Logistics</td>
-                    <td></td>
-                    <td>Tổng công ty Bưu điện Việt Nam</td>
-                    <td>Nguyễn Thị Tuyết Mai</td>
-                    <td>Trưởng phòng Dịch vụ Thanh toán, Ban Dịch vụ Tài chính bưu chính</td>
-                    <td>Payment</td>
-                    <td>M - Level</td>
-                    <td>tuyetmai@vnpost.vn</td>
-                    <td>BB'22</td>
-                    <td>01-12-2022</td>
-                    <td class="project-actions text-right">
-                        <a class="btn btn-primary btn-sm"
-                            data-toggle="modal" data-target="#myModal">
-                            <i class="fa-solid fa-eye"></i>
-                            View
-                        </a>
-                        <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
-                            <i class="fas fa-pencil-alt"></i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="#">
-                            <i class="fas fa-trash"> </i>
-                            Delete
-                        </a>
-                    </td>
-                </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
         <!-- /.card-body -->
         <div class="card-footer clearfix">
-            <ul
-                class="pagination pagination-sm m-0 float-right"
-            >
-                <li class="page-item">
-                    <a class="page-link" href="#">&laquo;</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">3</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">&raquo;</a>
-                </li>
-            </ul>
+            <div class="d-flex justify-content-end">
+                {{ $customers->links('common.pagination')}}
+            </div>
         </div>
     </div>
     <!-- /.card -->

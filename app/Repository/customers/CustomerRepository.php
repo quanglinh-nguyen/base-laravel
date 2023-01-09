@@ -34,5 +34,39 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
         return $this->model->orderBy('id', 'DESC')->paginate($limit, $columns)->appends(request()->query());
     }
 
+    public function checkDuplicateRecord($data){
+
+        $acronyms = $this->model
+            ->when($data['organization_viet'], function ($query) use ($data){
+                $organization_viet = $data['organization_viet'];
+                return $query->where(function($query) use ($organization_viet) {
+                    $query->where('organization_viet', $organization_viet);
+                })
+                ->where(function($query) use ($data) {
+                    $name = $data['name'] ?? null;
+                    $mobile = $data['mobile'] ?? null;
+                    $business_email = $data['business_email'] ?? null;
+                    $personal_email = $data['personal_email'] ?? null;
+                    $query->when($name, function ($query) use ($name) {
+                        return $query->orWhere('name', $name);
+                    });
+                    $query->when($mobile, function ($query) use ($mobile) {
+                        return $query->orWhere('mobile', $mobile);
+                    });
+                    $query->when($business_email, function ($query) use ($business_email) {
+                        return $query->orWhere('business_email', $business_email);
+                    });
+                    $query->when($personal_email, function ($query) use ($personal_email) {
+                        return $query->orWhere('personal_email', $personal_email);
+                    });
+                    return $query;
+                });
+            })
+            ->orderBy('id', 'DESC')->first();
+        if(is_null($acronyms)){
+            return null;
+        }
+        return $acronyms;
+    }
 }
 

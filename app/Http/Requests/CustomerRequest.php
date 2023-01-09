@@ -25,9 +25,8 @@ class CustomerRequest extends FormRequest
     public function rules()
     {
         $request = $this;
-        $rules = [];
         $regex_not_special = '/[`!@#$%^&*()_+\-=\[\]{};\':"\\|,.<>\/?~]/';
-        $rule_unique = Rule::unique('acronyms')->where(
+        $rule_unique = Rule::unique('customers')->where(
             function ($query) use ($request){
                 return $query->where(
                     [
@@ -42,13 +41,15 @@ class CustomerRequest extends FormRequest
                 );
             }
         );
+        $rules = [
+            'industry' => [
+                'required',
+                'not_regex:'.$regex_not_special
+            ]
+        ];
 
         if ($this->method() == "POST") {
-            $rules = [
-                'industry' => [
-                    'required',
-                    'not_regex:'.$regex_not_special
-                ],
+            $rules = array_merge($rules, [
                 'organization_eng' => [
                     'required_without:organization_viet',
                     $rule_unique,
@@ -69,15 +70,11 @@ class CustomerRequest extends FormRequest
                 'personal_email' => [
                     $rule_unique,
                 ],
-            ];
+            ]);
         }
 
         if ($this->method() == "PUT") {
-            $rules = [
-                'industry' => [
-                    'required',
-                    'not_regex:'.$regex_not_special
-                ],
+            $rules = array_merge($rules, [
                 'organization_eng' => [
                     'required_without:organization_viet',
                     $rule_unique->ignore($this->customer),
@@ -98,7 +95,7 @@ class CustomerRequest extends FormRequest
                 'personal_email' => [
                     $rule_unique->ignore($this->customer),
                 ],
-            ];
+            ]);
         }
 
         return $rules;

@@ -21,6 +21,7 @@ return [
             'update_error' => 'Customers failed updated',
             'delete_success' => 'Customers failed deleted',
             'delete_error' => 'Customers failed deleted',
+            'record_duplicate' => 'tai khoan da bi trung lap',
         ]
     ]
 ];

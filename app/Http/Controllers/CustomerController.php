@@ -13,16 +13,16 @@ class CustomerController extends Controller
     /**
      * @var CustomersService
      */
-    private $customerService;
+    private $customersService;
     /**
      * Create the controller instance.
      *
      * @return void
      */
-    public function __construct(CustomersService $customerService)
+    public function __construct(CustomersService $customersService)
     {
         $this->authorizeResource(Customer::class, 'customer');
-        $this->customerService = $customerService;
+        $this->customersService = $customersService;
 
     }
 
@@ -35,7 +35,7 @@ class CustomerController extends Controller
     {
         try {
             return view('customer.index', [
-                'customers' => $this->customerService->getAllData($request)
+                'customers' => $this->customersService->getAllData($request)
             ]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -80,20 +80,24 @@ class CustomerController extends Controller
      */
     public function store(CustomerRequest $request)
     {
-        dd($request);
-        $data = $request->only([
-            'acronym',
-            'acronym_column',
-            'full_name',
-        ]);
+        $request_field = config('config.customer_config.request_only');
+
+        $data = $request->only($request_field);
         try {
-            $this->customerService->saveAcronymData($data);
+            $result = $this->customersService->saveCustomerData($data);
+
+            if($result['checkDuplicate'] == true){
+                $message = config('error_message_list_conf.system.customers.record_duplicate') ?? null;
+                $this->showSuccessNotification($message);
+                return redirect()->route('history-update-customer.index');
+            }
             $message = config('error_message_list_conf.system.customers.create_success') ?? null;
             $this->showSuccessNotification($message);
         } catch (Exception $e) {
             $message = config('error_message_list_conf.system.customers.create_error') ?? null;
             $this->showErrorNotification($message);
         }
+
         return redirect()->route('customers.index');
     }
 
@@ -116,7 +120,14 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        return view('customer.edit');
+        try {
+            return view('customer.edit', [
+                'acronym' => $this->customersService->getById($id),
+            ]);
+        } catch (Exception $e) {
+            $this->showWarningNotification(config('error_message_list_conf.system.error_system'));
+            return redirect()->route('customer.index');
+        }
     }
 
     /**
@@ -139,7 +150,15 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $this->customersService->deleteById($id);
+            $message = config('error_message_list_conf.system.customers.delete_success') ?? null;
+            $this->showSuccessNotification($message);
+        } catch (Exception $e) {
+            $message = config('error_message_list_conf.system.customers.delete_error') ?? null;
+            $this->showErrorNotification($message);
+        }
+        return redirect()->route('customers.index');
     }
 
     /**
