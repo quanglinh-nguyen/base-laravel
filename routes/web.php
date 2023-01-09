@@ -27,21 +27,26 @@ Route::post('/login',[\App\Http\Controllers\Auth\LoginController::class, 'login'
 //Route::post('/reset-password', 'Auth\ResetPasswordController@handleSetResetPassword');
 //Route::get('/set-password/{email}/{token}', 'Auth\ResetPasswordController@showSetResetForm')->name('set.password');
 //Route::post('/set-password', 'Auth\ResetPasswordController@handleSetResetPassword');
-Route::get('/logout' ,[\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('home/profile', [\App\Http\Controllers\HomeController::class, 'getProfile'])->name('home.profile');
-//Route::resource('home', \App\Http\Controllers\HomeController::class);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/logout' ,[\App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
-Route::resource('user', \App\Http\Controllers\UserController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('home/profile', [\App\Http\Controllers\HomeController::class, 'getProfile'])->name('home.profile');
+    //Route::resource('home', \App\Http\Controllers\HomeController::class);
 
-Route::get('customer/email-outdate', [\App\Http\Controllers\CustomerController::class, 'outdate'])->name('customer.outdate');
-Route::resource('customer', \App\Http\Controllers\CustomerController::class);
+    Route::resource('user', \App\Http\Controllers\UserController::class);
 
-Route::resource('customer-upload', \App\Http\Controllers\CustomerUploadController::class);
+    Route::get('customer/email-outdate', [\App\Http\Controllers\CustomerController::class, 'outdate'])->name('customers.outdate');
+    Route::resource('customers', \App\Http\Controllers\CustomerController::class);
 
-Route::resource('history-update-customer', \App\Http\Controllers\HistoryUpdateCustomerController::class);
+    Route::resource('customers-error', \App\Http\Controllers\CustomerErrorController::class);
 
-Route::resource('acronyms-fields', \App\Http\Controllers\AcronymsController::class);
+    Route::resource('customers-upload', \App\Http\Controllers\CustomerUploadController::class);
+
+    Route::resource('history-update-customer', \App\Http\Controllers\HistoryUpdateCustomerController::class);
+
+    Route::resource('acronyms-fields', \App\Http\Controllers\AcronymsController::class);
+});
 
 

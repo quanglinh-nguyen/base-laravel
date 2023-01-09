@@ -59,7 +59,7 @@ class RolesAndPermissions extends Seeder
         // Create admin permissions
         $entitiesSuperAdmin = ['User'];
         // Create default permissions and allocate to admins
-        $entities = ['Customer', 'CustomerUpload', 'HistoryCustomer', 'CustomerEmailOutdate', 'Bank'];
+        $entities = ['Customer', 'CustomerUpload', 'HistoryCustomer', 'CustomerError', 'CustomerEmailOutdate', 'Acronym'];
         $ops = ['viewany', 'create', 'update', 'delete', 'view'];
 
         foreach ($entitiesSuperAdmin as $entity) {

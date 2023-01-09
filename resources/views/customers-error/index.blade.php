@@ -13,7 +13,7 @@
             <h3 class="card-title">Customer Management</h3>
             <div class="card-tools d-flex mr-1">
                 <button class="btn btn-success mr-2"><i class="fa-solid fa-file-export"></i>Export</button>
-                <a class="btn btn-block btn-primary" href="{{route('customers.create')}}">
+                <a class="btn btn-block btn-primary" href="{{route('customers-error.create')}}">
                     <i class="fa-solid fa-plus"></i>
                     Add
                 </a>
@@ -107,7 +107,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -136,7 +136,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -165,7 +165,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -194,7 +194,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -223,7 +223,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -252,7 +252,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -281,7 +281,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -310,7 +310,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -339,7 +339,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>
@@ -368,7 +368,7 @@
                             View
                         </a>
                         <a class="btn btn-info btn-sm"
-                            href={{route('customers.edit', ['customer' => 10])}}>
+                            href={{route('customers-error.edit', ['customers_error' => 10])}}>
                             <i class="fas fa-pencil-alt"></i>
                             Edit
                         </a>

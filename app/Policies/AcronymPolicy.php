@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Bank;
+use App\Models\Acronym;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -18,19 +18,19 @@ class AcronymPolicy
      */
     public function viewAny(User $user)
     {
-        return ($user && $user->hasPermission('viewany_bank'));
+        return ($user && $user->hasPermission('viewany_acronym'));
     }
 
     /**
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Bank  $bank
+     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Bank $bank)
+    public function view(User $user, Acronym $acronym)
     {
-        return ($user && $user->hasPermission('view_bank'));
+        return ($user && $user->hasPermission('view_acronym'));
     }
 
     /**
@@ -41,41 +41,41 @@ class AcronymPolicy
      */
     public function create(User $user)
     {
-        return ($user && $user->hasPermission('create_bank'));
+        return ($user && $user->hasPermission('create_acronym'));
     }
 
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Bank  $bank
+     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Bank $bank)
+    public function update(User $user, Acronym $acronym)
     {
-        return ($user && $user->hasPermission('update_bank'));
+        return ($user && $user->hasPermission('update_acronym'));
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Bank  $bank
+     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Bank $bank)
+    public function delete(User $user, Acronym $acronym)
     {
-        return ($user && $user->hasPermission('delete_bank'));
+        return ($user && $user->hasPermission('delete_acronym'));
     }
 
     /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Bank  $bank
+     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Bank $bank)
+    public function restore(User $user, Acronym $acronym)
     {
         //
     }
@@ -84,10 +84,10 @@ class AcronymPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Bank  $bank
+     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Bank $bank)
+    public function forceDelete(User $user, Acronym $acronym)
     {
         //
     }

@@ -19,11 +19,6 @@
                 @include('acronyms.parts.form', ['model' => $acronym])
             </div>
         </div>
-        <div class="row pb-5">
-            <div class="col-12">
-                <input type="submit" value="Update" class="btn btn-success float-right">
-            </div>
-        </div>
     </form>
 @endsection
 

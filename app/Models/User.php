@@ -47,13 +47,57 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public $timestamps = TRUE;
+    
+    /**
+     * The roles that belong to the user.
+     *
+     * @return BelongsToMany
+     */
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role','role_user','user_id','role_id');
+        if ($this->id === 0) {
+            return;
+        }
+        return $this->belongsToMany(Role::class,'role_user','user_id','role_id');
     }
 
+    /**
+     * The user can get the properties of the role
+     */
     public function getRolesFirst()
     {
         return $this->roles()->first();
+    }
+
+    /**
+     * Check if the user has a role.
+     */
+    public function hasRole($roleId)
+    {
+        return $this->roles->pluck('id')->contains($roleId);
+    }
+
+    /**
+     * Check if the user has a particular permission.
+     */
+    // public function isCan(string $permissionName): bool
+    public function isCan(string $permissionName): bool
+    {
+        return $this->permissions()->contains($permissionName);
+    }
+
+    /**
+     * Get all permissions belonging to a the current user.
+     */
+    protected function permissions()
+    {
+        $this->permissions = $this->newQuery()->getConnection()->table('role_user')
+            ->select('permissions.name as name')->distinct()
+            ->leftJoin('permission_role', 'role_user.role_id', '=', 'permission_role.role_id')
+            ->leftJoin('permissions', 'permission_role.permission_id', '=', 'permissions.id')
+            ->where('role_user.user_id', '=', $this->id)
+            ->pluck('name');
+        return $this->permissions;
     }
 }
