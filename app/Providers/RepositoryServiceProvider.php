@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 
+use App\Repository\customers\CustomerRepository;
+use App\Repository\customers\CustomerRepositoryInterface;
 use App\Repository\BaseRepository;
 use App\Repository\EloquentRepositoryInterface;
 use App\Repository\acronyms\AcronymRepository;
@@ -25,6 +27,10 @@ class RepositoryServiceProvider extends ServiceProvider
         'acronym'=>[
             AcronymRepositoryInterface::class,
             AcronymRepository::class
+        ],
+        'customer'=>[
+            CustomerRepositoryInterface::class,
+            CustomerRepository::class
         ],
     ];
     /**
