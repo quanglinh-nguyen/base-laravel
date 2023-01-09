@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
+use App\Models\CustomersError;
 use Illuminate\Http\Request;
 
-class CustomerController extends Controller
+class CustomerErrorController extends Controller
 {
     /**
      * Create the controller instance.
@@ -14,7 +14,7 @@ class CustomerController extends Controller
      */
     public function __construct()
     {
-        $this->authorizeResource(Customer::class, 'customer');
+        $this->authorizeResource(CustomersError::class, 'customerserror');
     }
 
     /**
@@ -24,18 +24,7 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        return view('customer.index');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function outdate()
-    {
-        $this->authorize('viewAny', Customer::class);
-        return view('customer.outdate');
+        return view('customers-error.index');
     }
 
     /**
@@ -45,7 +34,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        return view('customers-error.create');
     }
 
     /**
@@ -67,7 +56,6 @@ class CustomerController extends Controller
      */
     public function show($id)
     {
-        return view('customer.view');
     }
 
     /**
@@ -78,7 +66,7 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        return view('customer.edit');
+        return view('customers-error.edit');
     }
 
     /**
@@ -90,7 +78,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-
     }
 
     /**
@@ -101,7 +88,6 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
     /**

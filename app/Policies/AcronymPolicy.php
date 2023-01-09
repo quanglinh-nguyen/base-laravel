@@ -25,10 +25,9 @@ class AcronymPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Acronym $acronym)
+    public function view(User $user)
     {
         return ($user && $user->hasPermission('view_acronym'));
     }
@@ -48,10 +47,9 @@ class AcronymPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Acronym $acronym)
+    public function update(User $user)
     {
         return ($user && $user->hasPermission('update_acronym'));
     }
@@ -60,35 +58,10 @@ class AcronymPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Acronym  $acronym
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Acronym $acronym)
+    public function delete(User $user)
     {
         return ($user && $user->hasPermission('delete_acronym'));
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Acronym  $acronym
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Acronym $acronym)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Acronym  $acronym
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Acronym $acronym)
-    {
-        //
     }
 }

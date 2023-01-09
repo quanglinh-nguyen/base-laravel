@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UploadCustomer;
 use Illuminate\Http\Request;
 
 class CustomerUploadController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(UploadCustomer::class, 'uploadcustomer');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,9 +23,6 @@ class CustomerUploadController extends Controller
      */
     public function index()
     {
-//        $this->showSuccessNotification('Group successfully created');
-//        $this->showWarningNotification('Group successfully created');
-//        $this->showErrorNotification('Group successfully created');
         return view('customer-upload.index');
     }
 
@@ -37,7 +44,6 @@ class CustomerUploadController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -48,7 +54,6 @@ class CustomerUploadController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -59,7 +64,6 @@ class CustomerUploadController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -71,7 +75,6 @@ class CustomerUploadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -82,6 +85,15 @@ class CustomerUploadController extends Controller
      */
     public function destroy($id)
     {
-        //
+    }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
     }
 }

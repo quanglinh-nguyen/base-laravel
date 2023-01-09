@@ -6,6 +6,7 @@ use App\Http\Requests\UserRequest;
 use App\Services\RoleService;
 use App\Services\UserService;
 use Exception;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -15,14 +16,19 @@ class UserController extends Controller
     private $userService;
     private $roleService;
     private $data;
+
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
     public function __construct(UserService $userService, RoleService $roleService)
     {
+        $this->authorizeResource(User::class, 'user');
         $this->userService = $userService;
         $this->roleService = $roleService;
         $this->data = [];
     }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -78,7 +84,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        dd(2);
+        //
     }
 
     /**
@@ -137,4 +143,15 @@ class UserController extends Controller
         }
         return redirect()->route('user.index');
     }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
+    }
+
 }

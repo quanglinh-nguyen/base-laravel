@@ -2,10 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\HistoryUpdateCustomer;
 use Illuminate\Http\Request;
 
 class HistoryUpdateCustomerController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->authorizeResource(HistoryUpdateCustomer::class, 'historyupdatecustomer');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +34,6 @@ class HistoryUpdateCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -35,7 +44,6 @@ class HistoryUpdateCustomerController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -58,7 +66,6 @@ class HistoryUpdateCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -69,6 +76,15 @@ class HistoryUpdateCustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+    }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
     }
 }

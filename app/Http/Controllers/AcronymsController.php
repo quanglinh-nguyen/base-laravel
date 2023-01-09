@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AcronymsRequest;
 use App\Http\Controllers\Exception;
+use App\Models\Acronym;
 use Illuminate\Http\Request;
 use App\Services\AcronymsService;
 use Illuminate\Support\Facades\Log;
@@ -16,10 +17,13 @@ class AcronymsController extends Controller
     private $acronymsService;
 
     /**
+     * Create the controller instance.
+     *
      * @param $acronymsService
      */
     public function __construct(AcronymsService $acronymsService)
     {
+        $this->authorizeResource(Acronym::class, 'acronym');
         $this->acronymsService = $acronymsService;
     }
 
@@ -61,7 +65,6 @@ class AcronymsController extends Controller
             return redirect()->route('acronyms-fields.index');
         }
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -148,5 +151,15 @@ class AcronymsController extends Controller
             $this->showErrorNotification($message);
         }
         return redirect()->route('acronyms-fields.index');
+    }
+
+    /**
+     * Get the list of resource methods which do not have model parameters.
+     *
+     * @return array
+     */
+    protected function resourceMethodsWithoutModels()
+    {
+        return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
     }
 }

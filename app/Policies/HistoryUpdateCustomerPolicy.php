@@ -2,10 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\HistoryUpdateCustomer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class HistoryUpdateCustomerPolicy
 {
     use HandlesAuthorization;
 
@@ -17,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        return ($user && $user->hasPermission('viewany_user'));
+        return ($user && $user->hasPermission('viewany_historycustomer'));
     }
 
     /**
@@ -28,7 +29,7 @@ class UserPolicy
      */
     public function view(User $user)
     {
-        return ($user && $user->hasPermission('view_user'));
+        return ($user && $user->hasPermission('view_historycustomer'));
     }
 
     /**
@@ -39,7 +40,7 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        return ($user && $user->hasPermission('create_user'));
+        return ($user && $user->hasPermission('create_historycustomer'));
     }
 
     /**
@@ -50,7 +51,7 @@ class UserPolicy
      */
     public function update(User $user)
     {
-        return ($user && $user->hasPermission('update_user'));
+        return ($user && $user->hasPermission('update_historycustomer'));
     }
 
     /**
@@ -61,6 +62,6 @@ class UserPolicy
      */
     public function delete(User $user)
     {
-        return ($user && $user->hasPermission('delete_user'));
+        return ($user && $user->hasPermission('delete_historycustomer'));
     }
 }

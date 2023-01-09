@@ -18,10 +18,12 @@
           <a id="dropdownSubMenu1" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle shadow-sm">Nguyễn Quyết Tiến</a>
           <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0">
             <li class="dropdown-li"><a href="{{ route('home.profile')}}" class="dropdown-item">Profile</a></li>
-            <li class="dropdown-li"><a href="#" class="dropdown-item">Logout</a></li>
+          <form method="GET" action="{{route('logout')}}">
+            <li class="dropdown-li"><button type="submit" class="dropdown-item">Logout</button></li>
+          </form>
           </ul>
         </div>
-        
+
       </li>
     </ul>
   </nav>

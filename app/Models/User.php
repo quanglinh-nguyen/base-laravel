@@ -13,8 +13,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, HasPermissions;
 
-    protected $table = 'users';
-
     /**
      * The attributes that are mass assignable.
      *
@@ -73,7 +71,7 @@ class User extends Authenticatable
     /**
      * Check if the user has a role.
      */
-    public function hasRole($roleId)
+    public function hasRoleById($roleId)
     {
         return $this->roles->pluck('id')->contains($roleId);
     }
