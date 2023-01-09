@@ -20,49 +20,59 @@
             </div>
         </div>
         <div class="card-action d-flex flex-row justify-content-between">
-            <form action="" class="col-12">
+            <form action="{{route('customers.index')}}" method="get" class="col-12">
                 <div class="card-tools d-flex flex-row">
                     <div class="input-group mr-2">
-                        <input type="text" name="table_search" class="form-control" placeholder="Geo Code"/>
-                    </div>
-                    <div class="input-group mr-2">
-                        <input type="text" name="table_search" class="form-control" placeholder="Organization (Viet)"/>
-                    </div>
-                    <div class="input-group mr-2">
-                        <input type="text" name="table_search" class="form-control" placeholder="Profesional"/>
-                    </div>
-                    <div class="input-group mr-2">
-                        <input type="text" name="table_search" class="form-control" placeholder="Attendance"/>
-                    </div>
-                    <div class="input-group mr-2">
-                        <select name="" class="form-control">
-                            <option disabled selected hidden>Industry</option>
-                            <option value="">Banking</option>
-                            <option value="">IT Vendor</option>
-                            <option value="">Multi-disciplinary</option>
-                            <option value="">Telecom</option>
-                            <option value="">Transportation & Logistics</option>
-                            <option value="">Financial Services</option>
-                            <option value="">Fintech</option>
+                        <select name="industry" class="form-control">
+                            <option disabled selected hidden value="">Select Industry</option>
+                            @foreach($arrIndustry as $industry)
+                                <option value="{{ $industry }}"
+                                          @if(
+                                             request()->get('industry') == $industry
+                                          )
+                                              selected
+                                    @endif
+                                >{{$industry}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="input-group mr-2">
-                        <select name="" class="form-control">
-                            <option disabled selected hidden>Level</option>
-                            <option value="">M - Level</option>
-                            <option value="">C - Level</option>
-                            <option value="">E - Level</option>
+                        <input type="text" name="geo_code" class="form-control" placeholder="Geo Code"/>
+                    </div>
+                    <div class="input-group mr-2">
+                        <input type="text" name="organization_viet" class="form-control" placeholder="Organization (Viet)"/>
+                    </div>
+
+                    <div class="input-group mr-2">
+                        <select name="title_level" class="form-control">
+                            <option disabled selected hidden value="">{{request()->get('title_level')}}Title Level</option>
+                            @foreach($arrTitleLever as $titleLever)
+                                <option value="{{ $titleLever }}"
+                                        @if(
+                                           request()->get('title_level') == $titleLever
+                                        )
+                                            selected
+                                    @endif
+                                >{{$titleLever}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="input-group mr-2">
-                        <input type="text" class="form-control float-right" id="reservation">
+                        <input type="text" name="attendance" class="form-control" placeholder="Attendance"/>
+                    </div>
+                    <div class="input-group mr-2">
+                        <input type="text" name="profesional" class="form-control" placeholder="Profesional"/>
+                    </div>
+
+                    <div class="input-group mr-2">
+                        <input type="text" name="last_updated_date" class="form-control float-right" id="reservation">
                     </div>
                     <div class="d-flex flex-row">
-                        <button class="btn btn-primary mr-2">
+                        <button class="btn btn-primary mr-2" type="submit">
                             <i class="fa-solid fa-magnifying-glass"></i>
                             Search
                         </button>
-                        <button class="btn btn-outline-secondary">Clear</button>
+                        <a class="btn btn-outline-secondary" href="{{route('customers.index')}}">Clear</a>
                     </div>
                 </div>
             </form>

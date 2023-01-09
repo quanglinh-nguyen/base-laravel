@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('user', \App\Http\Controllers\UserController::class);
 
     Route::get('customers/email-outdate', [\App\Http\Controllers\CustomerController::class, 'outdate'])->name('customers.outdate');
-    Route::resource('customers', \App\Http\Controllers\CustomerController::class);
+    Route::resource('customers', \App\Http\Controllers\CustomerController::class)->except(['show']);
 
     Route::resource('customers-error', \App\Http\Controllers\CustomerErrorController::class);
 

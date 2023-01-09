@@ -46,6 +46,34 @@ class CustomersService
     }
 
     /**
+     * Get all industry customer.
+     *
+     * @return array
+     */
+    public function getAllIndustry()
+    {
+        if(is_null($this->customerRepository->getAllIndustry())){
+            return [];
+        }
+        $result = array_unique($this->customerRepository->getAllIndustry());
+        return $result;
+    }
+
+    /**
+     * Get all Title Level customer.
+     *
+     * @return array
+     */
+    public function getAllTitleLever()
+    {
+        if(is_null($this->customerRepository->getAllTitleLevel())){
+            return [];
+        }
+        $result = array_unique($this->customerRepository->getAllTitleLevel());
+        return $result;
+    }
+
+    /**
      * Validate customer data.
      * Store to DB if there are no errors.
      *
@@ -56,20 +84,7 @@ class CustomersService
     {
         $result = ['checkDuplicate' => false];
 
-        $acronymOrganizationViet = $this->acronymRepository->getAcronymsFullText($data['organization_viet'], 1);
-        if(!is_null($acronymOrganizationViet)){
-            $data['organization_viet'] = $acronymOrganizationViet;
-        }
-
-        $acronymOrganizationEng = $this->acronymRepository->getAcronymsFullText($data['organization_eng'], 2);
-        if(!is_null($acronymOrganizationEng)){
-            $data['organization_eng'] = $acronymOrganizationEng;
-        }
-
-        $acronymAdress = $this->acronymRepository->getAcronymsFullText($data['address'], 3);
-        if(!is_null($acronymAdress)){
-            $data['address'] = $acronymAdress;
-        }
+        $data = $this->standardizedData($data);
         $dataDuplicate = $this->customerRepository->checkDuplicateRecord($data);
         if(!is_null($dataDuplicate)){
             $historyUpdateCustomer = 'abc';
@@ -108,11 +123,8 @@ class CustomersService
      */
     public function updateCustomer($data, $id)
     {
-        $array_customer_val = array_keys(config('config.customer_column_list'));
-        if(!in_array($data['customer_column'], $array_customer_val)){
-            $message = config('error_message_list_conf.system.data_error');
-            throw new InvalidArgumentException($message);
-        }
+        $data = $this->standardizedData($data);
+
         return $this->customerRepository->update($id, $data);
     }
 
@@ -127,4 +139,30 @@ class CustomersService
     {
         return $this->customerRepository->deleteById($id);
     }
+
+    /**
+     * input data normalization
+     *
+     * @param array $data
+     * @return array
+     */
+    public function standardizedData($data){
+        $acronymOrganizationViet = $this->acronymRepository->getAcronymsFullText($data['organization_viet'], 1);
+        if(!is_null($acronymOrganizationViet)){
+            $data['organization_viet'] = $acronymOrganizationViet;
+        }
+
+        $acronymOrganizationEng = $this->acronymRepository->getAcronymsFullText($data['organization_eng'], 2);
+        if(!is_null($acronymOrganizationEng)){
+            $data['organization_eng'] = $acronymOrganizationEng;
+        }
+
+        $acronymAdress = $this->acronymRepository->getAcronymsFullText($data['address'], 3);
+        if(!is_null($acronymAdress)){
+            $data['address'] = $acronymAdress;
+        }
+
+        return $data;
+    }
+
 }

@@ -34,8 +34,12 @@ class CustomerController extends Controller
     public function index(Request $request)
     {
         try {
+            $arrIndustry = $this->customersService->getAllIndustry();
+            $arrTitleLever = $this->customersService->getAllTitleLever();
             return view('customer.index', [
-                'customers' => $this->customersService->getAllData($request)
+                'customers' => $this->customersService->getAllData($request),
+                'arrIndustry' => $arrIndustry,
+                'arrTitleLever' => $arrTitleLever
             ]);
         } catch (Exception $e) {
             Log::error($e->getMessage());
@@ -102,17 +106,6 @@ class CustomerController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('customer.view');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -122,7 +115,7 @@ class CustomerController extends Controller
     {
         try {
             return view('customer.edit', [
-                'acronym' => $this->customersService->getById($id),
+                'customer' => $this->customersService->getById($id),
             ]);
         } catch (Exception $e) {
             $this->showWarningNotification(config('error_message_list_conf.system.error_system'));
@@ -139,7 +132,18 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request_field = config('config.customer_config.request_only');
 
+        $data = $request->only($request_field);
+        try {
+            $this->customersService->updateCustomer($data, $id);
+            $message = config('error_message_list_conf.system.customers.update_success') ?? null;
+            $this->showSuccessNotification($message);
+        } catch (Exception $e) {
+            $message = config('error_message_list_conf.system.customers.update_error') ?? null;
+            $this->showErrorNotification($message);
+        }
+        return redirect()->route('customers.index');
     }
 
     /**

@@ -34,6 +34,16 @@ class CustomerRepository extends BaseRepository implements CustomerRepositoryInt
         return $this->model->orderBy('id', 'DESC')->paginate($limit, $columns)->appends(request()->query());
     }
 
+    public function getAllIndustry()
+    {
+        return $this->model->pluck('industry')->toArray();
+    }
+
+    public function getAllTitleLevel()
+    {
+        return $this->model->pluck('title_level')->toArray();
+    }
+
     public function checkDuplicateRecord($data){
 
         $acronyms = $this->model

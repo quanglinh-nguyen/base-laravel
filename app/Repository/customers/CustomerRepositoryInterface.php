@@ -18,4 +18,8 @@ interface CustomerRepositoryInterface extends EloquentRepositoryInterface
     public function getData($keyword, $limit, $columns);
 
     public function checkDuplicateRecord($data);
+
+    public function getAllIndustry();
+
+    public function getAllTitleLevel();
 }

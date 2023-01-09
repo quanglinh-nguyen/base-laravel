@@ -156,7 +156,7 @@
                         placeholder="OrganizationE"
                         id="organization_eng"
                         name="organization_eng"
-                    >@if(isset($model) || old('organization_eng')) value="{{ old('organization_eng') ? old('organization_eng') : $model->organization_eng}}" @endif</textarea>
+                    >@if(isset($model) || old('organization_eng')) {{ old('organization_eng') ? old('organization_eng') : $model->organization_eng}} @endif</textarea>
                     @if ($errors->has('organization_eng'))
                         <label id="organization_eng-error" class="error" for="organization_eng">{{ $errors->first('organization_eng') }}</label>
                     @endif
@@ -173,7 +173,7 @@
                         placeholder="OrganizationV"
                         id="organization_viet"
                         name="organization_viet"
-                    >@if(isset($model) || old('organization_viet')) value="{{ old('organization_viet') ? old('organization_viet') : $model->organization_viet}}" @endif</textarea>
+                    >@if(isset($model) || old('organization_viet')){{ old('organization_viet') ? old('organization_viet') : $model->organization_viet}}@endif</textarea>
                     @if ($errors->has('organization_viet'))
                         <label id="organization_viet-error" class="error" for="organization_viet">{{ $errors->first('organization_viet') }}</label>
                     @endif
@@ -521,7 +521,7 @@
                     >Note
                     </label>
                     <textarea class="form-control  {{ $errors->has('note') ? 'error' : '' }}" rows="3" placeholder="Note" id="note" name="note"
-                    >@if(isset($model) || old('note')) value="{{ old('note') ? old('note') : $model->note}}" @endif</textarea>
+                    >@if(isset($model) || old('note')){{ old('note') ? old('note') : $model->note}}@endif</textarea>
                     @if ($errors->has('note'))
                         <label id="note-error" class="error" for="note">{{ $errors->first('note') }}</label>
                     @endif
