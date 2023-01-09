@@ -62,7 +62,7 @@ class User extends Authenticatable
     /**
      * Check if the user has a role.
      */
-    public function hasRole($roleId)
+    public function hasRoleById($roleId)
     {
         return $this->roles->pluck('id')->contains($roleId);
     }
