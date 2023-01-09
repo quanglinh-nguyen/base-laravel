@@ -12,4 +12,9 @@ class Role extends Model
     {
         return $this->belongsToMany('App\Models\Permission');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\Models\User');
+    }
 }

@@ -21,6 +21,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'avatar',
         'password',
     ];
 
@@ -44,8 +46,7 @@ class User extends Authenticatable
     ];
 
     public $timestamps = TRUE;
-
-
+    
     /**
      * The roles that belong to the user.
      *
@@ -56,7 +57,15 @@ class User extends Authenticatable
         if ($this->id === 0) {
             return;
         }
-        return $this->belongsToMany(Role::class);
+        return $this->belongsToMany(Role::class,'role_user','user_id','role_id');
+    }
+
+    /**
+     * The user can get the properties of the role
+     */
+    public function getRolesFirst()
+    {
+        return $this->roles()->first();
     }
 
     /**

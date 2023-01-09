@@ -2,28 +2,51 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserRequest;
+use App\Services\RoleService;
+use App\Services\UserService;
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    private $userService;
+    private $roleService;
+
     /**
      * Create the controller instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserService $userService, RoleService $roleService)
     {
         $this->authorizeResource(User::class, 'user');
+        $this->userService = $userService;
+        $this->roleService = $roleService;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('user.index');
+        try {
+            return view('user.index',[
+                'users' => $this->userService->getAll($request),
+                'roles' => $this->roleService->getAll()
+            ]);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
+            return redirect()->route('home');
+        }
+        
     }
 
     /**
@@ -33,7 +56,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.create');
+        try {
+            return view('user.create',[
+                'roles' => $this->roleService->getAll()
+            ]);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
+            return redirect()->route('user.index');
+        }
+        
     }
 
     /**
@@ -42,9 +75,18 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-
+        try {
+            $this->userService->saveUserData($request);
+            $message = config('error_message_list_conf.system.users.create_success') ?? null;
+            $this->showSuccessNotification($message);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $message = config('error_message_list_conf.system.users.create_error') ?? null;
+            $this->showSuccessNotification($message);
+        }
+        return redirect()->route('user.index');
     }
 
     /**
@@ -66,7 +108,15 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('user.edit');
+        try {
+            return view('user.edit', [
+                'user' => $this->userService->getById($id),
+                'roles' => $this->roleService->getAll()
+            ]);
+        } catch (Exception $e) {
+            $this->showWarningNotification(config('error_message_list_conf.system.error_system'));
+            return redirect()->route('user.index');
+        }
     }
 
     /**
@@ -76,8 +126,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
+        try {
+            $this->userService->updateUser($request, $id);
+            $message = config('error_message_list_conf.system.users.update_success') ?? null;
+            $this->showSuccessNotification($message);
+        } catch (Exception $e) {
+            DB::rollBack();
+            $message = config('error_message_list_conf.system.users.update_error') ?? null;
+            $this->showSuccessNotification($message);
+        }
+        return redirect()->route('user.index');
     }
 
     /**
@@ -88,6 +148,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
+        try {
+            $this->userService->deleteById($id);
+            $message = config('error_message_list_conf.system.users.delete_success') ?? null;
+            $this->showSuccessNotification($message);
+        } catch (Exception $e) {
+            $message = config('error_message_list_conf.system.users.delete_error') ?? null;
+            $this->showSuccessNotification($message);
+        }
+        return redirect()->route('user.index');
     }
 
     /**
@@ -99,4 +168,5 @@ class UserController extends Controller
     {
         return  ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'];
     }
+
 }
