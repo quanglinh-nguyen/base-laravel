@@ -13,6 +13,14 @@ return [
             'update_error' => 'Acronyms failed updated',
             'delete_success' => 'Acronyms failed deleted',
             'delete_error' => 'Acronyms failed deleted',
+        ],
+        'users' => [
+            'create_success' => 'User successfully created',
+            'create_error' => 'User successfully created',
+            'update_success' => 'User successfully updated',
+            'update_error' => 'User failed updated',
+            'delete_success' => 'User failed deleted',
+            'delete_error' => 'User failed deleted',
         ]
     ]
 ];

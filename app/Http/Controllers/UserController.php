@@ -9,13 +9,13 @@ use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
     private $userService;
     private $roleService;
-    private $data;
 
     /**
      * Create the controller instance.
@@ -27,7 +27,6 @@ class UserController extends Controller
         $this->authorizeResource(User::class, 'user');
         $this->userService = $userService;
         $this->roleService = $roleService;
-        $this->data = [];
     }
     /**
      * Display a listing of the resource.
@@ -36,12 +35,18 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        try {
+            return view('user.index',[
+                'users' => $this->userService->getAll($request),
+                'roles' => $this->roleService->getAll()
+            ]);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
+            return redirect()->route('home.index');
+        }
         
-        $users = $this->userService->getAll($request);
-        $roles = $this->roleService->getAll();
-        $this->data['users'] = $users;
-        $this->data['roles'] = $roles;
-        return view('user.index',$this->data);
     }
 
     /**
@@ -51,11 +56,17 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = $this->roleService->getAll();
-        $this->data['roles'] = $roles;
-        return view('user.create',[
-            'roles' => $roles
-        ]);
+        try {
+            return view('user.create',[
+                'roles' => $this->roleService->getAll()
+            ]);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            $message = config('error_message_list_conf.system.error_system') ?? null;
+            $this->showWarningNotification($message);
+            return redirect()->route('user.index');
+        }
+        
     }
 
     /**
@@ -68,10 +79,12 @@ class UserController extends Controller
     {
         try {
             $this->userService->saveUserData($request);
-            $this->showSuccessNotification('User successfully created');
+            $message = config('error_message_list_conf.system.users.create_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
             DB::rollBack();
-            $this->showErrorNotification('User failed created');
+            $message = config('error_message_list_conf.system.users.create_error') ?? null;
+            $this->showSuccessNotification($message);
         }
         return redirect()->route('user.index');
     }
@@ -96,16 +109,14 @@ class UserController extends Controller
     public function edit($id)
     {
         try {
-            $roles = $this->roleService->getAll();
-            $user = $this->userService->getById($id);
-            
+            return view('user.edit', [
+                'user' => $this->userService->getById($id),
+                'roles' => $this->roleService->getAll()
+            ]);
         } catch (Exception $e) {
+            $this->showWarningNotification(config('error_message_list_conf.system.error_system'));
             return redirect()->route('user.index');
         }
-        return view('user.edit', [
-            'user' => $user,
-            'roles' => $roles
-        ]);
     }
 
     /**
@@ -119,10 +130,12 @@ class UserController extends Controller
     {
         try {
             $this->userService->updateUser($request, $id);
-            $this->showSuccessNotification('User successfully updated');
+            $message = config('error_message_list_conf.system.users.update_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
             DB::rollBack();
-            $this->showErrorNotification('User failed updated');
+            $message = config('error_message_list_conf.system.users.update_error') ?? null;
+            $this->showSuccessNotification($message);
         }
         return redirect()->route('user.index');
     }
@@ -137,9 +150,11 @@ class UserController extends Controller
     {
         try {
             $this->userService->deleteById($id);
-            $this->showSuccessNotification('User successfully deleted');
+            $message = config('error_message_list_conf.system.users.delete_success') ?? null;
+            $this->showSuccessNotification($message);
         } catch (Exception $e) {
-            $this->showErrorNotification('User failed deleted');
+            $message = config('error_message_list_conf.system.users.delete_error') ?? null;
+            $this->showSuccessNotification($message);
         }
         return redirect()->route('user.index');
     }

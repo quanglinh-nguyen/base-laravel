@@ -38,7 +38,18 @@ class UserService
      */
     public function getAll($request)
     {
-        return $this->userRepository->getData($request);
+        $data = [];
+        $data['keyword'] = $request->input('keyword') ?? null;
+        $data['role'] = $request->input('role') ?? null;
+        $limit = config('repository.pagination.limit') ?? 50;
+        $columns = [
+            'id',
+            'name',
+            'email',
+            'phone',
+            'avatar',
+        ];
+        return $this->userRepository->getData($data, $limit, $columns);
     }
 
     /**
@@ -56,14 +67,10 @@ class UserService
             'phone',
             'role_id'
         ]);
-        $string = '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnopqrstuvwxyz#?!@$%^&*-';
-        do {
-            $passwordTemp = substr(str_shuffle($string), 0, 10);
-        } while (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,20}$/", $passwordTemp));
 
-        $passwordHash = Hash::make($passwordTemp);
-   
-        $data = array_merge($data,['password' => $passwordHash]);
+        $passwordTemp = str_shuffle('123abcDEF@');
+        $data['password'] = Hash::make($passwordTemp);
+      
         DB::beginTransaction();
         $user = $this->userRepository->create($data);
         $user->roles()->sync($data['role_id']);
