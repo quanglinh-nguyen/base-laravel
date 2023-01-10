@@ -37,10 +37,17 @@
                         </select>
                     </div>
                     <div class="input-group mr-2">
-                        <input type="text" name="geo_code" class="form-control" placeholder="Geo Code"/>
+                        <input type="text" name="geo_code" class="form-control" placeholder="Geo Code"
+                               value="{{request()->get('geo_code') ?? ""}}" />
                     </div>
                     <div class="input-group mr-2">
-                        <input type="text" name="organization_viet" class="form-control" placeholder="Organization (Viet)"/>
+                        <input type="text" name="organization_viet" class="form-control" placeholder="Organization (Viet)"
+                               value="{{request()->get('organization_viet') ?? ""}}" />
+                    </div>
+
+                    <div class="input-group mr-2">
+                        <input type="text" name="professional" class="form-control" placeholder="Professional"
+                               value="{{request()->get('professional') ?? ""}}" />
                     </div>
 
                     <div class="input-group mr-2">
@@ -58,14 +65,15 @@
                         </select>
                     </div>
                     <div class="input-group mr-2">
-                        <input type="text" name="attendance" class="form-control" placeholder="Attendance"/>
-                    </div>
-                    <div class="input-group mr-2">
-                        <input type="text" name="profesional" class="form-control" placeholder="Profesional"/>
+                        <input type="text" name="attendance" class="form-control" placeholder="Attendance"
+                               value="{{request()->get('attendance') ?? ""}}" />
                     </div>
 
                     <div class="input-group mr-2">
-                        <input type="text" name="last_updated_date" class="form-control float-right" id="reservation">
+                        <input type="text" name="last_updated_date" class="form-control float-right" id="reservation"
+                               value="{{request()->get('last_updated_date') ?? ""}}" >
+                        <input type="hidden" name="from" id="from-date" value="{{request()->get('from')}}">
+                        <input type="hidden" name="to" id="to-date" value="{{request()->get('to')}}">
                     </div>
                     <div class="d-flex flex-row">
                         <button class="btn btn-primary mr-2" type="submit">
@@ -192,6 +200,17 @@
 @section('script')
     <script>
         //Date range picker
-        $('#reservation').daterangepicker()
+        $('#reservation').daterangepicker({
+
+        });
+        $('#reservation').on('apply.daterangepicker', function (ev, picker){
+            $('#from-date').val(picker.startDate.format('YYYY-MM-DD'));
+            $('#to-date').val(picker.endDate.format('YYYY-MM-DD'));
+        })
+        $('#reservation').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+            $('#from-date').val('');
+            $('#to-date').val('');
+        });
     </script>
 @endsection

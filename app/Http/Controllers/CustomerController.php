@@ -33,6 +33,7 @@ class CustomerController extends Controller
      */
     public function index(Request $request)
     {
+//        dd($request->all());
         try {
             $arrIndustry = $this->customersService->getAllIndustry();
             $arrTitleLever = $this->customersService->getAllTitleLever();
